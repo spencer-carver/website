@@ -3,6 +3,12 @@
     display: inline-block;
 }
 
+@media screen and (min-width: 0) and (max-width:759px) {
+    .instagram-embed-container {
+        width: 326px;
+    }
+}
+
 .instagram-media {
     background:#FFF;
     border:0;
