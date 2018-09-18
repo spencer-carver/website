@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import InstagramEmbed from "./InstagramEmbed.js";
+import Navigation from "../../modules/Navigation";
+import InstagramEmbed from "../../modules/InstagramEmbed";
 //import logo from './logo.svg';
-import './App.css';
+import './styles.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">
-            Currently Under Construction
-          </h1>
-        </header>
+        <Navigation />
         <p className="App-intro">
           Something will be here soon! In the meantime, here's an instagram post.
         </p>
-        <InstagramEmbed postId="BlGuqGZlFvr" />
+        <InstagramEmbed />
       </div>
     );
   }

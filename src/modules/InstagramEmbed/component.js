@@ -1,5 +1,5 @@
 import React from "react";
-import './InstagramEmbed.css';
+import './styles.css';
 
 const InstagramEmbed = ({ postId }) => {
     return (
@@ -7,14 +7,6 @@ const InstagramEmbed = ({ postId }) => {
             <blockquote className="instagram-media" data-instgrm-permalink={ `https://www.instagram.com/p/${ postId }/?utm_source=ig_embed_loading` } data-instgrm-version="12">
                 <div className="div1">
                     <a className="link1" href={ `https://www.instagram.com/p/${ postId }/?utm_source=ig_embed_loading` } target="_blank" rel="noopener noreferrer">
-                        <div className="div2">
-                            <div className="div3"></div>
-                            <div className="div4">
-                                <div className="div5"></div>
-                                <div className="div6"></div>
-                            </div>
-                        </div>
-                        <div className="div7"></div>
                         <div className="div8">
                             <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                 <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -28,27 +20,6 @@ const InstagramEmbed = ({ postId }) => {
                         </div>
                         <div className="div9">
                             <div className="div10">View this post on Instagram</div>
-                        </div>
-                        <div className="div11"></div>
-                        <div className="div12">
-                            <div>
-                                <div className="div13"></div>
-                                <div className="div14"></div>
-                                <div className="div15"></div>
-                            </div>
-                            <div className="div16">
-                                <div className="div17"></div>
-                                <div className="div18"></div>
-                            </div>
-                            <div className="div19">
-                                <div className="div20"></div>
-                                <div className="div21"></div>
-                                <div className="div22"></div>
-                            </div>
-                        </div>
-                        <div className="div23">
-                            <div className="div24"></div>
-                            <div className="div25"></div>
                         </div>
                     </a>
                 </div>
