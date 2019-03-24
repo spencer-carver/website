@@ -9,6 +9,9 @@
 # production
 /build
 
+# generated
+public/index.html
+
 # misc
 .DS_Store
 .env.local
