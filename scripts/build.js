@@ -15,6 +15,15 @@ process.on('unhandledRejection', err => {
 // Ensure environment variables are read.
 require('../config/env');
 
+// generate server-rendered html files as base for static web layout
+require('babel-core/register')({
+  "presets": ["es2015", "react"]
+});
+require.extensions['.css'] = () => {
+  return;
+};
+require('../layout/generateMarkup');
+
 const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs-extra');
