@@ -8,4 +8,4 @@ This codebase began with the [create-react-app](https://github.com/facebook/crea
 * Powered by Amazon CloudFront, serving via Lambda@Edge and S3
 
 ## Known Issues
-* Social Icons don't appear in IE11 (SVG data URLs inlined into CSS)
+* [Social Icons don't appear in IE11 (SVG data URLs inlined into CSS)](https://github.com/spencer-carver/aws-site/issues/2)
