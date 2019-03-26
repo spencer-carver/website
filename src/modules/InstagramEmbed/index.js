@@ -8,7 +8,7 @@ const InstagramPosts = [
     "BeLnJLDnzkw", // whiskey
     "BcN30oqHNlI", // night
     "BcfOceoHf4n"  // winter
-  ];
+];
   
 
 const InstagramEmbedContainer = () => {
