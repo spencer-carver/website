@@ -12,7 +12,7 @@ function generateMarkup() {
       return console.log(err);
     }
 
-    console.log("The file was saved!");
+    console.log("Updated index.html was written to /public");
   }); 
 }
 
