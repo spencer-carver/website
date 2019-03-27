@@ -6,40 +6,31 @@
     flex-direction: row;
 }
 
-.spacer-left {
-    text-align: left;
-    flex-grow: 1;
-    flex-basis: 25%;
-}
-
-.site-title {
-    text-align: center;
-    flex-grow: 1;
-    flex-basis: 50%;
-}
-
-.site-title h1 {
-    color: #FFFFFF;
-    font-size: 24px;
-    margin: 11px 0;
+.navigation.sticky {
+    width: 205px;
+    border-radius: 0 0 0 16px;
+    padding-left: 5px;
+    position: fixed;
+    top: 0;
+    right: 0;
 }
 
 .social-links {
     text-align: right;
+    color: #FFFFFF;
+}
+
+.site-title {
+    display: none;
+    text-align: center;
     flex-grow: 1;
-    flex-basis: 25%;
-    color: #FFFFFF;
 }
 
-.page-tab {
-    display:inline-block;
-    margin: 11px 10px;
-    font-weight: bold;
+.site-title h1 {
     color: #FFFFFF;
-}
-
-.page-tab:hover {
-    cursor: pointer;
+    text-align: left;
+    font-size: 12px;
+    margin: 11px 0 11px 10px;
 }
 
 .social-icon {
@@ -106,53 +97,28 @@
     background: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 32 32'><title>facebook</title><path fill='%234267B2' d='M19 6h5v-6h-5c-3.86 0-7 3.14-7 7v3h-4v6h4v16h6v-16h5l1-6h-6v-3c0-0.542 0.458-1 1-1z'></path></svg>");
 }
 
-@media screen and (min-width: 560px) and (max-width: 759px) {
-    .spacer-left {
-        display: none;
-    }
-
-    .site-title {
-        text-align: left;
-        margin-left: 15px;
-    }
-}
-
-@media screen and (min-width: 375px) and (max-width:559px) {
+/* mobile */
+@media screen and (min-width: 400px) and (max-width:759px) {
     .site-title h1 {
         text-align: left;
         font-size: 12px;
         margin: 18px 0 18px 10px;
     }
-
-    .spacer-left {
-        display: none;
-    }
     
     .site-title {
-        flex-basis: 50%;
-    }
-    
-    .social-links {
-        flex-basis: 50%;
+        display: block;
     }
 }
 
-@media screen and (min-width: 0) and (max-width:374px) {
-    .site-title h1 {
-        text-align: left;
-        font-size: 12px;
-        margin: 11px 0 11px 10px;
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .site-title {
+        display: block;
     }
 
-    .spacer-left {
-        display: none;
-    }
-    
-    .site-title {
-        flex-basis: 45%;
-    }
-    
-    .social-links {
-        flex-basis: 55%;
+    .site-title h1 {
+        text-align: center;
+        font-size: 24px;
+        margin: 11px 0;
     }
 }

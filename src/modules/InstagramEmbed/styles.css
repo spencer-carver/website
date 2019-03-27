@@ -1,14 +1,7 @@
 .instagram-embed-container {
-    width: 540px;
-    height: 760px;
+    width: 326px;
+    height: 534px;
     display: inline-block;
-}
-
-@media screen and (min-width: 0) and (max-width:759px) {
-    .instagram-embed-container {
-        width: 326px;
-        height: 534px;
-    }
 }
 
 .instagram-media {
@@ -56,4 +49,17 @@
     font-style:normal;
     font-weight:550;
     line-height:18px;
+}
+
+.instagram-embed-container {
+    
+    display: inline-block;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .instagram-embed-container {
+        width: 540px;
+        height: 760px;
+    }
 }

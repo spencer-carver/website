@@ -11,9 +11,8 @@ import {
 const Navigation = () => {
     return (
         <nav className="navigation">
-            <div className="spacer-left"></div>
             <div className="site-title"><h1>Currently Under Construction</h1></div>
-            <div className="social-links">
+            <div className="navigation social-links sticky">
                 <a className="social-icon instagram" href={ INSTAGRAM_URL } target="_blank" rel="noopener noreferrer">Instagram</a>
                 <a className="social-icon facebook" href={ FACEBOOK_URL } target="_blank" rel="noopener noreferrer">Facebook</a>
                 <a className="social-icon twitter" href={ TWITTER_URL } target="_blank" rel="noopener noreferrer">Twitter</a>
