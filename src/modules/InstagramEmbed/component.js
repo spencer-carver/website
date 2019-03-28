@@ -5,10 +5,6 @@ import "./styles.css";
 /* eslint-disable max-len */
 
 const InstagramEmbed = ({ postId }) => {
-    if (!postId) {
-        return null;
-    }
-
     return (
         <div className="instagram-embed-container">
             <blockquote className="instagram-media" data-instgrm-permalink={ `https://www.instagram.com/p/${ postId }/?utm_source=ig_embed_loading` } data-instgrm-version="12">
@@ -36,7 +32,7 @@ const InstagramEmbed = ({ postId }) => {
 };
 
 InstagramEmbed.propTypes = {
-    postId: PropTypes.string
+    postId: PropTypes.string.isRequired
 };
 
 export default InstagramEmbed;
