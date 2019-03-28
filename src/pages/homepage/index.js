@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 import Navigation from "../../modules/Navigation";
-import InstagramEmbed from "../../modules/InstagramEmbed";
+import Footer from "../../modules/Footer";
+import InstagramEmbed, { InstagramPosts } from "../../modules/InstagramEmbed";
 import "./styles.css";
 
 class App extends Component {
     render() {
         return (
-            <div className="content">
+            <div className="page">
                 <Navigation />
                 <p className="intro">
-          Something will be here soon! In the meantime, here&#39;s an instagram post.
+          Something will be here soon! In the meantime, here&#39;s some instagram posts.
                 </p>
-                <InstagramEmbed />
+                <div className="content">
+                    <InstagramEmbed postId={ InstagramPosts.hackerman } />
+                    <InstagramEmbed postId={ InstagramPosts.valentinesLove } />
+                    <InstagramEmbed postId={ InstagramPosts.pacificCrestTrail } />
+                    <InstagramEmbed postId={ InstagramPosts.queensboroAtNight } />
+                </div>
+                <Footer />
             </div>
         );
     }

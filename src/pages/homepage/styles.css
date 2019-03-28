@@ -1,5 +1,11 @@
-.content {
+.page {
     text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .intro {
