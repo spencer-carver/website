@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Navigation from "../../modules/Navigation";
-import Footer from "../../modules/Footer";
 import InstagramEmbed, { InstagramPosts } from "../../modules/InstagramEmbed";
 import { API_URL } from "../../constants/ExternalUrls";
 import "./styles.css";
 
-class App extends Component {
+class Homepage extends Component {
     componentDidMount() {
         window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process == "function" && window.instgrm.Embeds.process();
 
@@ -16,21 +14,17 @@ class App extends Component {
 
     render() {
         return (
-            <div className="page">
-                <Navigation />
+            <div className="content">
                 <p className="intro">
                     Something will be here soon! In the meantime, here&#39;s some instagram posts.
                 </p>
-                <div className="content">
-                    <InstagramEmbed postId={ InstagramPosts.hackerman } />
-                    <InstagramEmbed postId={ InstagramPosts.valentinesLove } />
-                    <InstagramEmbed postId={ InstagramPosts.pacificCrestTrail } />
-                    <InstagramEmbed postId={ InstagramPosts.queensboroAtNight } />
-                </div>
-                <Footer />
+                <InstagramEmbed postId={ InstagramPosts.hackerman } />
+                <InstagramEmbed postId={ InstagramPosts.valentinesLove } />
+                <InstagramEmbed postId={ InstagramPosts.pacificCrestTrail } />
+                <InstagramEmbed postId={ InstagramPosts.queensboroAtNight } />
             </div>
         );
     }
 }
 
-export default App;
+export default Homepage;
