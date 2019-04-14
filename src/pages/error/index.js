@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Navigation from "../../modules/Navigation";
 import Footer from "../../modules/Footer";
 import { Link } from "react-router-dom";
@@ -15,6 +16,10 @@ const Error = ({ errorCode }) => {
             <Footer />
         </div>
     );
+};
+
+Error.propTypes = {
+    errorCode: PropTypes.number.isRequired
 };
 
 export default Error;

@@ -5,12 +5,14 @@
   "scripts": {
     "start": "node layout/generateMarkup.js && react-scripts start",
     "build": "node layout/generateMarkup.js && react-scripts build && react-snapshot",
+    "clean": "eslint --fix --ext js src",
     "deploy": "aws s3 cp build s3://spencerrc-website/ --recursive",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
     "react": "^16.8.6",
+    "react-app-polyfill": "^0.2.2",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8"

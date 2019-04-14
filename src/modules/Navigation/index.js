@@ -6,7 +6,7 @@ import {
     LINKEDIN_URL,
     TWITTER_URL,
     INSTAGRAM_URL
-} from "../../constants/SocialUrls.js";
+} from "../../constants/ExternalUrls";
 
 const Navigation = () => {
     return (
