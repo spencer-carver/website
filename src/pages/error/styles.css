@@ -3,11 +3,16 @@
     vertical-align: middle;
 }
 
+.content > *:not(:first-child) {
+    margin-top: 40px;
+}
+
 .sadFace {
-    font-size: 48px;
+    font-size: 200px;
 }
 
 .errorCode {
+    font-size: 36px;
     color: #cccccc;
 }
 
