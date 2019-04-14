@@ -1,0 +1,20 @@
+.page {
+    position: relative;
+}
+
+.content {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.sadFace {
+    font-size: 48px;
+}
+
+.errorCode {
+    color: #cccccc;
+}
+
+.linkHome {
+    text-decoration: none;
+}

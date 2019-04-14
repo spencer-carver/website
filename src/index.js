@@ -1,8 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-snapshot";
 import "./index.css";
 import Homepage from "./pages/homepage";
+import Error from "./pages/error";
 import registerServiceWorker from "./registerServiceWorker";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-ReactDOM.hydrate(<Homepage />, document.getElementById("root"));
+const Sitemap = () => (
+    <Router>
+        <Switch>
+            <Route path="/" exact component={ Homepage } />
+            <Route path="*" render={ () => <Error errorCode={ 404 } /> } />
+        </Switch>
+    </Router>
+);
+
+render(<Sitemap />, document.getElementById("root"));
 registerServiceWorker();
