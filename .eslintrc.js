@@ -8,8 +8,8 @@ module.exports = {
         "plugin:react/recommended"
     ],
     "parserOptions": {
+        "ecmaVersion": 6,
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
         },
         "sourceType": "module"
