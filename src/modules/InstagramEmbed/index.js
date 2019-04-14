@@ -10,7 +10,13 @@ export const InstagramPosts = {
     hackerman: "BviOsxQFv70",
     valentinesLove: "Bt3UqBnlWNG"
 };
-  
+
+export function reloadInstagramEmbeds() {
+    window.instgrm
+        && window.instgrm.Embeds
+        && typeof window.instgrm.Embeds.process == "function"
+        && window.instgrm.Embeds.process();
+}
 
 const InstagramEmbedContainer = ({ postId = InstagramPosts.pacificCrestTrail }) => {
     return <InstagramEmbed postId={ postId } />;
