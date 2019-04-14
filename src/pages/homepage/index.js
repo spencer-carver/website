@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import Navigation from "../../modules/Navigation";
 import Footer from "../../modules/Footer";
 import InstagramEmbed, { InstagramPosts } from "../../modules/InstagramEmbed";
+import { API_URL } from "../../constants/ExternalUrls";
 import "./styles.css";
 
 class App extends Component {
     componentDidMount() {
         window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process == "function" && window.instgrm.Embeds.process();
+
+        window.fetch(`${ API_URL }/api/healthcheck`)
+            .then(response => response.json())
+            .then(console.log);
     }
 
     render() {

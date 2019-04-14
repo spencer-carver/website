@@ -1,3 +1,4 @@
+import "react-app-polyfill/ie11";
 import React from "react";
 import { render } from "react-snapshot";
 import "./index.css";
@@ -7,7 +8,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Sitemap = () => (
-    <Router>
+    <Router forceRefresh={ true }>
         <Switch>
             <Route path="/" exact component={ Homepage } />
             <Route path="*" render={ () => <Error errorCode={ 404 } /> } />

@@ -1,3 +1,6 @@
+export const API_URL = "https://carvers.info";
+
+// Social URLs
 export const TWITTER_URL = "https://twitter.com/spencerrc";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/spencerrc";
 export const FACEBOOK_URL = "https://www.facebook.com/spencerrc";
