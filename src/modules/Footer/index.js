@@ -1,10 +1,10 @@
 import React from "react";
-import "./styles.css";
+import styles from "./styles.module.css";
 
 const Footer = () => {
     return (
-        <footer>
-            <p className="copyright-notice">&#169; 2019 Spencer Carver</p>
+        <footer className={ styles.footer }>
+            <p className={ styles.copyrightNotice }>&#169; 2019 Spencer Carver</p>
         </footer>
     );
 };

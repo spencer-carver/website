@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import InstagramEmbed, { InstagramPosts, reloadInstagramEmbeds } from "../../modules/InstagramEmbed";
 import { API_URL } from "../../constants/ExternalUrls";
-import "./styles.css";
+import styles from "./styles.module.css";
 
 class Homepage extends Component {
     componentDidMount() {
@@ -13,8 +13,8 @@ class Homepage extends Component {
 
     render() {
         return (
-            <div className="content">
-                <p className="intro">
+            <div className={ styles.content }>
+                <p className={ styles.intro }>
                     Something will be here soon! In the meantime, here&#39;s some instagram posts.
                 </p>
                 <InstagramEmbed postId={ InstagramPosts.hackerman } />
