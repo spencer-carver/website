@@ -1,4 +1,4 @@
-footer {
+.footer {
     position: absolute;
     bottom: 0;
     background-color: #222222;
@@ -9,6 +9,6 @@ footer {
     font-size: 14px;
 }
 
-.copyright-notice {
+.copyrightNotice {
     display: inline-block;
 }

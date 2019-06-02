@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import "./styles.css";
+import styles from "./styles.module.css";
 
 const Error = ({ errorCode }) => {
     return (
-        <div className="content">
-            <span className="sadFace">:(</span>
-            <span className="errorCode">{ errorCode }</span>
-            <Link className="linkHome" to="/">go home</Link>
+        <div className={ styles.content }>
+            <span className={ styles.sadFace }>:(</span>
+            <span className={ styles.errorCode }>{ errorCode }</span>
+            <Link className={ styles.linkHome } to="/">go home</Link>
         </div>
     );
 };
