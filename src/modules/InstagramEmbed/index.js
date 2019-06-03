@@ -8,7 +8,9 @@ export const InstagramPosts = {
     queensboroAtNight: "BcN30oqHNlI",
     tramInWinter: "BcfOceoHf4n",
     hackerman: "BviOsxQFv70",
-    valentinesLove: "Bt3UqBnlWNG"
+    valentinesLove: "Bt3UqBnlWNG",
+    threeViewsOfOregon: "Bx56tKRJOnp",
+    tayaki: "ByLeyT-p6M-"
 };
 
 export function reloadInstagramEmbeds() {
