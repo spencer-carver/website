@@ -1,0 +1,46 @@
+
+.skills {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.skill {
+    padding: 20px 0;
+    width: 150px;
+    border: 3px solid lightgray;
+    border-radius: 20px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-content: center;
+    color: black;
+}
+
+.skill:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.title,
+.tenure,
+.experience {
+    margin: 10px auto 0;
+}
+
+.title {
+    font-weight: 900;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .skills {
+        flex-direction: row;
+    }
+}
