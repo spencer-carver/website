@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import InstagramEmbed, { InstagramPosts, reloadInstagramEmbeds } from "../../modules/InstagramEmbed";
 import { API_URL } from "../../constants/ExternalUrls";
+import Navigation from "../../modules/Navigation";
 import styles from "./styles.module.css";
 
 const Homepage = () => {
@@ -12,16 +13,21 @@ const Homepage = () => {
     });
 
     return (
-        <div className={styles.content}>
-            <p className={styles.intro}>
+        <Navigation isHomepage={ true }>
+            <p id="intro" className={styles.intro}>
                 Something will be here soon! In the meantime, here&#39;s some instagram posts.
             </p>
-            <InstagramEmbed postId={InstagramPosts.tayaki} />
-            <InstagramEmbed postId={InstagramPosts.threeViewsOfOregon} />
-            <InstagramEmbed postId={InstagramPosts.hackerman} />
-            <InstagramEmbed postId={InstagramPosts.valentinesLove} />
-            <InstagramEmbed postId={InstagramPosts.queensboroAtNight} />
-        </div>
+            <div id="instagram" className={ styles.instagram }>
+                <InstagramEmbed postId={InstagramPosts.tayaki} />
+                <InstagramEmbed postId={InstagramPosts.threeViewsOfOregon} />
+                <InstagramEmbed postId={InstagramPosts.hackerman} />
+                <InstagramEmbed postId={InstagramPosts.valentinesLove} />
+                <InstagramEmbed postId={InstagramPosts.queensboroAtNight} />
+            </div>
+            <div id="module-2">
+                Something here later
+            </div>
+        </Navigation>
     );
 };
 

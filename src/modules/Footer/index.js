@@ -3,9 +3,11 @@ import styles from "./styles.module.css";
 
 const Footer = () => {
     return (
-        <footer className={ styles.footer }>
-            <p className={ styles.copyrightNotice }>&#169; 2019 Spencer Carver</p>
-        </footer>
+        <div className={ styles.spacer }>
+            <footer className={ styles.footer }>
+                <p className={ styles.copyrightNotice }>&#169; 2019 Spencer Carver</p>
+            </footer>
+        </div>
     );
 };
 
