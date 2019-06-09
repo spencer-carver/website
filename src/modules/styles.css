@@ -1,9 +1,19 @@
 .section {
-    padding: 40px 0;
-    margin: 0 20px;
+    padding: 40px 20px 0;
 }
 
-.logo {
-    height: 50px;
-    color: red;
+.sectionContent {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.section:nth-of-type(2n) {
+    background-color: gainsboro;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .section {
+        padding-bottom: 20px;
+    }
 }

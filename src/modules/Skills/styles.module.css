@@ -1,37 +1,47 @@
+.section {
+    margin: 40px auto 0;
+}
+
+.header {
+    float: none;
+    margin: 40px 0 0;
+}
 
 .skills {
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-end;
 }
 
-.link {
-    text-decoration: none;
+.container {
+    color: black;
+    border-bottom: 1px dotted gainsboro;
 }
 
-.skill {
-    padding: 20px 0;
-    width: 150px;
-    border: 3px solid lightgray;
-    border-radius: 20px;
+.container:first-child {
+    border-top: 1px dotted gainsboro;
+}
+
+.logo {
+    height: 50px;
+    float: left;
+    margin: 25px 0;
+}
+
+.details {
     display: flex;
     flex: 1;
     flex-direction: column;
-    align-content: center;
-    color: black;
-}
-
-.skill:hover {
-    background-color: lightgray;
-    cursor: pointer;
+    float: right;
+    max-width: 150px;
 }
 
 .title,
 .tenure,
 .experience {
-    margin: 10px auto 0;
+    margin: 10px 0 0;
+    text-align: right;
 }
 
 .title {
@@ -40,7 +50,43 @@
 
 /* tablet and desktop */
 @media screen and (min-width: 760px) {
+    .module:first-child {
+        border-bottom: 1px solid gainsboro;
+    }
+
+    .header {
+        float: left;
+        font-size: 64px;
+        font-weight: 900;
+        color: gainsboro;
+    }
     .skills {
         flex-direction: row;
+    }
+
+    .logo {
+        float: none;
+        margin: 0 auto;
+    }
+
+    .skill {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-content: center;
+        width: 150px;
+        padding: 20px 0;
+    }
+
+    .container,
+    .container:first-child {
+        border: none;
+    }
+
+    .title,
+    .tenure,
+    .experience {
+        margin: 10px auto 0;
+        text-align: center;
     }
 }

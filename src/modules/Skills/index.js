@@ -1,55 +1,108 @@
 import React from "react";
 import PropTypes from "prop-types";
-import calculateTenure from "../../utils/calculateTenure";
+import calculateYearsBetween from "../../utils/calculateYearsBetween";
+import {
+    REACT_LOGO,
+    JS_LOGO,
+    JAVA_LOGO,
+    CLIMBING_LOGO,
+    SCUBA_LOGO,
+    MAGIC_JUDGES_LOGO
+} from "../../constants/Logos";
 import styles from "./styles.module.css";
+
+const Skills = () => {
+    return (
+        <div className={ styles.section }>
+            <TechnicalSkills />
+            <Interests />
+        </div>
+    );
+};
 
 const STARTED_WITH_REACT = new Date(2016, 6, 1);
 const STARTED_WITH_JAVASCRIPT = new Date(2015, 7, 1);
 const STARTED_WITH_JAVA = new Date(2009, 8, 1);
 const ENDED_WITH_JAVA = new Date(2015, 4, 10);
-const STARTED_ROCK_CLIMBING = new Date(2015, 9, 1);
 
-const Skills = () => {
+const TechnicalSkills = () => {
     return (
-        <div className={ styles.skills }>
-            <SkillTab title="React" startDate={ STARTED_WITH_REACT } link="https://reactjs.org/">
-                <img className="logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K" alt="React.js logo"></img>
-            </SkillTab>
-            <SkillTab title="Javascript" startDate={ STARTED_WITH_JAVASCRIPT } link="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-                <img className="logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmll%0D%0Ad0JveD0iMCAwIDYzMCA2MzAiPgo8IS0tClRoZSBNSVQgTGljZW5zZSAoTUlUKQoKQ29weXJpZ2h0%0D%0AIChjKSAyMDExIENocmlzdG9waGVyIFdpbGxpYW1zIDxjaHJpc0BpdGVyYXRpdmVkZXNpZ25zLmNv%0D%0AbT4sCiAgICAgICAgICAgICAgICAgICAgIE1hbnVlbCBTdHJlaGwgPGJvbGRld3luQGdtYWlsLmNv%0D%0AbT4KClBlcm1pc3Npb24gaXMgaGVyZWJ5IGdyYW50ZWQsIGZyZWUgb2YgY2hhcmdlLCB0byBhbnkg%0D%0AcGVyc29uIG9idGFpbmluZyBhIGNvcHkKb2YgdGhpcyBzb2Z0d2FyZSBhbmQgYXNzb2NpYXRlZCBk%0D%0Ab2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNvZnR3YXJlIiksIHRvIGRlYWwKaW4gdGhlIFNvZnR3%0D%0AYXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24gdGhl%0D%0AIHJpZ2h0cwp0byB1c2UsIGNvcHksIG1vZGlmeSwgbWVyZ2UsIHB1Ymxpc2gsIGRpc3RyaWJ1dGUs%0D%0AIHN1YmxpY2Vuc2UsIGFuZC9vciBzZWxsCmNvcGllcyBvZiB0aGUgU29mdHdhcmUsIGFuZCB0byBw%0D%0AZXJtaXQgcGVyc29ucyB0byB3aG9tIHRoZSBTb2Z0d2FyZSBpcwpmdXJuaXNoZWQgdG8gZG8gc28s%0D%0AIHN1YmplY3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgoKVGhlIGFib3ZlIGNvcHlyaWdo%0D%0AdCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwgYmUgaW5jbHVkZWQgaW4K%0D%0AYWxsIGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuCgpUSEUg%0D%0AU09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lUSE9VVCBXQVJSQU5UWSBPRiBBTlkgS0lO%0D%0ARCwgRVhQUkVTUyBPUgpJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBX%0D%0AQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElUWSwKRklUTkVTUyBGT1IgQSBQQVJUSUNVTEFSIFBV%0D%0AUlBPU0UgQU5EIE5PTklORlJJTkdFTUVOVC4gSU4gTk8gRVZFTlQgU0hBTEwgVEhFCkFVVEhPUlMg%0D%0AT1IgQ09QWVJJR0hUIEhPTERFUlMgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1Ig%0D%0AT1RIRVIKTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFDVCwgVE9SVCBP%0D%0AUiBPVEhFUldJU0UsIEFSSVNJTkcgRlJPTSwKT1VUIE9GIE9SIElOIENPTk5FQ1RJT04gV0lUSCBU%0D%0ASEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUiBPVEhFUiBERUFMSU5HUyBJTgpUSEUgU09GVFdBUkUu%0D%0ACi0tPgo8ZyBpZD0ibG9nbyI+CiAgPHJlY3QgaWQ9ImJhY2tncm91bmQiIHg9IjAiIHk9IjAiIHdp%0D%0AZHRoPSI2MzAiIGhlaWdodD0iNjMwIiBmaWxsPSIjZjdkZjFlIiAvPgogIDxwYXRoIGlkPSJqIiBk%0D%0APSJtIDE2NS42NSw1MjYuNDczNzUgNDguMjEyNSwtMjkuMTc3NSBDIDIyMy4xNjM3NSw1MTMuNzg3%0D%0ANSAyMzEuNjI1LDUyNy43NCAyNTEuOTIsNTI3Ljc0IGMgMTkuNDUzNzUsMCAzMS43MTg3NSwtNy42%0D%0AMDk3NSAzMS43MTg3NSwtMzcuMjEgbCAwLC0yMDEuMyA1OS4yMDM3NSwwIDAsMjAyLjEzNzUgYyAw%0D%0ALDYxLjMyIC0zNS45NDM3NSw4OS4yMzEyNSAtODguMzg1LDg5LjIzMTI1IC00Ny4zNjEyNSwwIC03%0D%0ANC44NTI1LC0yNC41Mjg3NSAtODguODA3NSwtNTQuMTMiIC8+CiAgPHBhdGggaWQ9InMiIGQ9Im0g%0D%0AMzc1LDUyMC4xMyA0OC4yMDYyNSwtMjcuOTExMjUgYyAxMi42OSwyMC43MjM3NSAyOS4xODI1LDM1%0D%0ALjk0NzUgNTguMzYxMjUsMzUuOTQ3NSAyNC41MzEyNSwwIDQwLjE3Mzc1LC0xMi4yNjQ3NSA0MC4x%0D%0ANzM3NSwtMjkuMTgxMjUgMCwtMjAuMjk4NzUgLTE2LjA2ODc1LC0yNy40ODg3NSAtNDMuMTM1LC0z%0D%0AOS4zMjYyNSBsIC0xNC43OTc1LC02LjM0NzUgYyAtNDIuNzE1LC0xOC4xODEyNSAtNzEuMDUsLTQx%0D%0ALjAxNzUgLTcxLjA1LC04OS4yMjc1IDAsLTQ0LjQwMzc1IDMzLjgzMTI1LC03OC4yMzc1IDg2LjY5%0D%0ANSwtNzguMjM3NSAzNy42Mzc1LDAgNjQuNzAyNSwxMy4xMTEyNSA4NC4xNTM3NSw0Ny4zNjYyNSBs%0D%0AIC00Ni4wOTYyNSwyOS42MDEyNSBjIC0xMC4xNSwtMTguMTgyNSAtMjEuMTQyNSwtMjUuMzcxMjUg%0D%0ALTM4LjA1NzUsLTI1LjM3MTI1IC0xNy4zMzg3NSwwIC0yOC4zMzUsMTAuOTk1IC0yOC4zMzUsMjUu%0D%0AMzcxMjUgMCwxNy43NjI1IDEwLjk5NjI1LDI0Ljk1MjUgMzYuMzY3NSwzNS45NDg3NSBsIDE0Ljgs%0D%0ANi4zNDI1IGMgNTAuMzI1LDIxLjU2ODc1IDc4LjY2LDQzLjU1NzUgNzguNjYsOTMuMDMzNzUgMCw1%0D%0AMy4yODc1IC00MS44NjYyNSw4Mi40NjUgLTk4LjExLDgyLjQ2NSAtNTQuOTc2MjUsMCAtOTAuNSwt%0D%0AMjYuMjE3NSAtMTA3LjgzNjI1LC02MC40NzM3NSIgLz4KPC9nPgo8L3N2Zz4K" alt="JS logo"></img>
-            </SkillTab>
-            <SkillTab title="Rock Climbing" startDate={ STARTED_ROCK_CLIMBING } link="https://reactjs.org/">
-                <img className="logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Layer_1' x='0px' y='0px' width='123.547px' height='123.539px' viewBox='-0.258 -0.548 123.547 123.539' style='enable-background:new -0.258 -0.548 123.547 123.539;' xml:space='preserve'%3E%3Cg%3E%3Cpath d='M61.617,79.191c-1.055,0.391-2.227,0.609-3.422,0.609c-1.289,0-2.562-0.148-3.734-0.492L41.18,109.832 c-1.211,2.805-4.555,3.758-7.461,2.117c-2.906-1.633-4.273-5.219-3.023-8.031L46.969,66.59h20.75v-3.492l10.492-4.883 c2.758-1.344,6.32,0.953,7.055,3.859l5.148,20.656c0.734,2.93-1.047,5.883-3.977,6.617c-2.93,0.727-5.906-1.055-6.641-3.984 l-3.273-13.156L61.617,79.191z'/%3E%3Cpath d='M71.18,57.801C93.906,46.52,102.719,7.902,102.719,4.676h-3.125C98.422,12.73,88.656,44.957,71.18,54.309V57.801z'/%3E%3Cpath d='M29.227,49.355c1.195,1.852,3.594,2.688,5.719,1.805l12.023-4.711v16.672h20.75V43.816l18.594-29.766 c1.367-2.172,0.734-5.055-1.461-6.445c-2.172-1.367-5.055-0.734-6.273,1.391L62.789,34.293l-9.523,0.023 c-0.609,0-1.219,0.094-1.828,0.344l-16.445,6.445l-8.477-12.844c-1.391-2.148-4.266-2.781-6.445-1.391 c-2.172,1.391-2.805,4.297-1.414,6.469L29.227,49.355z'/%3E%3Cpath d='M55.93,32.605c4.562,0,8.273-3.688,8.273-8.25s-3.711-8.273-8.273-8.273c-4.57,0-8.281,3.711-8.281,8.273 S51.359,32.605,55.93,32.605z'/%3E%3Cpolygon points='67.719,117.027 67.719,79.801 64.227,81.434 64.227,117.027 '/%3E%3C/g%3E%3C/svg%3E" alt="Rock Climbing"></img>
-            </SkillTab>
-            <SkillTab title="Java" startDate={ STARTED_WITH_JAVA } endDate={ ENDED_WITH_JAVA } link="https://www.java.com/">
-                <img className="logo" src="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3Csvg width='256px' height='346px' viewBox='0 0 256 346' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' preserveAspectRatio='xMidYMid'%3E%3Cg%3E%3Cpath d='M82.5539491,267.472524 C82.5539491,267.472524 69.35552,275.147869 91.9468218,277.745105 C119.315549,280.867375 133.303389,280.419607 163.463913,274.711273 C163.463913,274.711273 171.393396,279.683258 182.467491,283.989644 C114.855564,312.966982 29.4483782,282.311215 82.5539491,267.472524' fill='%235382A1'%3E%3C/path%3E%3Cpath d='M74.2921309,229.658996 C74.2921309,229.658996 59.4888145,240.616727 82.0968727,242.955171 C111.333004,245.971316 134.421411,246.218007 174.373236,238.524975 C174.373236,238.524975 179.899113,244.127185 188.588218,247.190807 C106.841367,271.094691 15.79008,249.075898 74.2921309,229.658996' fill='%235382A1'%3E%3C/path%3E%3Cpath d='M143.941818,165.514705 C160.601367,184.695156 139.564684,201.955142 139.564684,201.955142 C139.564684,201.955142 181.866124,180.117876 162.438982,152.772422 C144.294633,127.271098 130.380335,114.600495 205.706705,70.9138618 C205.706705,70.9138618 87.4691491,100.44416 143.941818,165.514705' fill='%23E76F00'%3E%3C/path%3E%3Cpath d='M233.364015,295.441687 C233.364015,295.441687 243.131113,303.489396 222.60736,309.715316 C183.580858,321.537862 60.1748945,325.107898 25.8932364,310.186356 C13.5698618,304.825251 36.67968,297.385425 43.9491491,295.824291 C51.5304727,294.180305 55.8629236,294.486575 55.8629236,294.486575 C42.15808,284.832116 -32.7195927,313.443607 17.8287709,321.637469 C155.681513,343.993251 269.121164,311.570618 233.364015,295.441687' fill='%235382A1'%3E%3C/path%3E%3Cpath d='M88.9008873,190.479825 C88.9008873,190.479825 26.1287564,205.389265 66.6717091,210.803433 C83.7901964,213.095331 117.915462,212.576815 149.702284,209.913484 C175.680233,207.722124 201.765236,203.062924 201.765236,203.062924 C201.765236,203.062924 192.605091,206.985775 185.977949,211.510924 C122.233949,228.275665 -0.907636364,220.476509 34.5432436,203.328233 C64.5241018,188.83584 88.9008873,190.479825 88.9008873,190.479825' fill='%235382A1'%3E%3C/path%3E%3Cpath d='M201.506444,253.422313 C266.305164,219.7504 236.344785,187.392 215.432844,191.751447 C210.307258,192.818269 208.021876,193.742662 208.021876,193.742662 C208.021876,193.742662 209.924655,190.761891 213.558924,189.471651 C254.929455,174.927127 286.746065,232.368873 200.204102,255.11936 C200.204102,255.120291 201.206691,254.223825 201.506444,253.422313' fill='%235382A1'%3E%3C/path%3E%3Cpath d='M162.438982,0.371432727 C162.438982,0.371432727 198.325527,36.27008 128.402153,91.4720582 C72.3307055,135.753542 115.616116,161.001658 128.37888,189.848669 C95.6490473,160.318371 71.6297309,134.322735 87.7437673,110.128407 C111.395375,74.6132945 176.918342,57.3942691 162.438982,0.371432727' fill='%23E76F00'%3E%3C/path%3E%3Cpath d='M95.2683055,344.665367 C157.466996,348.646865 252.980131,342.45632 255.24224,313.025629 C255.24224,313.025629 250.893964,324.182575 203.838371,333.042967 C150.750487,343.033484 85.2740655,341.867055 46.4393309,335.464262 C46.4402618,335.463331 54.3892945,342.043927 95.2683055,344.665367' fill='%235382A1'%3E%3C/path%3E%3C/g%3E%3C/svg%3E" alt="Java logo"></img>
-            </SkillTab>
+        <div className={ styles.module }>
+            <h1 className={ styles.header }>
+                Skills
+            </h1>
+            <div className={ styles.skills }>
+                <SkillTab title="React" startDate={ STARTED_WITH_REACT } link="https://reactjs.org/">
+                    <img className={ styles.logo } src={ REACT_LOGO } alt="React.js logo"></img>
+                </SkillTab>
+                <SkillTab title="Javascript" startDate={ STARTED_WITH_JAVASCRIPT } link="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
+                    <img className={ styles.logo } src={ JS_LOGO } alt="JS logo"></img>
+                </SkillTab>
+                <SkillTab title="Java" startDate={ STARTED_WITH_JAVA } endDate={ ENDED_WITH_JAVA } link="https://www.java.com/">
+                    <img className={ styles.logo } src={ JAVA_LOGO } alt="Java logo"></img>
+                </SkillTab>
+            </div>
         </div>
     );
 };
 
-const SkillTab = ({ link, title, startDate, endDate = null, children }) => {
-    const tenure = calculateTenure(startDate, endDate);
-    const tenureText = tenure === 0
+const STARTED_ROCK_CLIMBING = new Date(2015, 9, 1);
+const STARTED_MAGIC_JUDGING = new Date(2016, 9, 10);
+
+const Interests = () => {
+    return (
+        <div className={ styles.module }>
+            <h1 className={ styles.header }>
+                Interests
+            </h1>
+            <div className={ styles.skills }>
+                <SkillTab title="Rock Climbing"
+                    startDate={ STARTED_ROCK_CLIMBING }
+                    link="https://www.mountainproject.com/user/112091331/spencer-carver">
+                    <img className={ styles.logo } src={ CLIMBING_LOGO } alt="Rock Climbing"></img>
+                </SkillTab>
+                <SkillTab title="SCUBA Diving"
+                    experienceLevel="Advanced Open Water Diver"
+                    link="https://www.padi.com/">
+                    <img className={ styles.logo } src={ SCUBA_LOGO } alt="SCUBA Dive Flag"></img>
+                </SkillTab>
+                <SkillTab title="Magic Judging"
+                    startDate={ STARTED_MAGIC_JUDGING }
+                    experienceLevel="Level 1"
+                    showTenure={ true }
+                    link="https://blogs.magicjudges.org/">
+                    <img className={ styles.logo } src={ MAGIC_JUDGES_LOGO } alt="Magic Judges logo"></img>
+                </SkillTab>
+            </div>
+        </div>
+    );
+};
+
+const SkillTab = ({ title, startDate, endDate = null, experienceLevel, showTenure = false, children }) => {
+    const experienceYears = calculateYearsBetween(startDate, endDate);
+    const experienceText = experienceYears === 0
         ? "Learning"
-        : `${ tenure } Years`;
+        : `${ experienceYears } Years`;
 
     return (
-        <a className={ styles.link } href={ link }>
+        <div className={ styles.container }>
             <div className={ styles.skill }>
                 { children }
-                <span className={ styles.title }>{ title }</span>
-                <span className={ styles.tenure }>{ tenureText }</span>
-                <span className={ styles.experience }>{ startDate.getFullYear() } - { endDate ? endDate.getFullYear() : "Present" }</span>
+                <div className={ styles.details }>
+                    <span className={ styles.title }>{ title }</span>
+                    { experienceLevel && <span className={ styles.experience }>{ experienceLevel }</span> }
+                    { !experienceLevel && <span className={ styles.experience }>{ experienceText }</span> }
+                    { !(experienceLevel && !showTenure) && <span className={ styles.tenure }>{ startDate.getFullYear() } - { endDate ? endDate.getFullYear() : "Present" }</span> }
+                </div>
             </div>
-        </a>
+        </div>
     );
 };
 
 SkillTab.propTypes = {
     link: PropTypes.string,
     title: PropTypes.string.isRequired,
-    startDate: PropTypes.instanceOf(Date).isRequired,
+    startDate: PropTypes.instanceOf(Date),
     endDate: PropTypes.instanceOf(Date)
 };
 

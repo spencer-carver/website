@@ -79,13 +79,17 @@ const HomepageNav = () => {
 const SocialButtons = () => {
     return (
         <div className={ `${ styles.socialLinks } ${ styles.sticky }` }>
-            <a className={ `${ styles.socialIcon } ${ styles.instagram }` } href={ INSTAGRAM_URL } target="_blank" rel="noopener noreferrer">Instagram</a>
+            <InstagramIcon />
             <a className={ `${ styles.socialIcon } ${ styles.facebook }` } href={ FACEBOOK_URL } target="_blank" rel="noopener noreferrer">Facebook</a>
             <a className={ `${ styles.socialIcon } ${ styles.twitter }` } href={ TWITTER_URL } target="_blank" rel="noopener noreferrer">Twitter</a>
             <a className={ `${ styles.socialIcon } ${ styles.github }` } href={ GITHUB_URL } target="_blank" rel="noopener noreferrer">GitHub</a>
             <a className={ `${ styles.socialIcon } ${ styles.linkedIn }` } href={ LINKEDIN_URL } target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
     );
+};
+
+export const InstagramIcon = ({ theme = "white" }) => {
+    return <a className={ `${ styles.socialIcon } ${ styles.instagram } ${ styles[theme] }` } href={ INSTAGRAM_URL } target="_blank" rel="noopener noreferrer">Instagram</a>;
 };
 
 const Nav = ({ sections = [], selected, setSelected }) => {
