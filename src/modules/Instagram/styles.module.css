@@ -1,5 +1,4 @@
 .instagram {
-    position: relative;
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
@@ -19,7 +18,6 @@
 }
 
 .blurb {
-    flex: 1;
     font-size: 24px;
     line-height: 36px;
     text-align: center;
@@ -40,6 +38,7 @@
     }
 
     .blurb {
+        flex: 1;
         margin: 140px 25px 0;
     }
 }

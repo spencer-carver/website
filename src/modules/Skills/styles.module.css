@@ -29,6 +29,18 @@
     margin: 25px 0;
 }
 
+.react,
+.js,
+.java,
+.climbing,
+.scuba {
+    width: 50px;
+}
+
+.magicJudging {
+    width: 86px;
+}
+
 .details {
     display: flex;
     flex: 1;
@@ -50,6 +62,11 @@
 
 /* tablet and desktop */
 @media screen and (min-width: 760px) {
+
+    .module {
+        height: 177px;
+        clear: both;
+    }
     .module:first-child {
         border-bottom: 1px solid gainsboro;
     }

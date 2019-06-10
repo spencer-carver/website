@@ -33,13 +33,13 @@ const TechnicalSkills = () => {
             </h1>
             <div className={ styles.skills }>
                 <SkillTab title="React" startDate={ STARTED_WITH_REACT } link="https://reactjs.org/">
-                    <img className={ styles.logo } src={ REACT_LOGO } alt="React.js logo"></img>
+                    <img className={ `${ styles.logo } ${ styles.react }` } src={ REACT_LOGO } alt="React.js logo"></img>
                 </SkillTab>
                 <SkillTab title="Javascript" startDate={ STARTED_WITH_JAVASCRIPT } link="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-                    <img className={ styles.logo } src={ JS_LOGO } alt="JS logo"></img>
+                    <img className={ `${ styles.logo } ${ styles.js }` } src={ JS_LOGO } alt="JS logo"></img>
                 </SkillTab>
                 <SkillTab title="Java" startDate={ STARTED_WITH_JAVA } endDate={ ENDED_WITH_JAVA } link="https://www.java.com/">
-                    <img className={ styles.logo } src={ JAVA_LOGO } alt="Java logo"></img>
+                    <img className={ `${ styles.logo } ${ styles.java }` } src={ JAVA_LOGO } alt="Java logo"></img>
                 </SkillTab>
             </div>
         </div>
@@ -59,19 +59,19 @@ const Interests = () => {
                 <SkillTab title="Rock Climbing"
                     startDate={ STARTED_ROCK_CLIMBING }
                     link="https://www.mountainproject.com/user/112091331/spencer-carver">
-                    <img className={ styles.logo } src={ CLIMBING_LOGO } alt="Rock Climbing"></img>
+                    <img className={ `${ styles.logo } ${ styles.climbing }` } src={ CLIMBING_LOGO } alt="Rock Climbing"></img>
                 </SkillTab>
                 <SkillTab title="SCUBA Diving"
                     experienceLevel="Advanced Open Water Diver"
                     link="https://www.padi.com/">
-                    <img className={ styles.logo } src={ SCUBA_LOGO } alt="SCUBA Dive Flag"></img>
+                    <img className={ `${ styles.logo } ${ styles.scuba }` } src={ SCUBA_LOGO } alt="SCUBA Dive Flag"></img>
                 </SkillTab>
                 <SkillTab title="Magic Judging"
                     startDate={ STARTED_MAGIC_JUDGING }
-                    experienceLevel="Level 1"
+                    experienceLevel="Level 1 Judge"
                     showTenure={ true }
                     link="https://blogs.magicjudges.org/">
-                    <img className={ styles.logo } src={ MAGIC_JUDGES_LOGO } alt="Magic Judges logo"></img>
+                    <img className={ `${ styles.logo } ${ styles.magicJudging }` } src={ MAGIC_JUDGES_LOGO } alt="Magic Judges logo"></img>
                 </SkillTab>
             </div>
         </div>
