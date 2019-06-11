@@ -1,6 +1,10 @@
 function wrapLayout(metadata) {
     const {
-        title = "Spencer Carver's Info"
+        title = "Spencer Carver's Info",
+        description = "Spencer Carver's personal website. Details about his hobbies, skills, and interests, as well as contact information.",
+        siteName = "Spencer.Carvers.info",
+        siteUrl = "https://spencer.carvers.info",
+        twitterHandle = "@spencerrc"
     } = metadata;
 
     return `<!DOCTYPE html>
@@ -29,6 +33,20 @@ function wrapLayout(metadata) {
             Learn how to configure a non-root public URL by running 'npm run build'.
         -->
         <title>${ title }</title>
+        <link rel="canonical" href="${ siteUrl }">
+        <meta name="description" content="${ description }">
+        <meta name="homepage" content="true">
+        <meta name="referrer" content="unsafe-url">
+        <meta name="referrer" content="always">
+        <meta property="og:site_name" content="${ siteName }">
+        <meta property="og:type" content="website">
+        <meta property="og:description" content="${ description }">
+        <meta property="og:title" content="${ siteName }">
+        <meta property="og:url" content="${ siteUrl }">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="${ twitterHandle }">
+        <meta name="twitter:description" content="${ description }">
+        <meta name="twitter:title" content="${ siteName }">
         <script async defer src="//www.instagram.com/embed.js"></script>
     </head>
     <body>
