@@ -9,7 +9,7 @@ import {
 } from "../../constants/ExternalUrls";
 import styles from "./styles.module.css";
 
-const LOAD_DELAY = 1500;
+const LOAD_DELAY = 2500;
 
 function ensureArray(value) {
     return Array.isArray(value)
