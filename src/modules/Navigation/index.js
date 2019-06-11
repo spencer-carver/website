@@ -27,7 +27,9 @@ const Navigation = ({ isHomepage = false, children }) => {
         setTimeout(() => {
             video && typeof video.play === "function" && video.play();
         }, LOAD_DELAY);
+    }, []);
 
+    useEffect(() => {
         function reportScrollY() {
             if (!isHomepage) {
                 return;
