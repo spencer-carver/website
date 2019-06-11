@@ -50,11 +50,3 @@
     font-weight:550;
     line-height:18px;
 }
-
-/* tablet and desktop */
-@media screen and (min-width: 760px) {
-    .instagram-embed-container {
-        width: 540px;
-        height: 760px;
-    }
-}

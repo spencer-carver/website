@@ -1,0 +1,71 @@
+.personalBlurb {
+    display: flex;
+    flex-direction: column;
+}
+
+.personalPhoto {
+    background: url("../../images/thinking.jpg");
+    background-position: center;
+    background-size: 150% 100%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.photoContainer {
+    margin: 20px auto;
+}
+
+.personalDetails {
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    margin: 0 40px;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+    border-bottom: 2px dotted yellowgreen;
+}
+
+.link:hover {
+    background-color: yellowgreen;
+    cursor: pointer;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .personalBlurb {
+        flex-direction: row;
+    }
+
+    .personalPhoto {
+        width: 250px;
+        height: 250px;
+    }
+
+    .personalDetails {
+        font-size: 24px;
+        line-height: 36px;
+        margin: 20px 40px;
+    }
+}
+
+/* desktop */
+@media screen and (min-width: 1240px) {
+    .photoContainer,
+    .personalDetails {
+        flex: 1;
+    }
+
+    .personalPhoto {
+        width: 350px;
+        height: 350px;
+    }
+
+    .personalDetails {
+        margin: 60px 40px;
+    }
+}
