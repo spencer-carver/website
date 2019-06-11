@@ -11,6 +11,12 @@ import styles from "./styles.module.css";
 
 const LOAD_DELAY = 1500;
 
+function ensureArray(value) {
+    return Array.isArray(value)
+        ? value
+        : [ value ];
+}
+
 const Navigation = ({ isHomepage = false, children }) => {
     const [focus, setFocus] = useState(0);
     const [hidden, setHidden] = useState(isHomepage);
@@ -46,7 +52,7 @@ const Navigation = ({ isHomepage = false, children }) => {
         };
     });
 
-    const sectionNames = children.reduce((accumulatedNames, { props: { id } }) => {
+    const sectionNames = ensureArray(children).reduce((accumulatedNames, { props: { id } }) => {
         if (id) {
             accumulatedNames.push(id);
         }

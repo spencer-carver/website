@@ -1,6 +1,9 @@
 import React from "react";
 import Skills from "../Skills";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
+import {
+    MOUNTAINPROJECT_URL
+} from "../../constants/ExternalUrls";
 import styles from "./styles.module.css";
 import "../styles.css";
 
@@ -17,7 +20,10 @@ const AboutMe = () => {
                     <div className={styles.personalDetails}>
                         <p>
                             I'm a {calculateYearsBetween(MY_BIRTHDAY)} year old Software Developer based out of New York, New York.
-                        I enjoy <em>Rock Climbing</em>, <em>Magic: the Gathering</em>, and <em>Cocktails</em>, though I wouldn't recommend combining them into a single activity.
+                            I enjoy <a className={ styles.link } href={ MOUNTAINPROJECT_URL }>Rock Climbing</a>,
+                            Magic: the Gathering,
+                            and Cocktails,
+                            though I wouldn't recommend combining them into a single activity.
                     </p>
                     </div>
                 </div>

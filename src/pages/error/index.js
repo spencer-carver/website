@@ -7,9 +7,11 @@ import styles from "./styles.module.css";
 const Error = ({ errorCode }) => {
     return (
         <Navigation>
-            <span className={ styles.sadFace }>:(</span>
-            <span className={ styles.errorCode }>{ errorCode }</span>
-            <Link className={ styles.linkHome } to="/">go home</Link>
+            <div className={ styles.content }>
+                <span className={ styles.sadFace }>:(</span>
+                <span className={ styles.errorCode }>{ errorCode }</span>
+                <Link className={ styles.linkHome } to="/">go home</Link>
+            </div>
         </Navigation>
     );
 };
