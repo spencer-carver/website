@@ -20,9 +20,9 @@ const AboutMe = () => {
                     <div className={styles.personalDetails}>
                         <p>
                             I'm a {calculateYearsBetween(MY_BIRTHDAY)} year old Software Developer based out of New York, New York.
-                            I enjoy <a className={ styles.link } href={ MOUNTAINPROJECT_URL }>Rock Climbing</a>,
+                            I enjoy <a className={ styles.link } href={ MOUNTAINPROJECT_URL } target="_blank" rel="noopener noreferrer">Rock Climbing</a>,
                             Magic: the Gathering,
-                            and Cocktails,
+                            and Cocktails
                             though I wouldn't recommend combining them into a single activity.
                     </p>
                     </div>
