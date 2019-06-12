@@ -9,8 +9,6 @@ import {
 } from "../../constants/ExternalUrls";
 import styles from "./styles.module.css";
 
-const LOAD_DELAY = 2500;
-
 function ensureArray(value) {
     return Array.isArray(value)
         ? value
@@ -20,14 +18,6 @@ function ensureArray(value) {
 const Navigation = ({ isHomepage = false, children }) => {
     const [focus, setFocus] = useState(0);
     const [hidden, setHidden] = useState(isHomepage);
-
-    useEffect(() => {
-        const video = document.getElementById("backgroundVideo");
-
-        setTimeout(() => {
-            video && typeof video.play === "function" && video.play();
-        }, LOAD_DELAY);
-    }, []);
 
     useEffect(() => {
         function reportScrollY() {
@@ -76,10 +66,11 @@ const Navigation = ({ isHomepage = false, children }) => {
 
 const HomepageNav = () => {
     return (
-        <div id="hero" className={styles.hero }>
-            <video id="backgroundVideo" className={ styles.video } loop>
-                <source src={ `${ process.env.PUBLIC_URL }/workloop.mp4` } type="video/mp4" />
-            </video>
+        <div id="hero" className={ styles.hero }>
+            <div className={ styles.slideshow }>
+                <div className={ styles.image1 }></div>
+                <div className={ styles.image2 }></div> 
+            </div>
         </div>
     );
 };

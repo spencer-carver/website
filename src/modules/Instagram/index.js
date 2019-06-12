@@ -12,7 +12,7 @@ const Instagram = () => {
                 <div className={styles.blurb}>
                     <div>
                         I post climbing videos, food, and the occasional travel photos on my instagram.
-                        Follow to see what I find interesting or worth sharing!
+                        Follow to see what I find worth sharing!
                 </div>
                     <InstagramIcon theme="black" />
                 </div>
