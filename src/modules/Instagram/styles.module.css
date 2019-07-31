@@ -1,7 +1,6 @@
 .instagram {
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
 }
 
 .cards {
@@ -26,7 +25,7 @@
 /* tablet and desktop */
 @media screen and (min-width: 760px) {
     .instagram {
-        flex-direction: row;
+        flex-direction: row-reverse;
     }
 
     .cards {

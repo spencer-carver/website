@@ -1,5 +1,4 @@
 import React from "react";
-import Skills from "../Skills";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import {
     MOUNTAINPROJECT_URL
@@ -27,7 +26,6 @@ const AboutMe = () => {
                     </p>
                     </div>
                 </div>
-                <Skills />
             </div>
         </div>
     );
