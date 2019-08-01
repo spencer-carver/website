@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import websiteImage from "../../images/website-image.png";
 import watchdogImage from "../../images/watchdog-echo-skill.png";
 import styles from "./styles.module.css";
@@ -52,6 +53,15 @@ const ProjectCard = ({title, description, imageUrl, imageAlt, siteUrl, githubUrl
             <span className={styles.description}>{ description }</span>
         </div>
     );
+};
+
+ProjectCard.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    imageAlt: PropTypes.string.isRequired,
+    siteUrl: PropTypes.string,
+    githubUrl: PropTypes.string
 };
 
 export default Projects;

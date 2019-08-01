@@ -13,7 +13,7 @@ const Instagram = () => {
                     <div>
                         I post climbing videos, food, and the occasional travel photos on my instagram.
                         Follow to see what I find worth sharing!
-                </div>
+                    </div>
                     <InstagramIcon theme="black" />
                 </div>
             </div>
