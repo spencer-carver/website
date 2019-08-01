@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
     FACEBOOK_URL,
-    GITHUB_URL,
     LINKEDIN_URL,
     TWITTER_URL,
     INSTAGRAM_URL
@@ -81,7 +80,6 @@ const SocialButtons = () => {
             <InstagramIcon />
             <a className={ `${ styles.socialIcon } ${ styles.facebook }` } href={ FACEBOOK_URL } target="_blank" rel="noopener noreferrer">Facebook</a>
             <a className={ `${ styles.socialIcon } ${ styles.twitter }` } href={ TWITTER_URL } target="_blank" rel="noopener noreferrer">Twitter</a>
-            <a className={ `${ styles.socialIcon } ${ styles.github }` } href={ GITHUB_URL } target="_blank" rel="noopener noreferrer">GitHub</a>
             <a className={ `${ styles.socialIcon } ${ styles.linkedIn }` } href={ LINKEDIN_URL } target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
     );
