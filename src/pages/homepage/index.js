@@ -3,6 +3,7 @@ import { API_URL } from "../../constants/ExternalUrls";
 import Navigation from "../../modules/Navigation";
 import AboutMeSection from "../../modules/AboutMe";
 import InstagramSection from "../../modules/Instagram";
+import ProjectsSection from "../../modules/Projects";
 
 const Homepage = () => {
     useEffect(() => {
@@ -14,6 +15,7 @@ const Homepage = () => {
         <Navigation isHomepage={ true }>
             { AboutMeSection() }
             { InstagramSection() }
+            { ProjectsSection() }
         </Navigation>
     );
 };

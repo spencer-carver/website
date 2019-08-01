@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
     FACEBOOK_URL,
-    GITHUB_URL,
     LINKEDIN_URL,
     TWITTER_URL,
     INSTAGRAM_URL
@@ -16,8 +16,8 @@ function ensureArray(value) {
 }
 
 const Navigation = ({ isHomepage = false, children }) => {
-    const [focus, setFocus] = useState(0);
-    const [hidden, setHidden] = useState(isHomepage);
+    const [ focus, setFocus ] = useState(0);
+    const [ hidden, setHidden ] = useState(isHomepage);
 
     useEffect(() => {
         function reportScrollY() {
@@ -64,6 +64,11 @@ const Navigation = ({ isHomepage = false, children }) => {
     );
 };
 
+Navigation.propTypes = {
+    isHomepage: PropTypes.bool,
+    children: PropTypes.any
+};
+
 const HomepageNav = () => {
     return (
         <div id="hero" className={ styles.hero }>
@@ -81,7 +86,6 @@ const SocialButtons = () => {
             <InstagramIcon />
             <a className={ `${ styles.socialIcon } ${ styles.facebook }` } href={ FACEBOOK_URL } target="_blank" rel="noopener noreferrer">Facebook</a>
             <a className={ `${ styles.socialIcon } ${ styles.twitter }` } href={ TWITTER_URL } target="_blank" rel="noopener noreferrer">Twitter</a>
-            <a className={ `${ styles.socialIcon } ${ styles.github }` } href={ GITHUB_URL } target="_blank" rel="noopener noreferrer">GitHub</a>
             <a className={ `${ styles.socialIcon } ${ styles.linkedIn }` } href={ LINKEDIN_URL } target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
     );
@@ -89,6 +93,10 @@ const SocialButtons = () => {
 
 export const InstagramIcon = ({ theme = "white" }) => {
     return <a className={ `${ styles.socialIcon } ${ styles.instagram } ${ styles[theme] }` } href={ INSTAGRAM_URL } target="_blank" rel="noopener noreferrer">Instagram</a>;
+};
+
+InstagramIcon.propTypes = {
+    theme: PropTypes.string
 };
 
 const Nav = ({ sections = [], selected, setSelected }) => {
@@ -110,6 +118,12 @@ const Nav = ({ sections = [], selected, setSelected }) => {
     );
 };
 
+Nav.propTypes = {
+    sections: PropTypes.arrayOf(PropTypes.string),
+    selected: PropTypes.number.isRequired,
+    setSelected: PropTypes.func.isRequired
+};
+
 const NavItem = ({ name, index, selected = false, setSelected }) => {
     function onItemClick(event) {
         setSelected(index);
@@ -122,6 +136,13 @@ const NavItem = ({ name, index, selected = false, setSelected }) => {
             { name.replace("-", " ") }
         </div>
     );
+};
+
+NavItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    selected: PropTypes.bool,
+    setSelected: PropTypes.func.isRequired
 };
 
 export default Navigation;
