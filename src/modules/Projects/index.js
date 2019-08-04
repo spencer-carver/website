@@ -33,7 +33,7 @@ const PROJECT_DETAILS = {
         imageUrl: watchdogImage,
         imageAlt: "The Watchdog alexa skill logo",
         siteUrl: "https://smile.amazon.com/Spencer-Carver-Watch-Dog/dp/B01DKMZ04A/",
-        githubUrl: "https://github.com/spencer-carver/alexa/tree/master/watch-dog"
+        githubUrl: "https://github.com/spencer-carver/watchdog"
     }
 };
 
