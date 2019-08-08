@@ -4,8 +4,8 @@ import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import {
     MOUNTAINPROJECT_URL
 } from "../../constants/ExternalUrls";
-import styles from "./styles.module.css";
-import "../styles.css";
+import styles from "./styles.module.scss";
+import "../styles.scss";
 
 const MY_BIRTHDAY = new Date(1991, 2, 23);
 

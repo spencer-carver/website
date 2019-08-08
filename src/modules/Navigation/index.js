@@ -7,7 +7,7 @@ import {
     TWITTER_URL,
     INSTAGRAM_URL
 } from "../../constants/ExternalUrls";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 function ensureArray(value) {
     return Array.isArray(value)

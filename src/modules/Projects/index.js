@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import websiteImage from "../../images/website-image.png";
 import watchdogImage from "../../images/watchdog-echo-skill.png";
-import styles from "./styles.module.css";
-import "../styles.css";
+import styles from "./styles.module.scss";
+import "../styles.scss";
 
 const Projects = () => {
     return (

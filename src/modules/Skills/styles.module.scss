@@ -1,3 +1,5 @@
+@import "../../styles/colors";
+
 .section {
     margin: 40px auto 0;
 }
@@ -14,12 +16,12 @@
 }
 
 .container {
-    color: black;
-    border-bottom: 1px dotted gainsboro;
+    color: $black;
+    border-bottom: 1px dotted $alto;
 }
 
 .container:first-child {
-    border-top: 1px dotted gainsboro;
+    border-top: 1px dotted $alto;
 }
 
 .logo {
@@ -67,14 +69,14 @@
         clear: both;
     }
     .module:first-child {
-        border-bottom: 1px solid gainsboro;
+        border-bottom: 1px solid $alto;
     }
 
     .header {
         float: left;
         font-size: 64px;
         font-weight: 900;
-        color: gainsboro;
+        color: $alto;
     }
     .skills {
         flex-direction: row;
