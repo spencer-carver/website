@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 const Error = ({ errorCode }) => {
     return (

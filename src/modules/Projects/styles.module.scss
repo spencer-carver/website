@@ -1,0 +1,88 @@
+@import "../../styles/colors";
+@import "../../styles/icons";
+
+.header {
+    margin: 0;
+    text-align: left;
+    font-size: 64px;
+    font-weight: 900;
+    color: $alto;
+}
+
+.projectContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.card {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
+    border-bottom: 1px dotted $alto;
+}
+
+.card:last-child {
+    border-bottom: none;
+}
+
+.image {
+    width: 80%;
+}
+
+.title {
+    display: block;
+    font-size: 24px;
+}
+
+.description {
+    display: block;
+}
+
+.imageContainer {
+    position: relative;
+    padding: 10px 0;
+}
+
+.githubLink {
+    position: absolute;
+    display: none;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    bottom: 20px;
+    @include github($icon-color: $black, $width: 50, $height: 50, $background-color: $white);
+    border-radius: 25px;
+    font-size: 0;
+}
+
+.githubLink:hover {
+    @include github($icon-color: $atlantis, $width: 50, $height: 50, $background-color: $white);
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .projectContainer {
+        flex-direction: row;
+    }
+
+    .card {
+        width: 200px;
+        border: none;
+    }
+
+    .image {
+        width: auto;
+        height: 200px;
+    }
+
+    .imageContainer:hover .githubLink {
+        display: block;
+        animation: fadein 0.75s;
+    }
+}

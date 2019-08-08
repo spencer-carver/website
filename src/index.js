@@ -6,7 +6,7 @@ import Footer from "./modules/Footer";
 import Homepage from "./pages/homepage";
 import Error from "./pages/error";
 import registerServiceWorker from "./registerServiceWorker";
-import "./index.css";
+import "./index.scss";
 
 const Sitemap = () => (
     <Router>

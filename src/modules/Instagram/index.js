@@ -1,8 +1,8 @@
 import React from "react";
 import { InstagramIcon } from "../Navigation";
 import { INSTAGRAM_URL } from "../../constants/ExternalUrls";
-import styles from "./styles.module.css";
-import "../styles.css";
+import styles from "./styles.module.scss";
+import "../styles.scss";
 
 const Instagram = () => {
     return (

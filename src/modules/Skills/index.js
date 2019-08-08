@@ -9,7 +9,7 @@ import {
     SCUBA_LOGO,
     MAGIC_JUDGES_LOGO
 } from "../../constants/Logos";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 const Skills = () => {
     return (
