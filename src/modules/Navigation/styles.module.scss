@@ -13,9 +13,11 @@
 .hero {
     height: 100vh;
     width: 100%;
+    position: relative;
     background: url("../../images/bg.jpg");
     background-position: center;
     background-size: 200% 100%;
+    z-index: 1000002;
 }
 
 .hero::before {
@@ -93,7 +95,7 @@
     flex-direction: row;
     align-content: center;
     justify-content: center;
-    animation: fadein 0.5s;
+    z-index: 1000001;
 }
 
 .linkHome {
@@ -123,8 +125,6 @@
     margin: 15px 5px;
     color: $white;
     text-transform: capitalize;
-    animation: fadein 1.5s;
-    z-index: 1000001;
 }
 
 .navItem.selected {
