@@ -16,10 +16,6 @@ function wrapLayout(metadata) {
                       minimum-scale=1.0, maximum-scale=1.0, 
                       target-densitydpi=device-dpi">
         <meta name="theme-color" content="#000000">
-        <!--
-            manifest.json provides metadata used when your web app is added to the
-            homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-        -->
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
         <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
         <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
@@ -43,26 +39,16 @@ function wrapLayout(metadata) {
         <meta property="og:description" content="${ description }">
         <meta property="og:title" content="${ siteName }">
         <meta property="og:url" content="${ siteUrl }">
-        <meta property="og:image" content="%PUBLIC_URL%/seo.jpg">
+        <meta property="og:image" content="${ siteUrl }/seo.jpg">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="${ twitterHandle }">
         <meta name="twitter:description" content="${ description }">
         <meta name="twitter:title" content="${ siteName }">
-        <meta name="twitter:image" content="%PUBLIC_URL%/seo.jpg">
+        <meta name="twitter:image" content="${ siteUrl }/seo.jpg">
         <script async defer src="//www.instagram.com/embed.js"></script>
     </head>
     <body>
         <div id="root"></div>
-        <!--
-            This HTML file is a template.
-            If you open it directly in the browser, you will see an empty page.
-
-            You can add webfonts, meta tags, or analytics to this file.
-            The build step will place the bundled scripts into the <body> tag.
-
-            To begin the development, run 'npm start' or 'yarn start'.
-            To create a production bundle, use 'npm run build' or 'yarn build'.
-        -->
     </body>
 </html>`;
 }

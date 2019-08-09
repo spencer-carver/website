@@ -17,16 +17,12 @@ function ensureArray(value) {
 
 const Navigation = ({ isHomepage = false, children }) => {
     const [ focus, setFocus ] = useState(0);
-    const [ hidden, setHidden ] = useState(isHomepage);
 
     useEffect(() => {
         function reportScrollY() {
             if (!isHomepage) {
                 return;
             }
-
-            const firstChild = document.getElementById(children[0].props.id);
-            setHidden(!(firstChild.getBoundingClientRect().top < 70));
 
             const focusedSection = document.getElementById(children[focus].props.id);
 
@@ -57,7 +53,7 @@ const Navigation = ({ isHomepage = false, children }) => {
             <nav className={ styles.navigation }>
                 { isHomepage && <HomepageNav /> }
                 <SocialButtons />
-                { !hidden && <Nav sections={ sectionNames } selected={ focus } setSelected={ setFocus } /> }
+                <Nav sections={ sectionNames } selected={ focus } setSelected={ setFocus } />
             </nav>
             { children }
         </div>
