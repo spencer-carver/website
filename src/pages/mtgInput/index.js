@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import DCIWithAuth from "../../modules/MTG/DCIWithAuth";
 import Game from "../../modules/MTG/Game";
 import styles from "./styles.module.scss";
+import "../../styles/form.scss";
 
 const MTGInput = () => {
     const [ dciNumber, setDciNumber ] = useState(null);
-    const [ userSecret, setUserSecret ] = useState(null);
+    const [ userSecret, setUserSecret ] = useState("");
     const [ games, setGames ] = useState({ 1: {} });
 
     useEffect(() => {
@@ -19,7 +20,7 @@ const MTGInput = () => {
     }, []);
 
     return (
-        <div>
+        <div className={ styles.background }>
             <form className={ styles.form }>
                 <DCIWithAuth
                     dciNumber={ dciNumber }
@@ -27,15 +28,15 @@ const MTGInput = () => {
                     userSecret={ userSecret }
                     setUserSecret={ setUserSecret }
                 />
-                <input type="text" placeholder="opponentDciNumber"></input>
-                <input type="text" placeholder="deckName"></input>
-                <input type="text" placeholder="opponentDeckName"></input>
-                <input type="text" placeholder="event"></input>
-                <input type="text" placeholder="format"></input>
-                <input type="number" placeholder="round"></input>
+                <input className="textInput" type="text" placeholder="opponentDciNumber"></input>
+                <input className="textInput" type="text" placeholder="deckName"></input>
+                <input className="textInput" type="text" placeholder="opponentDeckName"></input>
+                <input className="textInput" type="text" placeholder="event"></input>
+                <input className="textInput" type="text" placeholder="format"></input>
+                <input className="textInput" type="number" placeholder="round"></input>
                 <GamesEntry games={ games } setGames={ setGames } />
-                <input type="text" placeholder="notes"></input>
-                <button type="submit">Submit Match Record</button>
+                <input className="textInput" type="text" placeholder="notes"></input>
+                <button className="submitButton centered" type="submit">Submit Match Record</button>
             </form>
         </div>
     );

@@ -1,10 +1,17 @@
 @import "../../styles/colors";
 
+.background {
+    background-color: $alto;
+    padding: 20px 0;
+    height: calc(100vh - 90px);
+}
+
 .form {
     display: block;
-    margin: 20px auto;
+    margin: 0 auto;
+    padding: 10px;
     width: 100%;
     max-width: 500px;
-    height: 500px;
-    box-shadow: 0px 0px 1px 1px $alto;
+    box-shadow: 0px 0px 1px 1px $picton-blue;
+    background-color: $white;
 }

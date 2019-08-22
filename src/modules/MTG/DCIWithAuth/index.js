@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import FormElement from "../../FormElement";
+import "../../../styles/form.scss";
 
 const DCIWithAuth = ({ dciNumber, setDciNumber, userSecret, setUserSecret }) => {
-    const [ localSecret, setLocalSecret ] = useState(null);
+    const [ localSecret, setLocalSecret ] = useState("");
 
     const onStoreSecret = () => {
         if (!localSecret) {
@@ -18,17 +20,18 @@ const DCIWithAuth = ({ dciNumber, setDciNumber, userSecret, setUserSecret }) => 
 
     return (
         <div>
-            <input type="text" placeholder="dciNumber"></input>
+            <FormElement id="dciNumber" label="DCI Number" onChange={ setDciNumber } />
             { userSecret
-                ? <span>Your secret is saved to this browser</span>
+                ? <span>A password is saved to this browser</span>
                 : (<div>
-                    <input
+                    <FormElement
+                        id="password"
                         type="password"
-                        placeholder="password"
-                        onChange={ (event) => setLocalSecret(event.target.value) }
+                        label="Password"
+                        onChange = { (event) => setLocalSecret(event.target.value) }
                         value={ localSecret }
                     />
-                    <input type="checkbox" onClick={ onStoreSecret }></input> Save
+                    <button type="button" onClick={ onStoreSecret }>Save</button>
                 </div>)
             }
         </div>
