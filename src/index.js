@@ -4,6 +4,7 @@ import { render } from "react-snapshot";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./modules/Footer";
 import Homepage from "./pages/homepage";
+import MTGInput from "./pages/mtgInput";
 import Error from "./pages/error";
 import registerServiceWorker from "./registerServiceWorker";
 import "./index.scss";
@@ -13,6 +14,7 @@ const Sitemap = () => (
         <div className="page">
             <Switch>
                 <Route path="/" exact component={ Homepage } />
+                <Route path="/mtg" component={ MTGInput } />
                 <Route path="*" render={ () => <Error errorCode={ 404 } /> } />
             </Switch>
             <Footer />
