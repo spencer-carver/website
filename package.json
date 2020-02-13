@@ -11,12 +11,17 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "node-sass": "^4.12.0",
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.1",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "node-sass": "^4.13.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^0.2.2",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^3.3.1",
+    "typescript": "^3.7.5"
   },
   "devDependencies": {
     "react-snapshot": "^1.3.0"

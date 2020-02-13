@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import InstagramEmbed from "./component.js";
+import InstagramEmbed from "./component";
 
 export const InstagramPosts = {
     pacificCrestTrail: "BlGuqGZlFvr",
@@ -12,6 +12,10 @@ export const InstagramPosts = {
     threeViewsOfOregon: "Bx56tKRJOnp",
     tayaki: "ByLeyT-p6M-"
 };
+
+declare global {
+    interface Window { instgrm: any; }
+}
 
 export function reloadInstagramEmbeds() {
     window.instgrm
