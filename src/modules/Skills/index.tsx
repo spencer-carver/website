@@ -70,7 +70,16 @@ const Interests = () => {
     );
 };
 
-const SkillTab = ({ title, startDate, endDate = null, experienceLevel, showTenure = false, children }) => {
+interface SkillTabParams {
+    title: string,
+    startDate?: Date,
+    endDate?: Date,
+    experienceLevel?: string,
+    showTenure?: boolean,
+    children: any
+}
+
+const SkillTab = ({ title, startDate, endDate = undefined, experienceLevel, showTenure = false, children } : SkillTabParams) => {
     const experienceYears = calculateYearsBetween(startDate, endDate);
     const experienceText = experienceYears === 0
         ? "Learning"
@@ -84,7 +93,7 @@ const SkillTab = ({ title, startDate, endDate = null, experienceLevel, showTenur
                     <span className={ styles.title }>{ title }</span>
                     { experienceLevel && <span className={ styles.experience }>{ experienceLevel }</span> }
                     { !experienceLevel && <span className={ styles.experience }>{ experienceText }</span> }
-                    { !(experienceLevel && !showTenure) && <span className={ styles.tenure }>{ startDate.getFullYear() } - { endDate ? endDate.getFullYear() : "Present" }</span> }
+                    { !(experienceLevel && !showTenure) && startDate && <span className={ styles.tenure }>{ startDate.getFullYear() } - { endDate ? endDate.getFullYear() : "Present" }</span> }
                 </div>
             </div>
         </div>

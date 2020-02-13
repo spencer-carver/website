@@ -9,13 +9,18 @@ import {
 } from "../../constants/ExternalUrls";
 import styles from "./styles.module.scss";
 
-function ensureArray(value) {
+function ensureArray(value: Array<any> | any) {
     return Array.isArray(value)
         ? value
         : [ value ];
 }
 
-const Navigation = ({ isHomepage = false, children }) => {
+interface NavigationProps {
+    isHomepage?: boolean,
+    children: any
+}
+
+const Navigation = ({ isHomepage = false, children }: NavigationProps) => {
     const [ focus, setFocus ] = useState(0);
 
     useEffect(() => {
@@ -25,6 +30,10 @@ const Navigation = ({ isHomepage = false, children }) => {
             }
 
             const focusedSection = document.getElementById(children[focus].props.id);
+
+            if (!focusedSection) {
+                return;
+            }
 
             if (focusedSection.getBoundingClientRect().bottom < 70) {
                 setFocus(focus + 1);
@@ -95,7 +104,7 @@ InstagramIcon.propTypes = {
     theme: PropTypes.string
 };
 
-const Nav = ({ sections = [], selected, setSelected }) => {
+const Nav = ({ sections = [], selected, setSelected } : { sections?: Array<string>, selected: number, setSelected: any }) => {
     return (
         <div id="navBar" className={ styles.navBar }>
             <Link className={ styles.linkHome } to="/">go home</Link>
@@ -120,10 +129,42 @@ Nav.propTypes = {
     setSelected: PropTypes.func.isRequired
 };
 
-const NavItem = ({ name, index, selected = false, setSelected }) => {
-    function onItemClick(event) {
+interface NavItemProps {
+    name: string,
+    index: number,
+    selected?: boolean,
+    setSelected: Function
+}
+
+declare module 'react' {
+    interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+      // extends React's HTMLAttributes
+      reference?: string;
+    }
+}
+
+const NavItem = ({ name, index, selected = false, setSelected } : NavItemProps) => {
+    function onItemClick(event : any) {
         setSelected(index);
-        const elementY = document.getElementById(event.target.getAttribute("reference")).getBoundingClientRect().top;
+
+        if (!event || !event.target) {
+            return;
+        }
+
+        const eventTarget = event.target as HTMLElement;
+        const reference = eventTarget.getAttribute("reference");
+
+        if (!reference) {
+            return;
+        }
+
+        const referenceElement = document.getElementById(reference);
+
+        if (!referenceElement) {
+            return;
+        }
+
+        const elementY = referenceElement.getBoundingClientRect().top;
         window.scrollBy(0, elementY - 50);
     }
 

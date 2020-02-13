@@ -37,7 +37,16 @@ const PROJECT_DETAILS = {
     }
 };
 
-const ProjectCard = ({title, description, imageUrl, imageAlt, siteUrl, githubUrl}) => {
+interface ProjectCardProps {
+    title: string,
+    description: string,
+    imageUrl: string,
+    imageAlt: string,
+    siteUrl?: string,
+    githubUrl: string
+}
+
+const ProjectCard = ({title, description, imageUrl, imageAlt, siteUrl, githubUrl} : ProjectCardProps) => {
 
     const siteLinkHTML = siteUrl
         ? <a className={styles.siteLink} href={siteUrl}><img className={styles.image} src={imageUrl} alt={imageAlt}></img></a>
