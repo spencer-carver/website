@@ -24,8 +24,6 @@ const PuzzleAnswerSubmission = ({ puzzleName } : PuzzleAnswerSubmissionProps) =>
             body: JSON.stringify({ answer })
         }).then(response => response.json());
 
-        console.log(answerResponse);
-
         setAnswers([ ...answers, answerResponse ]);
     }
 
