@@ -1,0 +1,36 @@
+@import "../../styles/colors";
+
+.answerbox {
+    position: fixed;
+    bottom: 60px;
+    right: 0;
+    width: 242px;
+    min-height: 50px;
+    border: 1px solid $black;
+}
+
+.input {
+    margin: 0 5px 10px 5px;
+}
+
+.pastAnswers {
+    margin: 0;
+    padding: 10px 5px;
+}
+
+.answer {
+    display: block;
+    margin-bottom: 1px;
+}
+
+.correct {
+    background-color: $atlantis;
+}
+
+.intermediate {
+    background-color: $confetti;
+}
+
+.incorrect {
+    background-color: $cinnabar;
+}

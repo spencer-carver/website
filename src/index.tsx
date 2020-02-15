@@ -4,6 +4,7 @@ import { render } from "react-snapshot";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./modules/Footer";
 import Homepage from "./pages/homepage";
+import Puzzle from "./pages/puzzle";
 import Error from "./pages/error";
 import registerServiceWorker from "./registerServiceWorker";
 import "./index.scss";
@@ -13,6 +14,7 @@ const Sitemap = () => (
         <div className="page">
             <Switch>
                 <Route path="/" exact component={ Homepage } />
+                <Route path="/puzzle/:puzzleName" exact component={ Puzzle } />
                 <Route path="*" render={ () => <Error errorCode={ 404 } /> } />
             </Switch>
             <Footer />
