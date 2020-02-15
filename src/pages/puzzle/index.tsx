@@ -14,9 +14,9 @@ const Puzzle = (props : any) => {
 
     if (!puzzle) {
         return (
-            <div>
-                This isn't a puzzle
-            </div>
+            <Navigation isHomepage={ false }>
+                <div>This isn't a puzzle</div>
+            </Navigation>
         );
     }
 
