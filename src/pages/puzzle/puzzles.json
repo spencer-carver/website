@@ -1,0 +1,7 @@
+{
+    "tetris": {
+        "title": "Tetris",
+        "description": "You don't see the appeal?",
+        "content": "<video width='100%' controls><source src='https://spencer.carvers.info/static/media/Tetris Puzzle.mp4' type='video/mp4'>Your browser does not support HTML5 video.</video>"
+    }
+}
