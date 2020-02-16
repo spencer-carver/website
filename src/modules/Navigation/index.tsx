@@ -129,7 +129,7 @@ const Nav = ({ sections = [], selected, setSelected }: { sections?: Array<string
                     }
                 </div>
                 <div className={ `${ styles.siteNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
-                    Site Navigation: 
+                    <span className={ styles.siteNavDescriptor }>Site Navigation:</span>
                     <Link to="/" className={ styles.link }>Home</Link> 
                     <Link to="/puzzles" className={ styles.link }>Puzzles</Link>
                 </div>
