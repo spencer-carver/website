@@ -16,7 +16,7 @@ const PuzzleAnswerSubmission = ({ puzzleName }: PuzzleAnswerSubmissionProps): JS
     const [ answer, setAnswer ] = useState("");
     const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
 
-    function onType(event: React.KeyboardEvent<HTMLInputElement>): void {
+    function onType(event: React.ChangeEvent<HTMLInputElement>): void {
         setAnswer((event.target as HTMLInputElement).value);
     }
 
@@ -31,13 +31,14 @@ const PuzzleAnswerSubmission = ({ puzzleName }: PuzzleAnswerSubmissionProps): JS
         }).then(response => response.json());
 
         setAnswers([ ...answers, answerResponse ]);
+        setAnswer("");
     }
 
     return (
         <div className={ styles.answerbox }>
             <PastAnswers pastAnswers={ answers } />
             <div className={ styles.input }>
-                <input type="text" placeholder="Answer Here" onChange={ onType }></input>
+                <input type="text" placeholder="Answer Here" value={ answer } onChange={ onType }></input>
                 <button type="submit" onClick={ submit }>Submit</button>
             </div>
         </div>

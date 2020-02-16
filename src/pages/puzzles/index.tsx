@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import puzzles from "../puzzle/puzzles.json";
 import styles from "../puzzle/styles.module.scss";
@@ -13,7 +14,7 @@ const Puzzles = (): JSX.Element => {
                 </div>
                 <ul className={ styles.list }>
                     { Object.keys(puzzles).map((puzzleName, index) => {
-                        return <li key={ index }><a href={ `/puzzle/${ puzzleName }` }>{ puzzleName }</a></li>;
+                        return <li key={ index }><Link to={ `/puzzle/${ puzzleName }` }>{ puzzleName }</Link></li>;
                     }) }
                 </ul>
             </div>
