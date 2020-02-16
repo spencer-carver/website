@@ -4,7 +4,7 @@ import { INSTAGRAM_URL } from "../../constants/ExternalUrls";
 import styles from "./styles.module.scss";
 import "../styles.scss";
 
-const Instagram = () => {
+const Instagram = (): JSX.Element => {
     return (
         <div id="instagram" className="section">
             <div className={`sectionContent ${styles.instagram}`}>

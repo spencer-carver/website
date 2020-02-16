@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { ReactElement, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
@@ -9,27 +9,27 @@ import {
 } from "../../constants/ExternalUrls";
 import styles from "./styles.module.scss";
 
-function ensureArray(value: Array<any> | any) {
+function ensureArray(value: Array<ReactElement> | ReactElement): Array<ReactElement> {
     return Array.isArray(value)
         ? value
         : [ value ];
 }
 
 interface NavigationProps {
-    isHomepage?: boolean,
-    children: any
+    isHomepage?: boolean;
+    children: Array<ReactElement> | ReactElement;
 }
 
-const Navigation = ({ isHomepage = false, children }: NavigationProps) => {
+const Navigation = ({ isHomepage = false, children }: NavigationProps): JSX.Element => {
     const [ focus, setFocus ] = useState(0);
 
     useEffect(() => {
-        function reportScrollY() {
+        function reportScrollY(): void {
             if (!isHomepage) {
                 return;
             }
 
-            const focusedSection = document.getElementById(children[focus].props.id);
+            const focusedSection = document.getElementById(ensureArray(children)[focus].props.id);
 
             if (!focusedSection) {
                 return;
@@ -44,12 +44,12 @@ const Navigation = ({ isHomepage = false, children }: NavigationProps) => {
 
         window.addEventListener("scroll", reportScrollY);
 
-        return () => {
+        return (): void => {
             window.removeEventListener("scroll", reportScrollY);
         };
     });
 
-    const sectionNames = ensureArray(children).reduce((accumulatedNames, { props: { id } }) => {
+    const sectionNames = ensureArray(children).reduce((accumulatedNames: string[], { props: { id } }: { props: { id: string } }) => {
         if (id) {
             accumulatedNames.push(id);
         }
@@ -74,7 +74,7 @@ Navigation.propTypes = {
     children: PropTypes.any
 };
 
-const HomepageNav = () => {
+const HomepageNav = (): JSX.Element => {
     return (
         <div id="hero" className={ styles.hero }>
             <div className={ styles.slideshow }>
@@ -85,7 +85,7 @@ const HomepageNav = () => {
     );
 };
 
-const SocialButtons = () => {
+const SocialButtons = (): JSX.Element => {
     return (
         <div className={ `${ styles.socialLinks } ${ styles.sticky }` }>
             <InstagramIcon />
@@ -96,7 +96,7 @@ const SocialButtons = () => {
     );
 };
 
-export const InstagramIcon = ({ theme = "white" }) => {
+export const InstagramIcon = ({ theme = "white" }): JSX.Element => {
     return <a className={ `${ styles.socialIcon } ${ styles.instagram } ${ styles[theme] }` } href={ INSTAGRAM_URL } target="_blank" rel="noopener noreferrer">Instagram</a>;
 };
 
@@ -104,10 +104,10 @@ InstagramIcon.propTypes = {
     theme: PropTypes.string
 };
 
-const Nav = ({ sections = [], selected, setSelected } : { sections?: Array<string>, selected: number, setSelected: any }) => {
+const Nav = ({ sections = [], selected, setSelected }: { sections?: Array<string>; selected: number; setSelected: Function }): JSX.Element => {
     const [ expanded, setExpanded ] = useState(false);
 
-    function toggleMenu() {
+    function toggleMenu(): void {
         setExpanded(!expanded);
     }
 
@@ -144,7 +144,12 @@ Nav.propTypes = {
     setSelected: PropTypes.func.isRequired
 };
 
-const SiteLogo = ({ expanded, onClick } : { expanded: boolean, onClick: any }) => {
+interface SiteLogoProps {
+    expanded: boolean;
+    onClick: ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void);
+}
+
+const SiteLogo = ({ expanded, onClick }: SiteLogoProps): JSX.Element => {
     return (
         <div className={ `${ styles.logo } ${ expanded ? styles.expanded : styles.collapsed }` } onClick={ onClick }>
             <div className={ styles.logoC }></div>
@@ -154,21 +159,21 @@ const SiteLogo = ({ expanded, onClick } : { expanded: boolean, onClick: any }) =
 };
 
 interface NavItemProps {
-    name: string,
-    index: number,
-    selected?: boolean,
-    setSelected: Function
+    name: string;
+    index: number;
+    selected?: boolean;
+    setSelected: Function;
 }
 
-declare module 'react' {
+declare module "react" {
     interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
       // extends React's HTMLAttributes
       reference?: string;
     }
 }
 
-const NavItem = ({ name, index, selected = false, setSelected } : NavItemProps) => {
-    function onItemClick(event : any) {
+const NavItem = ({ name, index, selected = false, setSelected }: NavItemProps): JSX.Element => {
+    function onItemClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
         setSelected(index);
 
         if (!event || !event.target) {

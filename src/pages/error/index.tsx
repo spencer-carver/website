@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import styles from "./styles.module.scss";
 
-const Error = ({ errorCode } : { errorCode: number }) => {
+const Error = ({ errorCode }: { errorCode: number }): JSX.Element => {
     return (
         <Navigation>
             <div className={ styles.content }>

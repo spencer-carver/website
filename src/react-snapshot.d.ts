@@ -1,1 +1,1 @@
-declare module 'react-snapshot';
+declare module "react-snapshot";

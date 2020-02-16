@@ -1,21 +1,34 @@
 import React from "react";
 import Navigation from "../../modules/Navigation";
 import PuzzleAnswerSubmission from "../../modules/PuzzleAnswerSubmission";
+import puzzles from "./puzzles.json";
 import styles from "./styles.module.scss";
 
-const puzzles = require("./puzzles.json");
+interface PuzzleRouterProps {
+    match: {
+        params: {
+            puzzleName: string;
+        };
+    };
+}
 
-const Puzzle = (props : any) => {
+interface Puzzle {
+    title: string;
+    description?: string;
+    content: string;
+}
+
+const Puzzle = (props: PuzzleRouterProps): JSX.Element => {
     const {
         puzzleName
     } = props.match.params;
 
-    const puzzle = puzzles[puzzleName];
+    const puzzle = (puzzles as { [key: string]: Puzzle })[puzzleName];
 
     if (!puzzle) {
         return (
             <Navigation isHomepage={ false }>
-                <div>This isn't a puzzle</div>
+                <div>This isn&apos;t a puzzle</div>
             </Navigation>
         );
     }

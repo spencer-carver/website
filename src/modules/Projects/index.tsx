@@ -5,20 +5,6 @@ import watchdogImage from "../../images/watchdog-echo-skill.png";
 import styles from "./styles.module.scss";
 import "../styles.scss";
 
-const Projects = () => {
-    return (
-        <div id="projects" className="section">
-            <div className="sectionContent">
-                <h1 className={styles.header}>Projects</h1>
-                <div className={styles.projectContainer}>
-                    <ProjectCard { ...PROJECT_DETAILS["website"] } />
-                    <ProjectCard { ...PROJECT_DETAILS["watchdog"] } />
-                </div>
-            </div>
-        </div>
-    );
-};
-
 const PROJECT_DETAILS = {
     website: {
         title: "My Website",
@@ -37,16 +23,30 @@ const PROJECT_DETAILS = {
     }
 };
 
+const Projects = (): JSX.Element => {
+    return (
+        <div id="projects" className="section">
+            <div className="sectionContent">
+                <h1 className={styles.header}>Projects</h1>
+                <div className={styles.projectContainer}>
+                    <ProjectCard { ...PROJECT_DETAILS["website"] } />
+                    <ProjectCard { ...PROJECT_DETAILS["watchdog"] } />
+                </div>
+            </div>
+        </div>
+    );
+};
+
 interface ProjectCardProps {
-    title: string,
-    description: string,
-    imageUrl: string,
-    imageAlt: string,
-    siteUrl?: string,
-    githubUrl: string
+    title: string;
+    description: string;
+    imageUrl: string;
+    imageAlt: string;
+    siteUrl?: string;
+    githubUrl: string;
 }
 
-const ProjectCard = ({title, description, imageUrl, imageAlt, siteUrl, githubUrl} : ProjectCardProps) => {
+const ProjectCard = ({title, description, imageUrl, imageAlt, siteUrl, githubUrl}: ProjectCardProps): JSX.Element => {
 
     const siteLinkHTML = siteUrl
         ? <a className={styles.siteLink} href={siteUrl}><img className={styles.image} src={imageUrl} alt={imageAlt}></img></a>
