@@ -2,44 +2,86 @@
 
 .section {
     margin: 40px auto 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
-.header {
-    float: none;
-    margin: 40px 0 0;
+.controls {
+    width: 280px;
+    margin: 20px;
+    text-align: center;
+    padding-top: 12px;
 }
 
 .skills {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    background-color: $sunset-orange;
 }
 
-.container {
-    color: $black;
-    border-bottom: 1px dotted $alto;
+.interests {
+    background-color: $atlantis;
 }
 
-.container:first-child {
-    border-top: 1px dotted $alto;
+.certifications {
+    background-color: $dodger-blue;
+}
+
+.selector {
+    font-size: 36px;
+    color: gray;
+    background-color: transparent;
+}
+
+.selector:hover {
+    cursor: pointer;
+}
+
+.selector.skills.enabled {
+    color: $sunset-orange;
+}
+
+.selector.interests.enabled {
+    color: $atlantis;
+}
+
+.selector.certifications.enabled {
+    color: $dodger-blue;
 }
 
 .logo {
-    height: 50px;
+    height: 100px;
     float: left;
-    margin: 25px 0;
+    margin: 25px;
 }
 
 .react,
 .js,
 .java,
+.aws,
+.newrelic,
 .climbing,
+.photoshop,
 .scuba {
-    width: 50px;
+    width: 100px;
+}
+
+.ts {
+    width: 140px;
+    height: auto;
+    margin: 5px;
+}
+
+.magic {
+    width: 100px;
+    height: auto;
+    margin: 58px 25px;
 }
 
 .magicJudging {
-    width: 86px;
+    width: 100px;
+    height: auto;
+    margin: 45px 25px;
 }
 
 .details {
@@ -53,12 +95,22 @@
 .title,
 .tenure,
 .experience {
-    margin: 10px 0 0;
-    text-align: right;
+    margin: 10px auto 0;
+    text-align: center;
+    color: $black;
 }
 
 .title {
     font-weight: 900;
+}
+
+.skill {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-content: center;
+    width: 150px;
+    padding: 20px 0;
 }
 
 /* tablet and desktop */
@@ -78,33 +130,9 @@
         font-weight: 900;
         color: $alto;
     }
-    .skills {
-        flex-direction: row;
-    }
 
     .logo {
         float: none;
         margin: 0 auto;
-    }
-
-    .skill {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        align-content: center;
-        width: 150px;
-        padding: 20px 0;
-    }
-
-    .container,
-    .container:first-child {
-        border: none;
-    }
-
-    .title,
-    .tenure,
-    .experience {
-        margin: 10px auto 0;
-        text-align: center;
     }
 }
