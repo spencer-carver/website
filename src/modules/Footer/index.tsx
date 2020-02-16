@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <div className={ styles.spacer }>
             <footer className={ styles.footer }>
-                <p className={ styles.copyrightNotice }>&#169; 2019 Spencer Carver</p>
+                <p className={ styles.copyrightNotice }>&#169; 2019-{ (new Date()).getFullYear() } Spencer Carver</p>
             </footer>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import {
     FACEBOOK_URL,
     LINKEDIN_URL,
@@ -105,20 +105,35 @@ InstagramIcon.propTypes = {
 };
 
 const Nav = ({ sections = [], selected, setSelected } : { sections?: Array<string>, selected: number, setSelected: any }) => {
+    const [ expanded, setExpanded ] = useState(false);
+
+    function toggleMenu() {
+        setExpanded(!expanded);
+    }
+
     return (
-        <div id="navBar" className={ styles.navBar }>
-            <Link className={ styles.linkHome } to="/">go home</Link>
-            {
-                sections.map((name, index) => (
-                    <NavItem
-                        key={ name }
-                        name={ name }
-                        index={ index }
-                        selected={ selected === index }
-                        setSelected={ setSelected }
-                    />
-                ))
-            }
+        <div id="navBar" className={ `${ styles.navBar } ${ expanded ? styles.expanded : styles.collapsed }` }>
+            <SiteLogo expanded={ expanded } onClick={ toggleMenu } />
+            <div className={ styles.navContainer }>
+                <div className={ `${ styles.pageNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
+                    {  
+                        sections.map((name, index) => (
+                            <NavItem
+                                key={ name }
+                                name={ name }
+                                index={ index }
+                                selected={ selected === index }
+                                setSelected={ setSelected }
+                            />
+                        ))
+                    }
+                </div>
+                <div className={ `${ styles.siteNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
+                    Site Navigation: 
+                    <Link to="/" className={ styles.link }>Home</Link> 
+                    <Link to="/puzzles" className={ styles.link }>Puzzles</Link>
+                </div>
+            </div>
         </div>
     );
 };
@@ -127,6 +142,15 @@ Nav.propTypes = {
     sections: PropTypes.arrayOf(PropTypes.string),
     selected: PropTypes.number.isRequired,
     setSelected: PropTypes.func.isRequired
+};
+
+const SiteLogo = ({ expanded, onClick } : { expanded: boolean, onClick: any }) => {
+    return (
+        <div className={ `${ styles.logo } ${ expanded ? styles.expanded : styles.collapsed }` } onClick={ onClick }>
+            <div className={ styles.logoC }></div>
+            <div className={ `${ styles.logoS } ${ expanded ? styles.expanded : styles.collapsed }` }></div>
+        </div>
+    );
 };
 
 interface NavItemProps {

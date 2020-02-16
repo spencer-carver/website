@@ -98,26 +98,108 @@
     z-index: 1000001;
 }
 
-.linkHome {
+.navBar.expanded {
+    height: 80px;
+}
+
+.navContainer {
+    width: calc(100% - 50px);
+}
+
+.pageNav {
+    display: block;
+    text-align: center;
+    margin: 13px 50px 0;
+    padding-bottom: 17px;
+    height: 20px;
+}
+
+.pageNav.expanded {
+    border-bottom: 1px solid $white;
+}
+
+.siteNav {
+    display: block;
+    width: 100%;
+    margin: 5px 50px;
+    color: $white;
+}
+
+.siteNav.collapsed {
+    display: none;
+}
+
+.link {
+    color: $white;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.link:not(:first-of-type)::before {
+    content: "●";
+    padding-right: 5px;
+}
+
+.link:hover {
+    cursor: pointer;
+}
+
+.link:visited {
+    color: $white;
+}
+
+.logoS,
+.logoC {
     position: absolute;
     width: 50px;
     height: 50px;
     left: 0;
     font-size: 0;
     margin-left: 10px;
-    @include my-logo($icon-color: $white, $width: 36, $height: 36);
-    background-repeat: no-repeat;
-    background-position: left;
-    animation: fadein 1.5s;
+    animation: collapseLogo 0.25s;
 }
 
-.linkHome:hover {
+.logo:hover {
     cursor: pointer;
 }
 
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.logoC {
+    @include my-logo-c($icon-color: $white, $width: 36, $height: 36);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.logoS {
+    @include my-logo-s($icon-color: $white, $width: 36, $height: 36);
+    background-repeat: no-repeat;
+    background-position: left;
+    animation: collapseLogo 0.25s;
+}
+
+.logoS.expanded {
+    @include my-logo-s($icon-color: $white, $width: 36, $height: 36);
+    background-repeat: no-repeat;
+    background-position: left;
+    animation: expandLogo 0.25s;
+    padding-top: 40px;
+}
+
+@keyframes expandLogo {
+    0% {
+        padding-top: 0;
+    }
+    100% {
+        padding-top: 40px;
+    }
+}
+
+@keyframes collapseLogo {
+    0% {
+        padding-top: 40px;
+    }
+    100% {
+        padding-top: 0;
+    }
 }
 
 .navItem {
@@ -130,6 +212,11 @@
 .navItem.selected {
     text-decoration: underline;
     animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .navItem:hover {
