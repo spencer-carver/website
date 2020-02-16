@@ -5,8 +5,11 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended"
     ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 6,
         "ecmaFeatures": {
@@ -14,7 +17,10 @@ module.exports = {
         },
         "sourceType": "module"
     },
-    "plugins": [ "react" ],
+    "plugins": [
+        "@typescript-eslint",
+        "react"
+    ],
     "settings": {
         "react": {
             "version": "detect"
