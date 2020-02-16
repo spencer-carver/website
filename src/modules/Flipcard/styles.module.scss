@@ -1,0 +1,80 @@
+// https://www.w3schools.com/howto/howto_css_flip_card.asp
+@import "../../styles/colors";
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flipCard {
+    background-color: $black;
+    width: 150px;
+    height: 150px;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    margin: 5px;
+}
+
+.flipCard.disabled {
+    filter: grayscale(1);
+}
+
+.flipCard.disabled:hover {
+    cursor: pointer;
+}
+    
+/* This container is needed to position the front and back side */
+.flipCardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+    
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flipCard.enabled:hover .flipCardInner {
+    transform: rotateY(180deg);
+}
+    
+/* Position the front and back side */
+.flipCardFront, .flipCardBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+    
+/* Style the front side (fallback if image is missing) */
+.flipCard.enabled .flipCardFront {
+    background-color: $white;
+}
+
+.flipCard.disabled .flipCardFront {
+    background-color: $alto;
+}
+
+.earmark {
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid $white;
+    border-right: 10px solid $white;
+
+}
+
+.flipCard.disabled .earmark {
+    border-bottom: 10px solid $alto;
+    border-right: 10px solid $alto;
+}
+    
+/* Style the back side */
+.flipCardBack {
+    color: $white;
+    transform: rotateY(180deg);
+}
+
+.logo {
+    height: 100px;
+    float: left;
+    margin: 25px;
+}

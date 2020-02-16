@@ -1,7 +1,7 @@
 @import "../styles/colors";
 
 .section {
-    padding: 40px 20px 0;
+    padding: 40px 0 0;
 }
 
 .sectionContent {
@@ -19,6 +19,7 @@
     position: absolute;
     margin-top: -40px;
     margin-left: -20px;
+    width: calc(100% + 20px);
     width: 100%;
     height: 40px;
     background-image: linear-gradient($white, $alto);
@@ -29,9 +30,16 @@
     position: absolute;
     margin-top: -40px;
     margin-left: -20px;
-    width: 100%;
+    width: calc(100% + 20px);
     height: 40px;
     background-image: linear-gradient($alto, $white);
+}
+
+/* large mobile */
+@media screen and (min-width: 360px) {
+    .section {
+        padding: 40px 20px 0;
+    }
 }
 
 /* tablet and desktop */
