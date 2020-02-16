@@ -4,7 +4,7 @@ import "./styles.scss";
 
 /* eslint-disable max-len */
 
-const InstagramEmbed = ({ postId }: { postId?: string }) => {
+const InstagramEmbed = ({ postId }: { postId?: string }): JSX.Element | null => {
     if (!postId) {
         return null;
     }

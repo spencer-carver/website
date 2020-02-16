@@ -14,17 +14,23 @@ export const InstagramPosts = {
 };
 
 declare global {
-    interface Window { instgrm: any; }
+    interface Window {
+        instgrm: {
+            Embeds: {
+                process: Function;
+            };
+        };
+    }
 }
 
-export function reloadInstagramEmbeds() {
+export function reloadInstagramEmbeds(): void {
     window.instgrm
         && window.instgrm.Embeds
         && typeof window.instgrm.Embeds.process == "function"
         && window.instgrm.Embeds.process();
 }
 
-const InstagramEmbedContainer = ({ postId = InstagramPosts.pacificCrestTrail }) => {
+const InstagramEmbedContainer = ({ postId = InstagramPosts.pacificCrestTrail }): JSX.Element => {
     return <InstagramEmbed postId={ postId } />;
 };
 

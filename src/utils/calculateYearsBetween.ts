@@ -1,4 +1,4 @@
-function calculateYearsBetween(startDate? : Date, endDate? : Date) {
+function calculateYearsBetween(startDate? : Date, endDate? : Date): number {
     if (!startDate) {
         return 0;
     }

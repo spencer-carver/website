@@ -5,7 +5,7 @@ import AboutMeSection from "../../modules/AboutMe";
 import InstagramSection from "../../modules/Instagram";
 import ProjectsSection from "../../modules/Projects";
 
-const Homepage = () => {
+const Homepage = (): JSX.Element => {
     useEffect(() => {
         window.fetch(`${API_URL}/api/healthcheck`)
             .then(response => response.json());

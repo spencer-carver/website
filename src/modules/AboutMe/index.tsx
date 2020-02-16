@@ -9,7 +9,7 @@ import "../styles.scss";
 
 const MY_BIRTHDAY = new Date(1991, 2, 23);
 
-const AboutMe = () => {
+const AboutMe = (): JSX.Element => {
     return (
         <div id="about-me" className="section">
             <div className="sectionContent">

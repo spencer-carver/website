@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
     return (
         <div className={ styles.spacer }>
             <footer className={ styles.footer }>

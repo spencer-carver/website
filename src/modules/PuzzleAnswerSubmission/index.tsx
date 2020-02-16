@@ -3,23 +3,29 @@ import { API_URL } from "../../constants/ExternalUrls";
 import styles from "./styles.module.scss";
 
 interface PuzzleAnswerSubmissionProps {
-    puzzleName: string
+    puzzleName: string;
 }
 
-const PuzzleAnswerSubmission = ({ puzzleName } : PuzzleAnswerSubmissionProps) => {
-    const [answer, setAnswer] = useState("");
-    const [answers, setAnswers] = useState([] as any[]);
+interface PuzzleAnswer {
+    correct: boolean;
+    intermediate?: boolean;
+    value: string;
+}
 
-    function onType(event : any) {
-        setAnswer(event.target.value);
+const PuzzleAnswerSubmission = ({ puzzleName }: PuzzleAnswerSubmissionProps): JSX.Element => {
+    const [ answer, setAnswer ] = useState("");
+    const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
+
+    function onType(event: React.KeyboardEvent<HTMLInputElement>): void {
+        setAnswer((event.target as HTMLInputElement).value);
     }
 
-    async function submit() {
+    async function submit(): Promise<void> {
         if (!answer) {
             return;
         }
 
-        const answerResponse = await window.fetch(`${ API_URL }/api/puzzle/${ puzzleName }/submit`, {
+        const answerResponse: PuzzleAnswer = await window.fetch(`${ API_URL }/api/puzzle/${ puzzleName }/submit`, {
             method: "POST",
             body: JSON.stringify({ answer })
         }).then(response => response.json());
@@ -38,11 +44,7 @@ const PuzzleAnswerSubmission = ({ puzzleName } : PuzzleAnswerSubmissionProps) =>
     );
 };
 
-interface PastAnswersProps {
-    pastAnswers: any[]
-}
-
-const PastAnswers = ({ pastAnswers } : PastAnswersProps) => {
+const PastAnswers = ({ pastAnswers }: { pastAnswers: PuzzleAnswer[] }): JSX.Element => {
     return (
         <ul className={ styles.pastAnswers }>
             { pastAnswers.map((pastResult, index) => {

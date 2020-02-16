@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import PropTypes from "prop-types";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import {
@@ -11,7 +11,7 @@ import {
 } from "../../constants/Logos";
 import styles from "./styles.module.scss";
 
-const Skills = () => {
+const Skills = (): JSX.Element => {
     return (
         <div className={ styles.section }>
             <TechnicalSkills />
@@ -25,7 +25,7 @@ const STARTED_WITH_JAVASCRIPT = new Date(2015, 7, 1);
 const STARTED_WITH_JAVA = new Date(2009, 8, 1);
 const ENDED_WITH_JAVA = new Date(2015, 4, 10);
 
-const TechnicalSkills = () => {
+const TechnicalSkills = (): JSX.Element => {
     return (
         <div className={ styles.module }>
             <h1 className={ styles.header }>
@@ -49,7 +49,7 @@ const TechnicalSkills = () => {
 const STARTED_ROCK_CLIMBING = new Date(2015, 9, 1);
 const STARTED_MAGIC_JUDGING = new Date(2016, 9, 10);
 
-const Interests = () => {
+const Interests = (): JSX.Element => {
     return (
         <div className={ styles.module }>
             <h1 className={ styles.header }>
@@ -71,15 +71,15 @@ const Interests = () => {
 };
 
 interface SkillTabParams {
-    title: string,
-    startDate?: Date,
-    endDate?: Date,
-    experienceLevel?: string,
-    showTenure?: boolean,
-    children: any
+    title: string;
+    startDate?: Date;
+    endDate?: Date;
+    experienceLevel?: string;
+    showTenure?: boolean;
+    children: Array<ReactElement> | ReactElement;
 }
 
-const SkillTab = ({ title, startDate, endDate = undefined, experienceLevel, showTenure = false, children } : SkillTabParams) => {
+const SkillTab = ({ title, startDate, endDate = undefined, experienceLevel, showTenure = false, children }: SkillTabParams): JSX.Element => {
     const experienceYears = calculateYearsBetween(startDate, endDate);
     const experienceText = experienceYears === 0
         ? "Learning"
