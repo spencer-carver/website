@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 
 
 const Skills = (): JSX.Element => {
-    const [ selectedCategory, setSelectedCategory ] = useState(null as SkillType | null);
+    const [ selectedCategory, setSelectedCategory ] = useState(SkillType.skill);
 
     return (
         <div>

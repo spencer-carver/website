@@ -3,84 +3,10 @@
 
 .navigation {
     position: relative;
-    z-index: 1000000;
 }
 
 .spacer {
     margin-top: 50px;
-}
-
-.hero {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    background: url("../../images/bg.jpg");
-    background-position: center;
-    background-size: 200% 100%;
-    z-index: 1000002;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin-top: -40px;
-    @include my-logo($icon-color: $white, $width: 216, $height: 216);
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity:0.75;
-}
-
-.hero::after {
-    content: "Scroll down to enter";
-    position: absolute;
-    bottom: 80px;
-    width: 100%;
-    text-align: center;
-    color: $white;
-}
-
-.slideshow {
-    display: none;
-    width: 100%;
-    height: 100vh;
-}
-
-.image1,
-.image2 {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-repeat: no-repeat;
-}
-
-.image1 {
-    background: url("../../images/climbingbw.jpg");
-    background-position: -1100px -175px;
-    opacity: 0.6;
-}
-
-.image2 {
-    background: url("../../images/seatedbw.jpg");
-    background-position: -550px -80px;
-    opacity: 0;
-}
-
-@keyframes cycleOne {
-    0% { opacity: 0.6; }
-    40% { opacity: 0.6; }
-    50% { opacity: 0; }
-    90% { opacity: 0; }
-    100% { opacity: 0.6; }
-}
-
-@keyframes cycleTwo {
-    0% { opacity: 0; }
-    40% { opacity: 0; }
-    50% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { opacity: 0; }
 }
 
 .navBar {
@@ -88,18 +14,12 @@
     top: 0;
     width: 100%;
     height: 50px;
-    background: url("../../images/bg.jpg");
-    background-position: top;
-    background-size: 100% auto;
+    background-color: $mine-shaft;
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-content: center;
-    z-index: 1000001;
-}
-
-.navBar.expanded {
-    height: 80px;
+    z-index: 1000000;
 }
 
 .navContainer {
@@ -114,15 +34,29 @@
     height: 20px;
 }
 
-.pageNav.expanded {
-    border-bottom: 1px solid $white;
+.siteNav {
+    top: 45px;
+    left: -50px;
+    width: 100px;
+    position: fixed;
+    margin: 5px 30px;
+    padding: 10px 0;
+    z-index: 1000003;
 }
 
-.siteNav {
-    display: block;
-    margin: 5px 30px;
+.navBar.expanded .siteNavBackground {
+    background-color: $mine-shaft;
+    width: 110px;
+    height: 60px;
+    margin-left: -50px;
+    border-bottom-right-radius: 20px;
+}
+
+.siteNavContents {
+    position: relative;
     color: $white;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .siteNav.collapsed {
@@ -136,10 +70,10 @@
 .link {
     color: $white;
     text-decoration: none;
-    margin-left: 5px;
+    margin-left: 25px;
 }
 
-.link:not(:first-of-type)::before {
+.link::before {
     content: "●";
     padding-right: 5px;
 }
@@ -161,6 +95,10 @@
     font-size: 0;
     margin-left: 10px;
     animation: collapseLogo 0.25s;
+}
+
+.logo {
+    z-index: 1000003;
 }
 
 .logo:hover {
@@ -186,6 +124,12 @@
     background-position: left;
     animation: expandLogo 0.25s;
     padding-top: 40px;
+}
+
+.logo.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 @keyframes expandLogo {
@@ -314,35 +258,6 @@
 
 /* tablet and desktop */
 @media screen and (min-width: 760px) {
-    .hero {
-        height: auto;
-    }
-
-    .hero::before {
-        opacity: 1;
-    }
-
-    .slideshow {
-        display: block;
-    }
-
-    .image1,
-    .image2 {
-        background-position: center;
-    }
-
-    .image1 {
-        animation: cycleOne 20s linear infinite;
-    }
-
-    .image2 {
-        animation: cycleTwo 20s linear infinite;
-    }
-
-    .hero::after {
-        display: none;
-    }
-
     .navItem {
         display: initial;
     }
@@ -354,5 +269,9 @@
 
     .siteNavDescriptor {
         display: initial;
+    }
+
+    .link {
+        margin-left: 5px;
     }
 }

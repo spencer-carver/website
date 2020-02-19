@@ -1,0 +1,178 @@
+@import "../../styles/colors";
+@import "../../styles/icons";
+
+.spacer {
+    margin-top: 50px;
+}
+
+.hero.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    margin-top: -50px;
+    background: url("../../images/bg.jpg");
+    background-position: center;
+    background-size: 200% 100%;
+    z-index: 1000002;
+}
+
+.hero.container.overlayLogo::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: -40px;
+    @include my-logo($icon-color: $white, $width: 216, $height: 216);
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity:0.75;
+}
+
+.hero.container::after {
+    content: "Scroll down to enter";
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+    text-align: center;
+    color: $white;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.slideshow {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+:not(.hero).slideshow {
+    display: inline-block;
+    width: 100%;
+}
+
+.slideshow.hideMobile {
+    display: none;
+}
+
+.image {
+    position: absolute;
+    width: 100%;
+    vertical-align: top;
+}
+
+.hero .image {
+    filter: grayscale(1);
+    opacity: 0.6;
+}
+
+.image.placeholder {
+    position: relative;
+    opacity: 0;
+}
+
+.slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.selected {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.indicators {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.indicator {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin: 0 3px;
+    text-align: center;
+}
+
+.indicator:hover {
+    cursor: pointer;
+}
+
+.indicator.selected {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.indicatorText {
+    color: $white;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px 16px 24px 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 48px;
+    border-radius: 0 5px 5px 0;
+    user-select: none;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .hero.container {
+        height: auto;
+    }
+
+    .hero.container::before {
+        opacity: 1;
+    }
+
+    .slideshow.hideMobile {
+        display: block;
+    }
+
+    .image1,
+    .image2 {
+        background-position: center;
+    }
+
+    .image1 {
+        animation: cycleOne 20s linear infinite;
+    }
+
+    .image2 {
+        animation: cycleTwo 20s linear infinite;
+    }
+
+    .hero.container::after {
+        display: none;
+    }
+
+    :not(.hero).container {
+        width: 800px;
+    }
+}
