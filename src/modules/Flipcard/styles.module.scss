@@ -24,20 +24,25 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
 }
     
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flipCard.enabled:hover .flipCardInner {
+.flipCard.enabled:hover .flipCardFront {
     transform: rotateY(180deg);
+}
+
+.flipCard.flipCard.enabled:hover .flipCardBack {
+    transform: rotateY(0);
 }
     
 /* Position the front and back side */
-.flipCardFront, .flipCardBack {
+.flipCardFront,
+.flipCardBack {
     position: absolute;
     width: 100%;
     height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }

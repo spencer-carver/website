@@ -19,7 +19,7 @@
     position: absolute;
     margin-top: -40px;
     margin-left: -20px;
-    width: calc(100%);
+    width: 100%;
     width: 100%;
     height: 40px;
     background-image: linear-gradient($alto, $white);
@@ -30,7 +30,7 @@
     position: absolute;
     margin-top: -40px;
     margin-left: -20px;
-    width: calc(100%);
+    width: 100%;
     height: 40px;
     background-image: linear-gradient($white, $alto);
 }
