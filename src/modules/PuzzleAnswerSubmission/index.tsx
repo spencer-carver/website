@@ -20,7 +20,9 @@ const PuzzleAnswerSubmission = ({ puzzleName }: PuzzleAnswerSubmissionProps): JS
         setAnswer((event.target as HTMLInputElement).value);
     }
 
-    async function submit(): Promise<void> {
+    async function submit(event : React.FormEvent<HTMLFormElement>): Promise<void> {
+        event.preventDefault();
+
         if (!answer) {
             return;
         }
@@ -37,10 +39,10 @@ const PuzzleAnswerSubmission = ({ puzzleName }: PuzzleAnswerSubmissionProps): JS
     return (
         <div className={ styles.answerbox }>
             <PastAnswers pastAnswers={ answers } />
-            <div className={ styles.input }>
+            <form className={ styles.input } onSubmit={ submit }>
                 <input type="text" placeholder="Answer Here" value={ answer } onChange={ onType }></input>
-                <button type="submit" onClick={ submit }>Submit</button>
-            </div>
+                <button type="submit">Submit</button>
+            </form>
         </div>
     );
 };
