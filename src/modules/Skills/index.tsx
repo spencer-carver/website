@@ -33,7 +33,7 @@ const Skills = (): JSX.Element => {
                                 selected={ selectedCategory === entry.type }
                                 onClick={ (): void => setSelectedCategory(entry.type) }
                                 theme={ styles[entry.type] }
-                                imageStyles={ styles[entry.id] }
+                                id={ entry.id }
                                 imageSrc={ entry.imageSrc }
                                 imageAlt={ entry.imageAlt }
                             >
@@ -48,6 +48,7 @@ const Skills = (): JSX.Element => {
 };
 
 interface SkillTabParams {
+    id: string;
     title: string;
     startDate?: Date;
     endDate?: Date;
@@ -59,6 +60,7 @@ interface SkillTabParams {
 
 const SkillTab = (props: SkillTabParams): JSX.Element => {
     const {
+        id,
         title,
         startDate,
         endDate = undefined,
@@ -76,7 +78,7 @@ const SkillTab = (props: SkillTabParams): JSX.Element => {
     return (
         <div className={ styles.container }>
             <div className={ styles.skill }>
-                <div className={ styles.details }>
+                <div className={ `${ styles.details } ${ styles[id] }` }>
                     <span className={ styles.title }>{ title }</span>
                     { experienceLevel && <span className={ styles.experience }>{ experienceLevel }</span> }
                     { !experienceLevel && <span className={ styles.experience }>{ experienceText }</span> }

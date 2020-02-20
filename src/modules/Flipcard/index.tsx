@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import styles from "./styles.module.scss";
 
 interface FlipcardProps {
-    imageStyles: string;
+    id: string;
     imageSrc: string;
     imageAlt: string;
     theme: string;
@@ -13,7 +13,7 @@ interface FlipcardProps {
 
 const Flipcard = (props: FlipcardProps): JSX.Element => {
     const {
-        imageStyles,
+        id,
         imageSrc,
         imageAlt,
         theme,
@@ -31,7 +31,7 @@ const Flipcard = (props: FlipcardProps): JSX.Element => {
             <div className={ styles.flipCardInner }>
                 <div className={ styles.flipCardFront }>
                     <div className={ `${ styles.earmark } ${ theme }` }></div>
-                    <img className={ `${ styles.logo } ${ imageStyles }` } src={ imageSrc } alt={ imageAlt } />
+                    <img className={ `${ styles.logo } ${ styles[id] }` } src={ imageSrc } alt={ imageAlt } />
                 </div>
                 <div className={ `${ styles.flipCardBack } ${ theme }` }>
                     { children }
