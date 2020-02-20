@@ -24,20 +24,25 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
 }
     
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flipCard.enabled:hover .flipCardInner {
+.flipCard.enabled:hover .flipCardFront {
     transform: rotateY(180deg);
+}
+
+.flipCard.flipCard.enabled:hover .flipCardBack {
+    transform: rotateY(0);
 }
     
 /* Position the front and back side */
-.flipCardFront, .flipCardBack {
+.flipCardFront,
+.flipCardBack {
     position: absolute;
     width: 100%;
     height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }
@@ -77,4 +82,33 @@
     height: 100px;
     float: left;
     margin: 25px;
+}
+
+.react,
+.js,
+.java,
+.aws,
+.newrelic,
+.climbing,
+.photoshop,
+.scuba {
+    width: 100px;
+}
+
+.ts {
+    width: 140px;
+    height: auto;
+    margin: 5px;
+}
+
+.magic {
+    width: 100px;
+    height: auto;
+    margin: 58px 25px;
+}
+
+.magicJudging {
+    width: 100px;
+    height: auto;
+    margin: 45px 25px;
 }

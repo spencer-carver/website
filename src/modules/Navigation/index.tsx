@@ -16,20 +16,32 @@ function ensureArray(value: Array<ReactElement> | ReactElement): Array<ReactElem
 }
 
 interface NavigationProps {
-    isHomepage?: boolean;
     children: Array<ReactElement> | ReactElement;
 }
 
-const Navigation = ({ isHomepage = false, children }: NavigationProps): JSX.Element => {
+const Navigation = ({ children }: NavigationProps): JSX.Element => {
     const [ focus, setFocus ] = useState(0);
+    const [ expanded, setExpanded ] = useState(false);
+
+    function toggleMenu(): void {
+        setExpanded(!expanded);
+    }
+
+    const sectionNames = ensureArray(children).reduce((accumulatedNames: string[], { props: { id } }: { props: { id: string } }) => {
+        if (id) {
+            accumulatedNames.push(id);
+        }
+
+        return accumulatedNames;
+    }, []);
 
     useEffect(() => {
         function reportScrollY(): void {
-            if (!isHomepage) {
+            if (sectionNames.length === 0) {
                 return;
             }
 
-            const focusedSection = document.getElementById(ensureArray(children)[focus].props.id);
+            const focusedSection = document.getElementById(sectionNames[focus]);
 
             if (!focusedSection) {
                 return;
@@ -49,20 +61,13 @@ const Navigation = ({ isHomepage = false, children }: NavigationProps): JSX.Elem
         };
     });
 
-    const sectionNames = ensureArray(children).reduce((accumulatedNames: string[], { props: { id } }: { props: { id: string } }) => {
-        if (id) {
-            accumulatedNames.push(id);
-        }
-
-        return accumulatedNames;
-    }, []);
-
     return (
-        <div className={ !isHomepage ? styles.spacer : "" }>
+        <div className={ styles.spacer }>
             <nav className={ styles.navigation }>
-                { isHomepage && <HomepageNav /> }
+                <SiteLogo expanded={ expanded } onClick={ toggleMenu } />
                 <SocialButtons />
-                <Nav sections={ sectionNames } selected={ focus } setSelected={ setFocus } />
+                <SiteNav expanded={ expanded } />
+                <PageNav sections={ sectionNames } selected={ focus } setSelected={ setFocus } expanded={ expanded } />
             </nav>
             { children }
         </div>
@@ -72,17 +77,6 @@ const Navigation = ({ isHomepage = false, children }: NavigationProps): JSX.Elem
 Navigation.propTypes = {
     isHomepage: PropTypes.bool,
     children: PropTypes.any
-};
-
-const HomepageNav = (): JSX.Element => {
-    return (
-        <div id="hero" className={ styles.hero }>
-            <div className={ styles.slideshow }>
-                <div className={ styles.image1 }></div>
-                <div className={ styles.image2 }></div> 
-            </div>
-        </div>
-    );
 };
 
 const SocialButtons = (): JSX.Element => {
@@ -104,16 +98,35 @@ InstagramIcon.propTypes = {
     theme: PropTypes.string
 };
 
-const Nav = ({ sections = [], selected, setSelected }: { sections?: Array<string>; selected: number; setSelected: Function }): JSX.Element => {
-    const [ expanded, setExpanded ] = useState(false);
+interface SiteNavProps {
+    expanded: boolean;
+}
 
-    function toggleMenu(): void {
-        setExpanded(!expanded);
-    }
+const SiteNav = ({ expanded }: SiteNavProps): JSX.Element => {
+    return (
+        <div className={ `${ styles.siteNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
+            <div className={ styles.siteNavContents }>
+                <Link to="/" className={ styles.link }>Home</Link> 
+                <Link to="/puzzles" className={ styles.link }>Puzzles</Link>
+            </div>
+        </div>
+    );
+};
 
+SiteNav.propTypes = {
+    expanded: PropTypes.bool.isRequired
+};
+
+interface PageNavProps {
+    sections?: Array<string>;
+    selected: number;
+    setSelected: Function;
+    expanded: boolean;
+}
+
+const PageNav = ({ sections = [], selected, setSelected, expanded }: PageNavProps): JSX.Element => {
     return (
         <div id="navBar" className={ `${ styles.navBar } ${ expanded ? styles.expanded : styles.collapsed }` }>
-            <SiteLogo expanded={ expanded } onClick={ toggleMenu } />
             <div className={ styles.navContainer }>
                 <div className={ `${ styles.pageNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
                     {  
@@ -128,20 +141,17 @@ const Nav = ({ sections = [], selected, setSelected }: { sections?: Array<string
                         ))
                     }
                 </div>
-                <div className={ `${ styles.siteNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
-                    <span className={ styles.siteNavDescriptor }>Site Navigation:</span>
-                    <Link to="/" className={ styles.link }>Home</Link> 
-                    <Link to="/puzzles" className={ styles.link }>Puzzles</Link>
-                </div>
+                <div className={ styles.siteNavBackground }></div>
             </div>
         </div>
     );
 };
 
-Nav.propTypes = {
+PageNav.propTypes = {
     sections: PropTypes.arrayOf(PropTypes.string),
     selected: PropTypes.number.isRequired,
-    setSelected: PropTypes.func.isRequired
+    setSelected: PropTypes.func.isRequired,
+    expanded: PropTypes.bool.isRequired
 };
 
 interface SiteLogoProps {
@@ -151,7 +161,7 @@ interface SiteLogoProps {
 
 const SiteLogo = ({ expanded, onClick }: SiteLogoProps): JSX.Element => {
     return (
-        <div className={ `${ styles.logo } ${ expanded ? styles.expanded : styles.collapsed }` } onClick={ onClick }>
+        <div className={ `${ styles.logo } ${ styles.sticky } ${ expanded ? styles.expanded : styles.collapsed }` } onClick={ onClick }>
             <div className={ styles.logoC }></div>
             <div className={ `${ styles.logoS } ${ expanded ? styles.expanded : styles.collapsed }` }></div>
         </div>

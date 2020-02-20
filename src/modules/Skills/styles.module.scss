@@ -29,7 +29,7 @@
 
 .selector {
     font-size: 36px;
-    color: gray;
+    color: $gray;
     background-color: transparent;
 }
 
@@ -39,49 +39,23 @@
 
 .selector.skills.enabled {
     color: $sunset-orange;
+    background-color: transparent;
 }
 
 .selector.interests.enabled {
     color: $atlantis;
+    background-color: transparent;
 }
 
 .selector.certifications.enabled {
     color: $dodger-blue;
+    background-color: transparent;
 }
 
 .logo {
     height: 100px;
     float: left;
     margin: 25px;
-}
-
-.react,
-.js,
-.java,
-.aws,
-.newrelic,
-.climbing,
-.photoshop,
-.scuba {
-    width: 100px;
-}
-
-.ts {
-    width: 140px;
-    height: auto;
-    margin: 5px;
-}
-
-.magic {
-    width: 100px;
-    height: auto;
-    margin: 58px 25px;
-}
-
-.magicJudging {
-    width: 100px;
-    height: auto;
-    margin: 45px 25px;
 }
 
 .details {
@@ -111,6 +85,19 @@
     align-content: center;
     width: 150px;
     padding: 20px 0;
+}
+
+/* IE11-specific styles */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .newrelic .tenure {
+        margin-top: 20px;
+    }
+
+    .selector.skills,
+    .selector.interests,
+    .selector.certifications {
+        background-color: $white;
+    }
 }
 
 /* tablet and desktop */

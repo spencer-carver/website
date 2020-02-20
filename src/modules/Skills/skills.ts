@@ -61,13 +61,6 @@ const SKILLS: Skill[] = [{
     imageAlt: "TS Logo",
     startDate: new Date(2019, 6, 10)
 },{
-    id: "magic",
-    title: "Magic TCG",
-    type: SkillType.interest,
-    imageSrc: MAGIC_GAME_LOGO,
-    imageAlt: "MTG Logo",
-    startDate: new Date(2012, 7, 15)
-},{
     id: "newrelic",
     title: "New Relic",
     type: SkillType.certification,
@@ -76,6 +69,13 @@ const SKILLS: Skill[] = [{
     experienceLevel: "Certified Performance Pro",
     showTenure: true,
     startDate: new Date(2019, 6, 10)
+},{
+    id: "magic",
+    title: "Magic TCG",
+    type: SkillType.interest,
+    imageSrc: MAGIC_GAME_LOGO,
+    imageAlt: "MTG Logo",
+    startDate: new Date(2012, 7, 15)
 },{
     id: "java",
     title: "Java",
@@ -88,7 +88,7 @@ const SKILLS: Skill[] = [{
 },{
     id: "scuba",
     title: "SCUBA Diving",
-    type: SkillType.interest,
+    type: SkillType.certification,
     imageSrc: SCUBA_LOGO,
     imageAlt: "SCUBA Dive Flag",
     experienceLevel: "Advanced Open Water Diver"
@@ -100,6 +100,13 @@ const SKILLS: Skill[] = [{
     imageAlt: "AWS Logo",
     startDate: new Date(2016, 10, 1)
 },{
+    id: "photoshop",
+    title: "Image Editing",
+    type: SkillType.interest,
+    imageSrc: PHOTOSHOP_LOGO,
+    imageAlt: "Photoshop Logo",
+    startDate: new Date(2015, 5, 10)
+},{
     id: "magicJudging",
     title: "Magic Judge",
     type: SkillType.certification,
@@ -108,13 +115,6 @@ const SKILLS: Skill[] = [{
     startDate: new Date(2016, 9, 10),
     experienceLevel: "Level 1",
     showTenure: true
-},{
-    id: "photoshop",
-    title: "Image Editing",
-    type: SkillType.interest,
-    imageSrc: PHOTOSHOP_LOGO,
-    imageAlt: "Photoshop Logo",
-    startDate: new Date(2015, 5, 10)
 }];
 
 export default SKILLS;
