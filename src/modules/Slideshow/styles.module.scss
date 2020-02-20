@@ -141,6 +141,20 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* IE11-specific styles */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .hero .slide,
+    .hero .prev,
+    .hero .next,
+    .hero .indicators {
+        display: none;
+    }
+
+    :not(.hero) .slide:not(.selected) {
+        display: none;
+    }
+}
+
 /* tablet and desktop */
 @media screen and (min-width: 760px) {
     .hero.container {

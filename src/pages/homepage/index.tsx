@@ -17,7 +17,6 @@ const Homepage = (): JSX.Element => {
             { Slideshow({ images, isHero: true, overlayLogo: true, hideMobile: true }) }
             { AboutMeSection() }
             { InstagramSection() }
-            { Slideshow({ images, isHero: false, overlayLogo: false, hideMobile: false }) }
             { ProjectsSection() }
         </Navigation>
     );

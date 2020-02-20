@@ -59,12 +59,12 @@ const Slideshow = ({ images, isHero, overlayLogo = false, hideMobile = false }: 
                     images.map((image, index) => {
                         return (
                             <div key={ index } className={ `${ styles.slide } ${ selected === index ? styles.selected : "" }` }>
-                                <img src={ image } className={ styles.image } />
+                                <img src={ image } className={ styles.image } alt="Spencer" />
                             </div>
                         );
                     })
                 }
-                <img src={ images[0] } className={ `${ styles.image } ${ styles.placeholder }` } />
+                <img src={ images[0] } className={ `${ styles.image } ${ styles.placeholder }` } alt="Spencer" />
                 <div className={ styles.indicators }>
                     {
                         images.map((image, index) => {
@@ -77,8 +77,8 @@ const Slideshow = ({ images, isHero, overlayLogo = false, hideMobile = false }: 
                         })
                     }
                 </div>
-                <a className={ styles.prev } onClick={ previousPhoto }>&#10094;</a>
-                <a className={ styles.next } onClick={ nextPhoto }>&#10095;</a>
+                <div className={ styles.prev } onClick={ previousPhoto }>&#10094;</div>
+                <div className={ styles.next } onClick={ nextPhoto }>&#10095;</div>
             </div>
         </div>
         </div>
