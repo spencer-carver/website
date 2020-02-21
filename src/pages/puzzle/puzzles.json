@@ -2,6 +2,11 @@
     "tetris": {
         "title": "Tetris",
         "description": "You don't see the appeal?",
-        "content": "<video width='100%' controls><source src='https://spencer.carvers.info/static/media/Tetris Puzzle.mp4' type='video/mp4'>Your browser does not support HTML5 video.</video>"
+        "content": "<video width='100%' style='max-width: 600px;' controls><source src='https://spencer.carvers.info/static/media/Tetris Puzzle.mp4' type='video/mp4'>Your browser does not support HTML5 video.</video>"
+    },
+    "judge-calls-one": {
+        "title": "Judge Calls",
+        "description": "Can you decrypt what the players are talking about?",
+        "content": "<object data='https://spencer.carvers.info/static/media/judge-calls-one.pdf' type='application/pdf' width='100%' style='min-height: 600px;'>This browser does not support PDFs. Please download the PDF to view it: Download PDF.</object>"
     }
 }
