@@ -12,7 +12,7 @@ interface PuzzleRouterProps {
     };
 }
 
-interface Puzzle {
+export interface Puzzle {
     title: string;
     description?: string;
     content: string;
