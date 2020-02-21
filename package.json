@@ -2,6 +2,7 @@
   "name": "website",
   "version": "0.1.1",
   "private": true,
+  "homepage": "https://spencer.carvers.info",
   "scripts": {
     "start": "node layout/generateMarkup.js && react-scripts start",
     "build": "node layout/generateMarkup.js && react-scripts build && react-snapshot",
