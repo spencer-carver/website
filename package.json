@@ -7,7 +7,7 @@
     "start": "node layout/generateMarkup.js && react-scripts start",
     "build": "node layout/generateMarkup.js && react-scripts build && react-snapshot",
     "clean": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
-    "deploy": "aws s3 cp build s3://spencerrc-website/ --recursive",
+    "deploy": "aws s3 cp build s3://spencerrc-website/ --metadata-directive REPLACE --recursive --cache-control max-age=86400",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
