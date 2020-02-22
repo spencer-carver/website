@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "../../modules/Navigation";
 import PuzzleAnswerSubmission from "../../modules/PuzzleAnswerSubmission";
-import puzzles from "./puzzles.json";
+import puzzles, { Puzzle, PuzzleType } from "./puzzles";
 import styles from "./styles.module.scss";
 
 interface PuzzleRouterProps {
@@ -12,13 +12,7 @@ interface PuzzleRouterProps {
     };
 }
 
-export interface Puzzle {
-    title: string;
-    description?: string;
-    content: string;
-}
-
-const Puzzle = (props: PuzzleRouterProps): JSX.Element => {
+const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
     const {
         puzzleName
     } = props.match.params;
@@ -35,8 +29,9 @@ const Puzzle = (props: PuzzleRouterProps): JSX.Element => {
 
     const {
         title,
+        type,
         description,
-        content
+        srcUrl
     } = puzzle;
 
     return (
@@ -44,11 +39,45 @@ const Puzzle = (props: PuzzleRouterProps): JSX.Element => {
             <div className={ styles.puzzle }>
                 <div className={ styles.title }>{ title }</div>
                 <div className={ styles.description }>{ description }</div>
-                <div className={ styles.content } dangerouslySetInnerHTML={ { __html: content } } />
+                { (() => {
+                    switch (type) {
+                        case PuzzleType.video:
+                            return <VideoPuzzle src={ srcUrl } />;
+                        case PuzzleType.pdf:
+                            return <PdfPuzzle src={ srcUrl } />;
+                        default:
+                            return <div className={ styles.fallback }>Puzzle is Missing</div>;
+                    }
+                })() }
             </div>
             <PuzzleAnswerSubmission puzzleName={ puzzleName } />
         </Navigation>
     );
 };
 
-export default Puzzle;
+interface ContentProps {
+    src: string;
+}
+
+const VideoPuzzle = ({ src }: ContentProps): JSX.Element => {
+    return (
+        <video className={ styles.video } controls>
+            <source src={ src } type="video/mp4" />
+            <span className={ styles.fallback }>
+                Your browser does not support HTML5 video. To view, download it <a href={ src }>here</a>.
+            </span>
+        </video>
+    );
+};
+
+const PdfPuzzle = ({ src }: ContentProps): JSX.Element => {
+    return (
+        <object className={ styles.pdf } data={ src } type="application/pdf" >
+            <span className={ styles.fallback }>
+                Could not display the PDF. To view, download it <a href={ src }>here</a>.
+            </span>
+        </object>
+    );
+};
+
+export default PuzzleComponent;

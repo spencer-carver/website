@@ -20,3 +20,17 @@
 .list {
     text-align: left;
 }
+
+.video {
+    width: 100%;
+    max-width: 600px;
+}
+
+.pdf {
+    width: 100%;
+    min-height: 600px;
+}
+
+.fallback {
+    margin: 0 10px;
+}

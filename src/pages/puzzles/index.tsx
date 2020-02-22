@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
-import { Puzzle } from "../puzzle";
-import puzzles from "../puzzle/puzzles.json";
+import puzzles, { Puzzle } from "../puzzle/puzzles";
 import styles from "../puzzle/styles.module.scss";
 
 const Puzzles = (): JSX.Element => {
