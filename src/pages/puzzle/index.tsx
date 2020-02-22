@@ -39,14 +39,14 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
             <div className={ styles.puzzle }>
                 <div className={ styles.title }>{ title }</div>
                 <div className={ styles.description }>{ description }</div>
-                { (() => {
+                { ((): JSX.Element => {
                     switch (type) {
-                        case PuzzleType.video:
-                            return <VideoPuzzle src={ srcUrl } />;
-                        case PuzzleType.pdf:
-                            return <PdfPuzzle src={ srcUrl } />;
-                        default:
-                            return <div className={ styles.fallback }>Puzzle is Missing</div>;
+                    case PuzzleType.video:
+                        return <VideoPuzzle src={ srcUrl } />;
+                    case PuzzleType.pdf:
+                        return <PdfPuzzle src={ srcUrl } />;
+                    default:
+                        return <div className={ styles.fallback }>Puzzle is Missing</div>;
                     }
                 })() }
             </div>

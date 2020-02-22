@@ -20,7 +20,7 @@ const PuzzleAnswerSubmission = ({ puzzleName }: PuzzleAnswerSubmissionProps): JS
         setAnswer((event.target as HTMLInputElement).value);
     }
 
-    async function submit(event : React.FormEvent<HTMLFormElement>): Promise<void> {
+    async function submit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
         event.preventDefault();
 
         if (!answer) {
