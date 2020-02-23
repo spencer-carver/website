@@ -32,7 +32,7 @@ export interface Project {
     resources?: Array<Resource>;
 }
 
-const PROJECT_DETAILS = {
+const PROJECT_DETAILS: { [key: string]: Project } = {
     website: {
         title: "My Website",
         description: "A React.js website built using Amazon Web Services. You're on it right now!",
@@ -161,9 +161,11 @@ const ProjectCardContainer = (props: ProjectCardProps): JSX.Element => {
 };
 
 const Projects = (): JSX.Element => {
+    const projects = Object.keys(PROJECT_DETAILS).map((key) => PROJECT_DETAILS[key]);
+
     return (
         <div id="projects" className={ `section fullwidth ${ styles.projects }` }>
-            <Slideshow items={ Object.values(PROJECT_DETAILS) } component={ ProjectCardContainer as FunctionalComponent } options={ {} } />
+            <Slideshow items={ projects } component={ ProjectCardContainer as FunctionalComponent } options={ {} } />
         </div>
     );
 };
