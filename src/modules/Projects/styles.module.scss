@@ -1,25 +1,35 @@
 @import "../../styles/colors";
 @import "../../styles/icons";
 
-.header {
-    margin: 0;
-    text-align: left;
-    font-size: 64px;
-    font-weight: 900;
-    color: $alto;
-}
-
-.projectContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+.projects {
+    background: url("../../images/projects-background.jpg");
+    background-size: 256%;
+    background-origin: content-box;
 }
 
 .card {
+    display: inline-block;
     text-align: center;
     margin: 0 auto;
     padding: 20px 0;
-    border-bottom: 1px dotted $alto;
+    color: $white;
+    width: 240px;
+    height: 300px;
+}
+
+.cardContainer {
+    visibility: hidden;
+    position: relative;
+    display: none;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 120px 0 40px;
+}
+
+.cardContainer.selected {
+    visibility: visible;
+    display: flex;
 }
 
 .card:last-child {
@@ -45,12 +55,9 @@
 }
 
 .githubLink {
-    position: absolute;
-    display: none;
+    display: block;
     width: 50px;
     height: 50px;
-    right: 0;
-    bottom: 20px;
     @include github($icon-color: $black, $width: 50, $height: 50, $background-color: $white);
     border-radius: 25px;
     font-size: 0;
@@ -58,6 +65,7 @@
 
 .githubLink:hover {
     @include github($icon-color: $atlantis, $width: 50, $height: 50, $background-color: $white);
+    animation: fadein 0.75s;
 }
 
 @keyframes fadein {
@@ -65,15 +73,65 @@
     to   { opacity: 1; }
 }
 
+.extendedDescription,
+.resources {
+    display: none;
+}
+
+.sectionTitle {
+    padding: 14px 10px 14px 0;
+}
+
+.resource {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+}
+
+.resource.link {
+    margin: 0;
+    border-radius: 25px;
+    background-clip: padding-box;
+}
+
+.resourceLink {
+    margin: 0 5px;
+}
+
+.resourceLink:hover .resource.link {
+    background-color: $white;
+}
+
+/* large mobile */
+@media screen and (min-width: 500px) {
+    .projects {
+        background-position: 0 -20px;
+        background-size: 170%;
+    }
+}
+
 /* tablet and desktop */
 @media screen and (min-width: 760px) {
-    .projectContainer {
-        flex-direction: row;
+    .projects {
+        background-position: initial;
+        background-origin: content-box;
+        background-size: 100%;
+    }
+
+    .cardContainer {
+        display: flex;
+        position: absolute;
+        padding: 60px 0 40px;
     }
 
     .card {
-        width: 200px;
-        border: none;
+        width: 600px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .title {
+        font-size: 32px;
     }
 
     .image {
@@ -81,8 +139,27 @@
         height: 200px;
     }
 
-    .imageContainer:hover .githubLink {
-        display: block;
-        animation: fadein 0.75s;
+    .main {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .info {
+        margin: 20px 0 0 20px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        text-align: left;
+    }
+
+    .extendedDescription {
+        display: inherit;
+        margin-top: 10px;
+    }
+
+    .resources {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
     }
 }
