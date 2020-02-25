@@ -4,6 +4,9 @@ import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import {
     MOUNTAINPROJECT_URL
 } from "../../constants/ExternalUrls";
+import thinking from "../../images/thinking.jpg";
+import thinkingWebp from "../../images/thinking.webp";
+import { Image } from "../Slideshow";
 import styles from "./styles.module.scss";
 import "../styles.scss";
 
@@ -15,7 +18,7 @@ const AboutMe = (): JSX.Element => {
             <div className="sectionContent">
                 <div className={styles.personalBlurb}>
                     <div className={styles.photoContainer}>
-                        <div className={styles.personalPhoto}></div>
+                        <Image image={ { src: thinking, srcWebp: thinkingWebp } } alt="" imageStyle={ styles.personalPhoto } />
                     </div>
                     <div className={styles.personalDetails}>
                         <p>
