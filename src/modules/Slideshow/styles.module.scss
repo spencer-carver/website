@@ -9,6 +9,9 @@
     width: 100%;
     height: 100vh;
     position: relative;
+    background: url("../../images/bg.jpg");	
+    background-position: center;	
+    background-size: 200% 100%;
     margin-top: -50px;
     z-index: 1000002;
 }
@@ -167,6 +170,7 @@
 @media screen and (min-width: 760px) {
     .hero.container {
         height: auto;
+        background: none;
     }
 
     .hero.container::before {
