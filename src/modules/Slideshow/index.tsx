@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import backgroundImageWebp from "../../images/bg.webp";
 import backgroundImage from "../../images/bg.jpg";
 import { FunctionalComponent, PropsObject } from "../../constants/Types";
 import styles from "./styles.module.scss";
@@ -75,9 +76,9 @@ const Slideshow = ({ items, component: Component, options }: SlideshowProps): JS
 
     return (
         <div>
-            <div className={ `${ isHero ? styles.hero : "" } ${ styles.container } ${ overlayLogo ? styles.overlayLogo : "" }` }>
+            <div className={ `${ isHero ? styles.hero : "" } ${ overlayLogo ? styles.overlayLogo : "" } ${ styles.container }` }>
                 <div className={ `${ isHero ? styles.hero : "" } ${ styles.slideshow } ${ hideMobile ? styles.hideMobile : "" }` }>
-                    <img src={ backgroundImage } className={ `${ styles.image } ${ styles.placeholder }` } alt="background" />
+                    <Image image={ { src: backgroundImage, srcWebp: backgroundImageWebp } } alt="background" imageStyle={ `${ styles.image } ${ styles.placeholder }` } />
                     { items.map((props, index) => <Component { ...props } key={ index } index={ index } selected={ selected } />) }
                     <div className={ styles.indicators }>
                         { items.map((item, index) => <Indicator key={ index } index={ index } selected={ selected } setSelected={ setSelected } />) }
@@ -109,14 +110,36 @@ const Indicator = ({ index, selected, setSelected }: IndicatorProps): JSX.Elemen
 interface ImageSlideProps {
     index: number;
     selected: number;
-    image: string;
+    image: Image;
 }
 
 export const ImageSlide = ({ index, image, selected }: ImageSlideProps): JSX.Element => {
     return (
         <div className={ `${ styles.slide } ${ selected === index ? styles.selected : "" }` }>
-            <img src={ image } className={ styles.image } alt="Spencer" />
+            <Image image={ image } alt="Spencer" imageStyle={ styles.image } />
         </div>
+    );
+};
+
+export interface Image {
+    src: string;
+    srcWebp: string;
+}
+
+interface ImageProps {
+    image: Image;
+    alt: string;
+    imageStyle: string;
+}
+
+export const Image = ({ image: { src, srcWebp }, alt, imageStyle }: ImageProps): JSX.Element => {
+
+    return (
+        <picture className={ imageStyle }>
+            <source srcSet={ srcWebp } type="image/webp" />
+            <source srcSet={ src } /> 
+            <img className={ imageStyle } src={ src } alt={ alt } />
+        </picture>
     );
 };
 

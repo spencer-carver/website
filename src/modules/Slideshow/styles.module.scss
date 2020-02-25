@@ -9,10 +9,10 @@
     width: 100%;
     height: 100vh;
     position: relative;
-    margin-top: -50px;
-    background: url("../../images/bg.jpg");
-    background-position: center;
+    background: url("../../images/bg.jpg");	
+    background-position: center;	
     background-size: 200% 100%;
+    margin-top: -50px;
     z-index: 1000002;
 }
 
@@ -25,7 +25,9 @@
     @include my-logo($icon-color: $white, $width: 216, $height: 216);
     background-repeat: no-repeat;
     background-position: center;
-    opacity:0.75;
+    opacity:0.25;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .hero.container::after {
@@ -71,11 +73,15 @@
 
 :not(.hero) .image.placeholder {
     display: none;
+    visibility: hidden;
+}
+
+.hero .image.placeholder {
+    visibility: visible;
 }
 
 .image.placeholder {
     position: relative;
-    visibility: hidden;
 }
 
 .slide {
@@ -164,6 +170,7 @@
 @media screen and (min-width: 760px) {
     .hero.container {
         height: auto;
+        background: none;
     }
 
     .hero.container::before {

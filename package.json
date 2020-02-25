@@ -7,7 +7,9 @@
     "start": "node layout/generateMarkup.js && react-scripts start",
     "build": "node layout/generateMarkup.js && react-scripts build && react-snapshot",
     "clean": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
-    "deploy": "aws s3 cp build s3://spencerrc-website/ --metadata-directive REPLACE --recursive --cache-control max-age=86400",
+    "deploy": "npm run deploy:static && npm run deploy:assets",
+    "deploy:assets": "aws s3 cp build s3://spencerrc-website/ --metadata-directive REPLACE --recursive --cache-control max-age=3600 --exclude '*.jpg' --exclude '*.png' --exclude '*.webp'",
+    "deploy:static": "aws s3 cp build s3://spencerrc-website/ --metadata-directive REPLACE --recursive --cache-control max-age=31536000 --exclude '*' --include '*.jpg' --include '*.png' --include '*.webp'",
     "eject": "react-scripts eject"
   },
   "dependencies": {
