@@ -83,8 +83,8 @@ const Slideshow = ({ items, component: Component, options }: SlideshowProps): JS
                     <div className={ styles.indicators }>
                         { items.map((item, index) => <Indicator key={ index } index={ index } selected={ selected } setSelected={ setSelected } />) }
                     </div>
-                    <div className={ styles.prev } onClick={ previousItem }>&#10094;</div>
-                    <div className={ styles.next } onClick={ nextItem }>&#10095;</div>
+                    <div className={ styles.prev } role="button" aria-label="Previous" tabIndex={ 0 } onClick={ previousItem } onKeyPress={ previousItem }>&#10094;</div>
+                    <div className={ styles.next } role="button" aria-label="Next" tabIndex={ 0 } onClick={ nextItem } onKeyPress={ nextItem }>&#10095;</div>
                 </div>
             </div>
         </div>
@@ -99,9 +99,14 @@ interface IndicatorProps {
 }
 
 const Indicator = ({ index, selected, setSelected }: IndicatorProps): JSX.Element => {
+    const setIndicator = (): void => setSelected(index);
+
     return (
         <div className={ `${ styles.indicator } ${ selected === index ? styles.selected : "" }` }
-            onClick={ (): void => setSelected(index) }>
+            role="button"
+            tabIndex={ 0 }
+            onClick={ setIndicator }
+            onKeyPress={ setIndicator }>
             <span className={ styles.indicatorText }>{ index + 1 }</span>
         </div>
     );

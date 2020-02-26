@@ -9,20 +9,36 @@ import styles from "./styles.module.scss";
 const Skills = (): JSX.Element => {
     const [ selectedCategory, setSelectedCategory ] = useState(SkillType.skill);
 
+    const setSkillsSelected = (): void => setSelectedCategory(SkillType.skill);
+    const setInterestsSelected = (): void => setSelectedCategory(SkillType.interest);
+    const setCertificationsSelected = (): void => setSelectedCategory(SkillType.certification);
+
     return (
         <div>
             <div className={ styles.section }>
                 <div className={ styles.controls }>
                     <span className={ `${ styles.selector } ${ styles.skills } ${ selectedCategory === SkillType.skill ? styles.enabled : styles.disabled }` }
-                        onClick={ (): void => setSelectedCategory(SkillType.skill) }>
+                        role="button"
+                        aria-label="Skills"
+                        tabIndex={ 0 }
+                        onClick={ setSkillsSelected }
+                        onKeyPress={ setSkillsSelected }>
                         Skills
                     </span> &amp; 
                     <span className={ `${ styles.selector } ${ styles.interests } ${ selectedCategory === SkillType.interest ? styles.enabled : styles.disabled }` }
-                        onClick={ (): void => setSelectedCategory(SkillType.interest) }>
+                        role="button"
+                        aria-label="Interests"
+                        tabIndex={ 0 }
+                        onClick={ setInterestsSelected }
+                        onKeyPress={ setInterestsSelected }>
                         Interests
                     </span> &amp;
                     <span className={ `${ styles.selector } ${ styles.certifications } ${ selectedCategory === SkillType.certification ? styles.enabled : styles.disabled }` }
-                        onClick={ (): void => setSelectedCategory(SkillType.certification) }>
+                        role="button"
+                        aria-label="Certifications"
+                        tabIndex={ 0 }
+                        onClick={ setCertificationsSelected }
+                        onKeyPress={ setCertificationsSelected }>
                         Certifications
                     </span>
                 </div>

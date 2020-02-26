@@ -27,7 +27,12 @@ const Flipcard = (props: FlipcardProps): JSX.Element => {
     }
 
     return (
-        <div className={ `${ styles.flipCard } ${ selected ? styles.enabled : styles.disabled }` } onClick={ enableGroup }>
+        <div className={ `${ styles.flipCard } ${ selected ? styles.enabled : styles.disabled }` }
+            role="button"
+            aria-label="Select Card"
+            tabIndex={ 0 }
+            onClick={ enableGroup }
+            onKeyPress={ enableGroup }>
             <div className={ styles.flipCardInner }>
                 <div className={ styles.flipCardFront }>
                     <div className={ `${ styles.earmark } ${ theme }` }></div>

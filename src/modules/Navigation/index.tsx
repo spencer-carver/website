@@ -156,12 +156,17 @@ PageNav.propTypes = {
 
 interface SiteLogoProps {
     expanded: boolean;
-    onClick: ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void);
+    onClick: ((event: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent) => void);
 }
 
 const SiteLogo = ({ expanded, onClick }: SiteLogoProps): JSX.Element => {
     return (
-        <div className={ `${ styles.logo } ${ styles.sticky } ${ expanded ? styles.expanded : styles.collapsed }` } onClick={ onClick }>
+        <div className={ `${ styles.logo } ${ styles.sticky } ${ expanded ? styles.expanded : styles.collapsed }` }
+            role="button"
+            aria-label={ expanded ? "Close Site Nav" : "Open Site Nav" }
+            tabIndex={ 0 }
+            onClick={ onClick }
+            onKeyPress={ onClick }>
             <div className={ styles.logoC }></div>
             <div className={ `${ styles.logoS } ${ expanded ? styles.expanded : styles.collapsed }` }></div>
         </div>
@@ -183,7 +188,7 @@ declare module "react" {
 }
 
 const NavItem = ({ name, index, selected = false, setSelected }: NavItemProps): JSX.Element => {
-    function onItemClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
+    function onItemClick(event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent): void {
         setSelected(index);
 
         if (!event || !event.target) {
@@ -207,9 +212,16 @@ const NavItem = ({ name, index, selected = false, setSelected }: NavItemProps): 
         window.scrollBy(0, elementY - 50);
     }
 
+    const readableName = name.replace("-", " ");
+
     return (
-        <div className={ `${ styles.navItem } ${ selected ? styles.selected : "" }` } reference={ name } onClick={ onItemClick }>
-            { name.replace("-", " ") }
+        <div className={ `${ styles.navItem } ${ selected ? styles.selected : "" }` } reference={ name }
+            role="button"
+            aria-label={ `Go to ${ readableName }` }
+            tabIndex={ 0 }
+            onClick={ onItemClick }
+            onKeyPress={ onItemClick }>
+            { readableName }
         </div>
     );
 };
