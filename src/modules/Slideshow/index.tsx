@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import backgroundImageWebp from "../../images/bg.webp";
-import backgroundImage from "../../images/bg.jpg";
+import backgroundImageWebp from "../../images/placeholder.webp";
+import backgroundImage from "../../images/placeholder.jpg";
 import { FunctionalComponent, PropsObject } from "../../constants/Types";
 import styles from "./styles.module.scss";
 

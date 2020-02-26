@@ -2,7 +2,9 @@ import React from "react";
 import websiteImage from "../../images/website-image.png";
 import watchdogImage from "../../images/watchdog-echo-skill.png";
 import emailImage from "../../images/email.png";
-import Slideshow from "../Slideshow";
+import backgroundImage from "../../images/projects-background.jpg";
+import backgroundImageWebp from "../../images/projects-background.webp";
+import Slideshow, { Image } from "../Slideshow";
 import {
     REACT_LOGO,
     TS_LOGO,
@@ -129,7 +131,7 @@ const ProjectCard = (props: Project): JSX.Element => {
             <div className={ styles.main }>
                 <span className={ styles.title }>{ title }</span>
                 <div className={ styles.imageContainer }>
-                    <div className={styles.siteLink}><img className={styles.image} src={imageUrl} alt={imageAlt}></img></div>
+                    <div className={ styles.siteLink }><img className={ styles.image } src={ imageUrl } alt={ imageAlt }></img></div>
                 </div>
             </div>
             <div className={ styles.info }>
@@ -165,6 +167,7 @@ const Projects = (): JSX.Element => {
 
     return (
         <div id="projects" className={ `section fullwidth ${ styles.projects }` }>
+            <Image image={ { src: backgroundImage, srcWebp: backgroundImageWebp } } alt="background" imageStyle={ styles.background } />
             <Slideshow items={ projects } component={ ProjectCardContainer as FunctionalComponent } options={ {} } />
         </div>
     );
