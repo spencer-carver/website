@@ -16,11 +16,11 @@ const AboutMe = (): JSX.Element => {
     return (
         <div id="about-me" className="section">
             <div className="sectionContent">
-                <div className={styles.personalBlurb}>
-                    <div className={styles.photoContainer}>
+                <div className={ styles.personalBlurb }>
+                    <div className={ styles.photoContainer }>
                         <Image image={ { src: thinking, srcWebp: thinkingWebp } } alt="" imageStyle={ styles.personalPhoto } />
                     </div>
-                    <div className={styles.personalDetails}>
+                    <div className={ styles.personalDetails }>
                         <p>
                             I&apos;m a {calculateYearsBetween(MY_BIRTHDAY)} year old Software Developer based out of New York, New York.
                             I enjoy <a className={ styles.link } href={ MOUNTAINPROJECT_URL } target="_blank" rel="noopener noreferrer">Rock Climbing</a>,
