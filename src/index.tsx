@@ -12,7 +12,7 @@ import "./index.scss";
 
 const Sitemap = (): JSX.Element => (
     <Router>
-        <div className="page">
+        <main className="page">
             <Switch>
                 <Route path="/" exact component={ Homepage } />
                 <Redirect from="/puzzle" exact to="/puzzles" />
@@ -21,7 +21,7 @@ const Sitemap = (): JSX.Element => (
                 <Route path="*" render={ (): JSX.Element => <Error errorCode={ 404 } /> } />
             </Switch>
             <Footer />
-        </div>
+        </main>
     </Router>
 );
 

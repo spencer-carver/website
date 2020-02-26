@@ -13,7 +13,7 @@ function wrapLayout(metadata) {
         <meta charset="utf-8">
         <meta name="viewport" content="height=device-height, 
                       width=device-width, initial-scale=1.0, 
-                      minimum-scale=1.0, maximum-scale=1.0, 
+                      minimum-scale=1.0, maximum-scale=5.0, 
                       target-densitydpi=device-dpi">
         <meta name="theme-color" content="#000000">
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
