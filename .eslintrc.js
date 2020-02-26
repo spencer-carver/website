@@ -27,21 +27,23 @@ module.exports = {
         }
     },
     "rules": {
-        "indent": [ "error", 4 ],
-        "linebreak-style": [ "error", "unix" ],
-        "quotes": [ "error", "double" ],
-        "semi": [ "error", "always" ],
-        "eol-last": [ "error", "always" ],
-        "space-infix-ops": [ "error" ],
-        "curly": [ "error", "all" ],
         "array-bracket-spacing": [ "error", "always", {
             "objectsInArrays": false,
             "arraysInArrays": false
         }],
+        "curly": [ "error", "all" ],
+        "eol-last": [ "error", "always" ],
+        "indent": [ "error", 4 ],
+        "linebreak-style": [ "error", "unix" ],
         "max-len": [ "warn", {
             "code": 150,
             "ignoreStrings": true,
             "ignoreTemplateLiterals": true
-        }]
+        }],
+        "quotes": [ "error", "double" ],
+        "react/jsx-curly-spacing": [2, {"when": "always"}],
+        "semi": [ "error", "always" ],
+        "space-infix-ops": [ "error" ],
+        "template-curly-spacing": ["error", "always"]
     }
 };

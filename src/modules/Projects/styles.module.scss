@@ -2,9 +2,14 @@
 @import "../../styles/icons";
 
 .projects {
-    background: url("../../images/projects-background.jpg");
-    background-size: 256%;
-    background-origin: content-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    width: 160%;
+    height: auto;
 }
 
 .card {
@@ -108,14 +113,16 @@
         background-position: 0 -20px;
         background-size: 170%;
     }
+
+    .background {
+        width: 130%;
+    }
 }
 
 /* tablet and desktop */
 @media screen and (min-width: 760px) {
-    .projects {
-        background-position: initial;
-        background-origin: content-box;
-        background-size: 100%;
+    .background {
+        width: 100%;
     }
 
     .cardContainer {
