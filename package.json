@@ -1,11 +1,12 @@
 {
   "name": "website",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "homepage": "https://spencer.carvers.info",
   "scripts": {
     "start": "node layout/generateMarkup.js && react-scripts start",
     "build": "node layout/generateMarkup.js && react-scripts build && react-snapshot",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
     "clean": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
     "deploy": "npm run deploy:static && npm run deploy:assets",
     "deploy:assets": "aws s3 cp build s3://spencerrc-website/ --metadata-directive REPLACE --recursive --cache-control max-age=86400 --exclude '*.jpg' --exclude '*.png' --exclude '*.webp'",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.19.2",
     "@typescript-eslint/parser": "^2.19.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "react-snapshot": "^1.3.0"
   },
   "eslintConfig": {

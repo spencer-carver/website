@@ -31,7 +31,8 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
         title,
         type,
         description,
-        srcUrl
+        srcUrl,
+        assetSrc
     } = puzzle;
 
     return (
@@ -42,7 +43,7 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
                 { ((): JSX.Element => {
                     switch (type) {
                     case PuzzleType.video:
-                        return <VideoPuzzle src={ srcUrl } />;
+                        return <VideoPuzzle src={ srcUrl } subtitleSrc={ assetSrc } />;
                     case PuzzleType.pdf:
                         return <PdfPuzzle src={ srcUrl } />;
                     default:
@@ -57,12 +58,14 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
 
 interface ContentProps {
     src: string;
+    subtitleSrc?: string;
 }
 
-const VideoPuzzle = ({ src }: ContentProps): JSX.Element => {
+const VideoPuzzle = ({ src, subtitleSrc }: ContentProps): JSX.Element => {
     return (
         <video className={ styles.video } controls>
             <source src={ src } type="video/mp4" />
+            <track label="English" kind="captions" srcLang="en" src={ subtitleSrc } default />
             <span className={ styles.fallback }>
                 Your browser does not support HTML5 video. To view, download it <a href={ src }>here</a>.
             </span>
