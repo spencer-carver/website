@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 
 interface PuzzleAnswerSubmissionProps {
     puzzleName: string;
+    onSuccess: Function;
 }
 
 interface PuzzleAnswer {
@@ -12,7 +13,7 @@ interface PuzzleAnswer {
     value: string;
 }
 
-const PuzzleAnswerSubmission = ({ puzzleName }: PuzzleAnswerSubmissionProps): JSX.Element => {
+const PuzzleAnswerSubmission = ({ puzzleName, onSuccess }: PuzzleAnswerSubmissionProps): JSX.Element => {
     const [ answer, setAnswer ] = useState("");
     const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
 
@@ -29,8 +30,13 @@ const PuzzleAnswerSubmission = ({ puzzleName }: PuzzleAnswerSubmissionProps): JS
 
         const answerResponse: PuzzleAnswer = await window.fetch(`${ API_URL }/api/puzzle/${ puzzleName }/submit`, {
             method: "POST",
+            credentials: "include",
             body: JSON.stringify({ answer })
         }).then(response => response.json());
+
+        if (answerResponse.correct) {
+            onSuccess(answerResponse.value);
+        }
 
         setAnswers([ ...answers, answerResponse ]);
         setAnswer("");

@@ -1,3 +1,5 @@
+@import "../../styles/colors";
+
 .puzzle {
     margin: 0 auto;
     max-width: 800px;
@@ -33,4 +35,23 @@
 
 .fallback {
     margin: 0 10px;
+}
+
+.answer {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.solved {
+    width: 225px;
+    background: $atlantis;
+    position: fixed;
+    top: 86px;
+    right: -50px;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 1px;
+    color: $white;
+    transform: rotate(45deg);
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
 }
