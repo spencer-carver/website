@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import puzzles, { Puzzle } from "../puzzle/puzzles";
-import styles from "../puzzle/styles.module.scss";
 import getCookieValue from "../../utils/getCookieValue";
+import styles from "../puzzle/styles.module.scss";
 
 const Puzzles = (): JSX.Element => {
     return (
