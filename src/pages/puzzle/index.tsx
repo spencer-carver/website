@@ -3,6 +3,7 @@ import Navigation from "../../modules/Navigation";
 import PuzzleAnswerSubmission from "../../modules/PuzzleAnswerSubmission";
 import puzzles, { Puzzle, PuzzleType } from "./puzzles";
 import styles from "./styles.module.scss";
+import getCookieValue from "../../utils/getCookieValue";
 
 interface PuzzleRouterProps {
     match: {
@@ -37,6 +38,7 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
 
     return (
         <Navigation isHomepage={ false }>
+            <PuzzleComplete puzzleName={ puzzleName } />
             <div className={ styles.puzzle }>
                 <div className={ styles.title }>{ title }</div>
                 <div className={ styles.description }>{ description }</div>
@@ -80,6 +82,20 @@ const PdfPuzzle = ({ src }: ContentProps): JSX.Element => {
                 Could not display the PDF. To view, download it <a href={ src }>here</a>.
             </span>
         </object>
+    );
+};
+
+const PuzzleComplete = ({ puzzleName }: { puzzleName: string }): JSX.Element | null => {
+    const puzzleAnswer = getCookieValue(puzzleName);
+
+    if (!puzzleAnswer) {
+        return null;
+    }
+
+    return (
+        <div className={ styles.solved }>
+            { puzzleAnswer }
+        </div>
     );
 };
 
