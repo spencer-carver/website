@@ -18,3 +18,14 @@
 .copyrightNotice {
     display: inline-block;
 }
+
+/* IE11-specific styles */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .spacer {
+        margin-top: 0px;
+    }
+
+    .footer {
+        position: inherit;
+    }
+}

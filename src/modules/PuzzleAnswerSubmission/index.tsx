@@ -10,12 +10,14 @@ interface PuzzleAnswerSubmissionProps {
 interface PuzzleAnswer {
     correct: boolean;
     intermediate?: boolean;
+    hint?: boolean;
     value: string;
 }
 
 const PuzzleAnswerSubmission = ({ puzzleName, onSuccess }: PuzzleAnswerSubmissionProps): JSX.Element => {
     const [ answer, setAnswer ] = useState("");
     const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
+    const [ hintCount, setHintCount ] = useState(0);
 
     function onType(event: React.ChangeEvent<HTMLInputElement>): void {
         setAnswer((event.target as HTMLInputElement).value);
@@ -31,15 +33,22 @@ const PuzzleAnswerSubmission = ({ puzzleName, onSuccess }: PuzzleAnswerSubmissio
         const answerResponse: PuzzleAnswer = await window.fetch(`${ API_URL }/api/puzzle/${ puzzleName }/submit`, {
             method: "POST",
             credentials: "include",
-            body: JSON.stringify({ answer })
+            body: JSON.stringify({ answer, hintCount })
         }).then(response => response.json());
 
         if (answerResponse.correct) {
             onSuccess(answerResponse.value);
         }
 
+        if (answerResponse.hint) {
+            setHintCount(hintCount + 1);
+        }
+
         setAnswers([ ...answers, answerResponse ]);
         setAnswer("");
+
+        const objDiv = document.getElementById("pastAnswers") as HTMLElement;
+        objDiv.scrollTop = objDiv.scrollHeight;
     }
 
     return (
@@ -55,13 +64,16 @@ const PuzzleAnswerSubmission = ({ puzzleName, onSuccess }: PuzzleAnswerSubmissio
 
 const PastAnswers = ({ pastAnswers }: { pastAnswers: PuzzleAnswer[] }): JSX.Element => {
     return (
-        <ul className={ styles.pastAnswers }>
+        <ul id="pastAnswers" className={ styles.pastAnswers }>
             { pastAnswers.map((pastResult, index) => {
                 const answerStyle = pastResult.correct
                     ? styles.correct
                     : ( pastResult.intermediate
                         ? styles.intermediate
-                        : styles.incorrect
+                        : ( pastResult.hint
+                            ? styles.hint
+                            : styles.incorrect
+                        )
                     );
 
                 return <li key={ index } className={ `${ answerStyle } ${ styles.answer }` }>{ pastResult.value }</li>;

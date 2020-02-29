@@ -1,9 +1,9 @@
 @import "../../styles/colors";
 
 .answerbox {
-    position: fixed;
-    bottom: 60px;
-    right: 0;
+    position: sticky;
+    left: 100%;
+    bottom: 0px;
     width: 242px;
     min-height: 50px;
     background-color: $white;
@@ -17,6 +17,8 @@
 .pastAnswers {
     margin: 0;
     padding: 10px 5px;
+    max-height: 200px;
+    overflow-y: scroll;
 }
 
 .answer {
@@ -28,10 +30,22 @@
     background-color: $atlantis;
 }
 
+.hint {
+    background-color: $picton-blue;
+}
+
 .intermediate {
     background-color: $confetti;
 }
 
 .incorrect {
     background-color: $cinnabar;
+}
+
+/* IE11-specific styles */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .answerbox {
+        position: absolute;
+        bottom: 50px;
+    }
 }
