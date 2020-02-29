@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Skills from "../Skills";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import {
@@ -23,10 +24,14 @@ const AboutMe = (): JSX.Element => {
                     <div className={ styles.personalDetails }>
                         <p>
                             I&apos;m a {calculateYearsBetween(MY_BIRTHDAY)} year old Software Developer based out of New York, New York.
+                        </p>
+                        <p>
                             I enjoy <a className={ styles.link } href={ MOUNTAINPROJECT_URL } target="_blank" rel="noopener noreferrer">Rock Climbing</a>,
                             Magic: the Gathering,
-                            and Cocktails
-                            though I wouldn&apos;t recommend combining them into a single activity.
+                            and <Link to ="/cocktails" className={ styles.link }>Cocktails</Link> though I wouldn&apos;t recommend combining them into a single activity.
+                        </p>
+                        <p>
+                            I&apos;ve also recently become a fan of <Link to="/puzzles" className={ styles.link }>Puzzles</Link>!
                         </p>
                     </div>
                 </div>
