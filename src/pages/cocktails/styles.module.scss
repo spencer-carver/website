@@ -1,0 +1,42 @@
+@import "../../styles/colors.scss";
+
+.content {
+    margin: 0 auto;
+    padding: 10px 0;
+    max-width: 800px;
+    text-align: center;
+}
+
+.menu {
+    padding: 0 10px;
+    min-height: 400px;
+}
+
+.name {
+    margin-bottom: 10px;
+}
+.title {
+    color: $black;
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px dotted $atlantis;
+}
+
+.ingredients {
+    margin: 0;
+    font-style: italic;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .content {
+        padding-top: 30px;
+    }
+
+    .menu {
+        margin-top: 50px;
+        min-height: 600px;
+        border: 1px solid $black;
+        box-shadow: 5px 5px 5px $black;
+    }
+}
