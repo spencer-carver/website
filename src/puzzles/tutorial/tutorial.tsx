@@ -42,7 +42,8 @@ const Tutorial = (): JSX.Element => {
             </p>
             <p className={ styles.row }>
                 <span className={ rowNumberStyle }>5</span>
-                <span className={ styles.dropLetter }>I</span>n order to solve the puzzles on my website, pay attention to the bottom of the screen.
+                <span className={ styles.dropLetter }>I</span>n order to solve the puzzles on my website, pay attention to the bottom of the page.
+                There is an answer submission box!
                 This form allows you to submit guesses, ask for a hint, or verify you are on the right track.
                 To guess, you just need to type your guess and press enter (or click submit).
                 If the guess appears with a red background, it&apos;s just wrong!
