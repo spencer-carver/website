@@ -1,17 +1,28 @@
+import { FunctionalComponent } from "../constants/Types";
+import Tutorial from "./tutorial/tutorial";
+
 export enum PuzzleType {
     video = "video",
-    pdf = "pdf"
+    pdf = "pdf",
+    html = "html"
 }
 
 export interface Puzzle {
     title: string;
     description?: string;
     type: PuzzleType;
-    srcUrl: string;
+    srcUrl?: string;
     assetSrc?: string;
+    content?: FunctionalComponent;
 }
 
 const PUZZLES: { [key: string]: Puzzle } = {
+    "tutorial": {
+        title: "Tutorial",
+        type: PuzzleType.html,
+        description: "If you follow the instructions and rearrange your thoughts, you'll get this in no time!",
+        content: Tutorial
+    },
     "tetris": {
         title: "Tetris",
         type: PuzzleType.video,

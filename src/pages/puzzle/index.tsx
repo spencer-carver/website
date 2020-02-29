@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Navigation from "../../modules/Navigation";
 import PuzzleAnswerSubmission from "../../modules/PuzzleAnswerSubmission";
-import puzzles, { Puzzle, PuzzleType } from "./puzzles";
+import puzzles, { Puzzle, PuzzleType } from "../../puzzles";
 import getCookieValue from "../../utils/getCookieValue";
+import { FunctionalComponent } from "../../constants/Types";
 import styles from "./styles.module.scss";
 
 interface PuzzleRouterProps {
@@ -34,6 +35,7 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
         title,
         type,
         description,
+        content,
         srcUrl,
         assetSrc
     } = puzzle;
@@ -47,9 +49,13 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
                 { ((): JSX.Element => {
                     switch (type) {
                     case PuzzleType.video:
-                        return <VideoPuzzle src={ srcUrl } subtitleSrc={ assetSrc } />;
+                        return <VideoPuzzle src={ srcUrl as string } subtitleSrc={ assetSrc } />;
                     case PuzzleType.pdf:
-                        return <PdfPuzzle src={ srcUrl } />;
+                        return <PdfPuzzle src={ srcUrl as string } />;
+                    case PuzzleType.html:
+                        const PuzzleContent = content as FunctionalComponent; // eslint-disable-line no-case-declarations
+
+                        return <PuzzleContent />;
                     default:
                         return <div className={ styles.fallback }>Puzzle is Missing</div>;
                     }

@@ -1,0 +1,27 @@
+.content {
+    text-align: left;
+    margin: 0 30px;
+    padding-bottom: 50px;
+}
+
+.row {
+    position: relative;
+}
+
+.rowNumber {
+    position: absolute;
+    margin-left: -25px;
+    visibility: hidden;
+}
+
+.rowNumber.visible {
+    visibility: visible;
+}
+
+.dropLetter {
+    font-weight: bold;
+}
+
+.hint {
+    cursor: pointer;
+}
