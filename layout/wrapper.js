@@ -45,7 +45,6 @@ function wrapLayout(metadata) {
         <meta name="twitter:description" content="${ description }">
         <meta name="twitter:title" content="${ siteName }">
         <meta name="twitter:image" content="${ siteUrl }/seo.jpg">
-        <script async defer src="//www.instagram.com/embed.js"></script>
     </head>
     <body>
         <div id="root"></div>
