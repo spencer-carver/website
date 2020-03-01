@@ -11,7 +11,7 @@ const Puzzles = (): JSX.Element => {
     const [ numberAnswered, setNumberAnswered ] = useState(answerCount);
 
     const clearAnswer = (puzzleId: string): void => {
-        document.cookie = `${ puzzleId }=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `${ puzzleId }=; Domain=carvers.info; Path=/; SameSite=None; Secure; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
         setNumberAnswered(numberAnswered - 1);
     };
 
