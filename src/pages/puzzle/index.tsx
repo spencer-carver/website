@@ -93,7 +93,7 @@ const PdfPuzzle = ({ src }: ContentProps): JSX.Element => {
     );
 };
 
-const PuzzleComplete = ({ answer }: { answer: string | null }): JSX.Element | null => {
+export const PuzzleComplete = ({ answer }: { answer: string | null }): JSX.Element | null => {
     if (!answer) {
         return null;
     }
