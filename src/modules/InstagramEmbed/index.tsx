@@ -1,4 +1,5 @@
 import React from "react";
+import useScript from "../../utils/useScript";
 import PropTypes from "prop-types";
 import InstagramEmbed from "./component";
 
@@ -31,6 +32,8 @@ export function reloadInstagramEmbeds(): void {
 }
 
 const InstagramEmbedContainer = ({ postId = InstagramPosts.pacificCrestTrail }): JSX.Element => {
+    useScript("https://www.instagram.com/embed.js");
+
     return <InstagramEmbed postId={ postId } />;
 };
 
