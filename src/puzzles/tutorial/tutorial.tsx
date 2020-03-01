@@ -7,6 +7,7 @@ const SEMAPHORE_LINK = "https://en.wikipedia.org/wiki/Flag_semaphore#Contemporar
 const NAVAL_FLAGS_LINK = "https://www.navy.mil/navydata/communications/flags/flags.html";
 const RESISTOR_BANDS_LINK = "https://static4.arrow.com/-/media/arrow/images/miscellaneous/h/how-to-read-resistor-color-codes.jpg?la=en";
 const ASCII_LINK = "https://www.asciitable.com/";
+const ANAGRAM_LINK = "https://www.wordplays.com/anagrammer";
 
 const Tutorial = (): JSX.Element => {
     const [ showRowNumbers, setShowRowNumbers ] = useState(false);
@@ -80,11 +81,15 @@ const Tutorial = (): JSX.Element => {
                 <span className={ styles.dropLetter }>H</span>aving covered the specifics of how to submit answers on this site,
                 it&apos;s time to go over some general tips!
                 There are a lot of public ways to communicate that are used in puzzles,
-                such as <a href={ BRAILLE_LINK }>Braille</a>, <a href={ MORSE_CODE_LINK }>Morse Code</a>, <a href={ SEMAPHORE_LINK }>Semaphore</a>, 
-                the NATO Phoenetic Alphabet, <a href={ NAVAL_FLAGS_LINK }>Naval Flags</a>, <a href={ ASCII_LINK }>ASCII encoding</a>,
-                or <a href={ RESISTOR_BANDS_LINK }>Resistor Bands</a>.
-                You can also make anagrams, encode messages with some sort of cypher or encryption,
-                or hide things in plain sight in a non-obvious way!
+                such as <a className={ styles.link } href={ BRAILLE_LINK } target="_blank" rel="noopener noreferrer">Braille</a>
+                , <a className={ styles.link } href={ MORSE_CODE_LINK } target="_blank" rel="noopener noreferrer">Morse Code</a>
+                , <a className={ styles.link } href={ SEMAPHORE_LINK } target="_blank" rel="noopener noreferrer">Semaphore</a>, 
+                the NATO Phoenetic Alphabet
+                , <a className={ styles.link } href={ NAVAL_FLAGS_LINK } target="_blank" rel="noopener noreferrer">Naval Flags</a>
+                , <a className={ styles.link } href={ ASCII_LINK } target="_blank" rel="noopener noreferrer">ASCII encoding</a>,
+                or <a className={ styles.link } href={ RESISTOR_BANDS_LINK } target="_blank" rel="noopener noreferrer">Resistor Bands</a>.
+                You can also make <a className={ styles.link } href={ ANAGRAM_LINK } target="_blank" rel="noopener noreferrer">anagrams</a>,
+                encode messages with some sort of cypher or encryption, or hide things in plain sight in a non-obvious way!
                 Even if you aren&apos;t familiar with a particular strategy, once you identify it there are plenty of available tools to assist you.
             </p>
             <p className={ styles.row }>

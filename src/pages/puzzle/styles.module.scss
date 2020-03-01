@@ -30,7 +30,7 @@
 
 .pdf {
     width: 100%;
-    min-height: 600px;
+    min-height: calc(100vh - 300px);
 }
 
 .fallback {
@@ -49,7 +49,8 @@
 .solved {
     background: $atlantis;
     position: absolute;
-    right: 0;
+    top: 5px;
+    right: 5px;
     padding: 4px;
     text-align: center;
     font-size: 12px;
@@ -79,7 +80,12 @@
         z-index: -1;
     }
 
+    .title {
+        font-size: 30px;
+    }
+
     .description {
-        margin: 20px 0 0;
+        font-size: 20px;
+        margin: 20px 0;
     }
 }

@@ -1,3 +1,5 @@
+@import "../../styles/colors";
+
 .content {
     text-align: left;
     margin: 0 30px;
@@ -23,5 +25,16 @@
 }
 
 .hint {
+    cursor: pointer;
+}
+
+.link {
+    color: $black;
+    text-decoration: none;
+    border-bottom: 2px dotted $atlantis;
+}
+
+.link:hover {
+    background-color: $atlantis;
     cursor: pointer;
 }
