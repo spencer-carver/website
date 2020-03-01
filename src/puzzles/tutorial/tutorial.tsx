@@ -62,11 +62,11 @@ const Tutorial = (): JSX.Element => {
                 This gives you a clue from me on how to resume solving.
             </p>
             <p className={ styles.row }>
-                <span className={ rowNumberStyle }>42</span>
-                <span className={ styles.dropLetter }>K</span>nowing when to ask for a hint is a good skill.
+                <span className={ rowNumberStyle }>53</span>
+                <span className={ styles.dropLetter }>K</span>nowing when you are stuck and need a hint is a good skill.
                 I don&apos;t expect everyone to know every reference I try to put into puzzles.
                 If you want to ask a friend that&apos;s better, since you then organically proceed,
-                but if you are solving on your own the guidance does exist too.
+                but if you are solving on your own, having a hint for guidance can be an asset.
             </p>
             <p className={ styles.row }>
                 <span className={ rowNumberStyle }>19</span>
