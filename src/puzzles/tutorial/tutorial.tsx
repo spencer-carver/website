@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "../../components/link";
 import styles from "./styles.module.scss";
 
 const BRAILLE_LINK = "https://en.wikipedia.org/wiki/English_Braille#Alphabet";
@@ -81,14 +82,13 @@ const Tutorial = (): JSX.Element => {
                 <span className={ styles.dropLetter }>H</span>aving covered the specifics of how to submit answers on this site,
                 it&apos;s time to go over some general tips!
                 There are a lot of public ways to communicate that are used in puzzles,
-                such as <a className={ styles.link } href={ BRAILLE_LINK } target="_blank" rel="noopener noreferrer">Braille</a>
-                , <a className={ styles.link } href={ MORSE_CODE_LINK } target="_blank" rel="noopener noreferrer">Morse Code</a>
-                , <a className={ styles.link } href={ SEMAPHORE_LINK } target="_blank" rel="noopener noreferrer">Semaphore</a>, 
-                the NATO Phoenetic Alphabet
-                , <a className={ styles.link } href={ NAVAL_FLAGS_LINK } target="_blank" rel="noopener noreferrer">Naval Flags</a>
-                , <a className={ styles.link } href={ ASCII_LINK } target="_blank" rel="noopener noreferrer">ASCII encoding</a>,
-                or <a className={ styles.link } href={ RESISTOR_BANDS_LINK } target="_blank" rel="noopener noreferrer">Resistor Bands</a>.
-                You can also make <a className={ styles.link } href={ ANAGRAM_LINK } target="_blank" rel="noopener noreferrer">anagrams</a>,
+                such as <Link linkStyle={ styles.link } to={ BRAILLE_LINK }>Braille</Link>
+                , <Link linkStyle={ styles.link } to={ MORSE_CODE_LINK }>Morse Code</Link>
+                , <Link linkStyle={ styles.link } to={ SEMAPHORE_LINK }>Semaphore</Link>,
+                the NATO Phoenetic Alphabet, <Link linkStyle={ styles.link } to={ NAVAL_FLAGS_LINK }>Naval Flags</Link>
+                , <Link linkStyle={ styles.link } to={ ASCII_LINK }>ASCII encoding</Link>,
+                or <Link linkStyle={ styles.link } to={ RESISTOR_BANDS_LINK } >Resistor Bands</Link>.
+                You can also make <Link linkStyle={ styles.link } to={ ANAGRAM_LINK } >anagrams</Link>,
                 encode messages with some sort of cypher or encryption, or hide things in plain sight in a non-obvious way!
                 Even if you aren&apos;t familiar with a particular strategy, once you identify it there are plenty of available tools to assist you.
             </p>
