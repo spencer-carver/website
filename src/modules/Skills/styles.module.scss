@@ -4,7 +4,7 @@
     margin: 40px auto 0;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
@@ -102,10 +102,15 @@
 
 /* tablet and desktop */
 @media screen and (min-width: 760px) {
+    .section {
+        justify-content: flex-start;
+    }
+
     .module {
         height: 177px;
         clear: both;
     }
+
     .module:first-child {
         border-bottom: 1px solid $alto;
     }

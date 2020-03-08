@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image, { ImageSrc } from "../../components/image";
 import backgroundImageWebp from "../../images/placeholder.webp";
 import backgroundImage from "../../images/placeholder.jpg";
 import { FunctionalComponent, PropsObject } from "../../constants/Types";
@@ -115,7 +116,7 @@ const Indicator = ({ index, selected, setSelected }: IndicatorProps): JSX.Elemen
 interface ImageSlideProps {
     index: number;
     selected: number;
-    image: Image;
+    image: ImageSrc;
 }
 
 export const ImageSlide = ({ index, image, selected }: ImageSlideProps): JSX.Element => {
@@ -123,28 +124,6 @@ export const ImageSlide = ({ index, image, selected }: ImageSlideProps): JSX.Ele
         <div className={ `${ styles.slide } ${ selected === index ? styles.selected : "" }` }>
             <Image image={ image } alt="Spencer" imageStyle={ styles.image } />
         </div>
-    );
-};
-
-export interface Image {
-    src: string;
-    srcWebp: string;
-}
-
-interface ImageProps {
-    image: Image;
-    alt: string;
-    imageStyle: string;
-}
-
-export const Image = ({ image: { src, srcWebp }, alt, imageStyle }: ImageProps): JSX.Element => {
-
-    return (
-        <picture className={ imageStyle }>
-            <source srcSet={ srcWebp } type="image/webp" />
-            <source srcSet={ src } /> 
-            <img className={ imageStyle } src={ src } alt={ alt } />
-        </picture>
     );
 };
 

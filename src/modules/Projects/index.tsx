@@ -1,10 +1,12 @@
 import React from "react";
+import Link from "../../components/link";
+import Image from "../../components/image";
 import websiteImage from "../../images/website-image.png";
 import watchdogImage from "../../images/watchdog-echo-skill.png";
 import emailImage from "../../images/email.png";
 import backgroundImage from "../../images/projects-background.jpg";
 import backgroundImageWebp from "../../images/projects-background.webp";
-import Slideshow, { Image } from "../Slideshow";
+import Slideshow from "../Slideshow";
 import {
     REACT_LOGO,
     TS_LOGO,
@@ -106,9 +108,15 @@ const Resources = ({ title, resources = [] }: { title: string; resources?: Array
             <span className={ styles.sectionTitle }>{ title }:</span> 
             {
                 resources.map(({ image, alt, url }, index) => {
-                    return url
-                        ? <a key={ index } className={ styles.resourceLink } href={ url }><img className={ `${ styles.resource } ${ styles.link }` } src={ image } alt={ alt } title={ alt }></img></a>
-                        : <img key={ index } className={ styles.resource } src={ image } alt={ alt } title={ alt }></img>;
+                    if (url) {
+                        return (
+                            <Link key={ index } linkStyle={ styles.resourceLink } to={ url as string }>
+                                <img key={ index } className={ `${ styles.resource } ${ styles.link }` } src={ image } alt={ alt } title={ alt }></img>
+                            </Link>
+                        );
+                    }
+
+                    return <img key={ index } className={ styles.resource } src={ image } alt={ alt } title={ alt }></img>;
                 })
             }
         </div>

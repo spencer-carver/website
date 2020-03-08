@@ -21,7 +21,10 @@ const Puzzles = (): JSX.Element => {
             <div className={ styles.puzzle }>
                 <div className={ styles.title }>Puzzles</div>
                 <p className={ styles.description }>
-                    I&apos;m trying to make puzzles! Here are all of my attempts. This page is not a puzzle.
+                    I&apos;m trying to make puzzles! Here are all of my attempts in percieved order of difficulty.
+                    If you need help with a puzzle in a way that the built-in hint system doesn&apos;t assist,
+                    email your question to puzzle@carvers.info with the puzzle name as the subject and I will try and assist you.
+                    This page is not a puzzle.
                 </p>
                 <ul className={ styles.list }>
                     { Object.keys(puzzles).map((puzzleId: string, index: number) => {
