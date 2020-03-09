@@ -1,5 +1,6 @@
 import React from "react";
 import ImageComponent from "../../components/image";
+import AudioTrack from "../../components/audio";
 import styles from "./styles.module.scss";
 
 const ASSET_BASE_URL = "https://spencer.carvers.info/puzzle/cheese-sampler";
@@ -57,13 +58,7 @@ const Image = ({ cheese }: { cheese: string }): JSX.Element => {
 };
 
 const Song = ({ cheese }: { cheese: string }): JSX.Element => {
-    return (
-        <audio className={ styles.song } controls>
-            <track label="English" kind="captions" srcLang="en" src={ `${ ASSET_BASE_URL }/${ cheese }.vtt` } default />
-            <source src={ `${ ASSET_BASE_URL }/${ cheese }.mp3` } type="audio/mpeg" />
-            Your browser does not support the audio element.
-        </audio>
-    );
+    return <AudioTrack audioStyles={ styles.song } src={ `${ ASSET_BASE_URL }/${ cheese }.mp3` } subtitleSrc={ `${ ASSET_BASE_URL }/${ cheese }.vtt` } />;
 };
 
 export default CheeseSampler;

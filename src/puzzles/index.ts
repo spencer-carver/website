@@ -1,6 +1,6 @@
 import { FunctionalComponent } from "../constants/Types";
-import Tutorial from "./tutorial/tutorial";
-import CheeseSampler from "./cheese-sampler/cheese";
+import Tutorial from "./tutorial";
+import CheeseSampler from "./cheese-sampler";
 
 export enum PuzzleType {
     video = "video",
