@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 
 const ASSET_BASE_URL = "https://spencer.carvers.info/puzzle/cheese-sampler";
 const CHEESES: { [key: string]: string } = {
-    "ricotta": "4 🧀 3 🎵",
+    "ricotta": "1 🧀 3 🎵",
     "camembert": "7 🧀 1 🎵",
     "kashkaval": "9 🧀 9 🎵",
     "brie": "4 🧀 4 🎵",
@@ -14,11 +14,11 @@ const CHEESES: { [key: string]: string } = {
     "manchego": "6 🧀 5 🎵",
     "gouda": "4 🧀 4 🎵",
     "havarti": "2 🧀 6 🎵",
-    "stilton": "2 🧀 7 🎵",
+    "stilton": "2 🧀 6 🎵",
     "muenster": "3 🧀 3 🎵",
     "colby-jack": "2 🧀 5 🎵",
-    "parmesan": "3 🧀 2 🎵",
-    "cheddar": "5 🧀 7 🎵",
+    "parmesan": "3 🧀 3 🎵",
+    "cheddar": "5 🧀 6 🎵",
     "mozzarella": "7 🧀 3 🎵",
     "gruyere": "2 🧀 14 🎵",
     "primo-sale": "3 🎵"
