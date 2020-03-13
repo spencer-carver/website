@@ -115,7 +115,6 @@
     @include my-logo-s($icon-color: $white, $width: 36, $height: 36);
     background-repeat: no-repeat;
     background-position: left;
-    animation: collapseLogo 0.25s;
     top: 0px;
 }
 
@@ -139,15 +138,6 @@
     }
     100% {
         top: 20px;
-    }
-}
-
-@keyframes collapseLogo {
-    0% {
-        top: 20px;
-    }
-    100% {
-        top: 0px;
     }
 }
 
