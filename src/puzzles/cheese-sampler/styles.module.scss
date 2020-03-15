@@ -1,0 +1,53 @@
+@import "../../styles/colors";
+
+.content {
+    text-align: left;
+    margin: 0 30px;
+    padding: 20px 0 50px;
+}
+
+.images,
+.songs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.images {
+    margin-bottom: 10px;
+}
+
+.imageContainer {
+    position: relative;
+}
+
+.label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: $white;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+}
+
+.song {
+    margin-bottom: 10px;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .images,
+    .songs {
+        justify-content: space-around;
+    }
+
+    .images {
+        margin-bottom: 30px;
+    }
+}

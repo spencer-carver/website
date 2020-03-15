@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "../../components/link";
 import { InstagramIcon } from "../Navigation";
 import { INSTAGRAM_URL } from "../../constants/ExternalUrls";
 import styles from "./styles.module.scss";
@@ -8,7 +9,7 @@ const Instagram = (): JSX.Element => {
     return (
         <div id="instagram" className="section">
             <div className={ `sectionContent ${ styles.instagram }` }>
-                <a className={ styles.cards } href={ INSTAGRAM_URL }>Instagram Posts</a>
+                <Link linkStyle={ styles.cards } to={ INSTAGRAM_URL }>Instagram Posts</Link>
                 <div className={ styles.blurb }>
                     <div>
                         I post climbing videos, food, and the occasional travel photos on my instagram.

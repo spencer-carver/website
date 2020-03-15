@@ -1,5 +1,6 @@
 import { FunctionalComponent } from "../constants/Types";
-import Tutorial from "./tutorial/tutorial";
+import Tutorial from "./tutorial";
+import CheeseSampler from "./cheese-sampler";
 
 export enum PuzzleType {
     video = "video",
@@ -29,6 +30,12 @@ const PUZZLES: { [key: string]: Puzzle } = {
         description: "You don't see the appeal?",
         srcUrl: "https://spencer.carvers.info/static/puzzle/tetris.mp4",
         assetSrc: "https://spencer.carvers.info/static/puzzle/tetris.vtt"
+    },
+    "cheese-sampler": {
+        title: "Cheese Sampler",
+        type: PuzzleType.html,
+        description: "My themed parody group is wrapping up it's first (and only) tour at our biggest venue ever!",
+        content: CheeseSampler
     },
     "judge-calls-one": {
         title: "Judge Calls",

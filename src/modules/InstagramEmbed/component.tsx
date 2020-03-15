@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Link from "../../components/link";
 import "./styles.scss";
 
 /* eslint-disable max-len */
@@ -13,7 +14,7 @@ const InstagramEmbed = ({ postId }: { postId?: string }): JSX.Element | null => 
         <div className="instagram-embed-container">
             <blockquote className="instagram-media" data-instgrm-permalink={ `https://www.instagram.com/p/${ postId }/?utm_source=ig_embed_loading` } data-instgrm-version="12">
                 <div className="div1">
-                    <a className="link1" href={ `https://www.instagram.com/p/${ postId }/?utm_source=ig_embed_loading` } target="_blank" rel="noopener noreferrer">
+                    <Link linkStyle="link1" to={ `https://www.instagram.com/p/${ postId }/?utm_source=ig_embed_loading` }>
                         <div className="div8">
                             <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                 <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -28,7 +29,7 @@ const InstagramEmbed = ({ postId }: { postId?: string }): JSX.Element | null => 
                         <div className="div9">
                             <div className="div10">View this post on Instagram</div>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </blockquote>
         </div>

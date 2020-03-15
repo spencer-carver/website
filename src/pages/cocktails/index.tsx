@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import Link from "../../components/link";
 import Navigation from "../../modules/Navigation";
 import cocktails, { Cocktail } from "./cocktails";
 import styles from "./styles.module.scss";
@@ -22,15 +22,11 @@ const Cocktails = (): JSX.Element => {
     );
 };
 
-Cocktails.propTypes = {
-    errorCode: PropTypes.number.isRequired
-};
-
 const MenuItem = ({ name, ingredients, description, link }: Cocktail): JSX.Element => {
     return (
         <div>
             <h2 className={ styles.name }>
-                <a className={ styles.title } href={ link } target="_blank" rel="noopener noreferrer">{ name }</a>
+                <Link linkStyle={ styles.title } to={ link }>{ name }</Link>
             </h2>
             <p className={ styles.ingredients }>{ ingredients.join(", ") }</p>
             { description && <p>{ description }</p> }

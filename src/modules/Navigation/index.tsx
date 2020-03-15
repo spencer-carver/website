@@ -1,11 +1,13 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import ExternalLink from "../../components/link";
 import {
     FACEBOOK_URL,
     LINKEDIN_URL,
     TWITTER_URL,
-    INSTAGRAM_URL
+    INSTAGRAM_URL,
+    GITHUB_URL
 } from "../../constants/ExternalUrls";
 import styles from "./styles.module.scss";
 
@@ -83,15 +85,33 @@ const SocialButtons = (): JSX.Element => {
     return (
         <div className={ `${ styles.socialLinks } ${ styles.sticky }` }>
             <InstagramIcon />
-            <a className={ `${ styles.socialIcon } ${ styles.facebook }` } href={ FACEBOOK_URL } target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a className={ `${ styles.socialIcon } ${ styles.twitter }` } href={ TWITTER_URL } target="_blank" rel="noopener noreferrer">Twitter</a>
-            <a className={ `${ styles.socialIcon } ${ styles.linkedIn }` } href={ LINKEDIN_URL } target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <ExternalLink
+                linkStyle={ `${ styles.socialIcon } ${ styles.facebook }` }
+                to={ FACEBOOK_URL }>
+                Facebook
+            </ExternalLink>
+            <ExternalLink
+                linkStyle={ `${ styles.socialIcon } ${ styles.twitter }` }
+                to={ TWITTER_URL }>
+                Twitter
+            </ExternalLink>
+            <ExternalLink
+                linkStyle={ `${ styles.socialIcon } ${ styles.linkedIn }` }
+                to={ LINKEDIN_URL }>
+                LinkedIn
+            </ExternalLink>
         </div>
     );
 };
 
 export const InstagramIcon = ({ theme = "white" }): JSX.Element => {
-    return <a className={ `${ styles.socialIcon } ${ styles.instagram } ${ styles[theme] }` } href={ INSTAGRAM_URL } target="_blank" rel="noopener noreferrer">Instagram</a>;
+    return (
+        <ExternalLink
+            linkStyle={ `${ styles.socialIcon } ${ styles.instagram } ${ styles[theme] }` }
+            to={ INSTAGRAM_URL }>
+            Instagram
+        </ExternalLink>
+    );
 };
 
 InstagramIcon.propTypes = {
@@ -106,8 +126,10 @@ const SiteNav = ({ expanded }: SiteNavProps): JSX.Element => {
     return (
         <div className={ `${ styles.siteNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
             <div className={ styles.siteNavContents }>
-                <Link to="/" className={ styles.link }>Home</Link> 
+                <Link to="/" className={ styles.link }>Home</Link>
+                <Link to="/cocktails" className={ styles.link }>Cocktails</Link>
                 <Link to="/puzzles" className={ styles.link }>Puzzles</Link>
+                <ExternalLink to={ GITHUB_URL } linkStyle={ styles.link }>Github</ExternalLink>
             </div>
         </div>
     );

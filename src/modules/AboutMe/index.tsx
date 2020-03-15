@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ExternalLink from "../../components/link";
 import Skills from "../Skills";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import {
@@ -7,7 +8,7 @@ import {
 } from "../../constants/ExternalUrls";
 import thinking from "../../images/thinking.jpg";
 import thinkingWebp from "../../images/thinking.webp";
-import { Image } from "../Slideshow";
+import Image from "../../components/image";
 import styles from "./styles.module.scss";
 import "../styles.scss";
 
@@ -26,7 +27,7 @@ const AboutMe = (): JSX.Element => {
                             I&apos;m a {calculateYearsBetween(MY_BIRTHDAY)} year old Software Developer based out of New York, New York.
                         </p>
                         <p>
-                            I enjoy <a className={ styles.link } href={ MOUNTAINPROJECT_URL } target="_blank" rel="noopener noreferrer">Rock Climbing</a>,
+                            I enjoy <ExternalLink linkStyle={ styles.link } to={ MOUNTAINPROJECT_URL }>Rock Climbing</ExternalLink>,
                             Magic: the Gathering,
                             and <Link to ="/cocktails" className={ styles.link }>Cocktails</Link> though I wouldn&apos;t recommend combining them into a single activity.
                         </p>
