@@ -1,0 +1,93 @@
+@import "../../styles/colors";
+
+.content {
+    padding-top: 10px;
+}
+
+.content::before {
+    content: "It is STRONGLY recommended you solve this puzzle on a device that can fit the entire grid on screen.";
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.enabled {
+    color: red;
+}
+
+.table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.cell {
+    min-width: 22px;
+    max-width: 22px;
+    min-height: 22px;
+    max-height: 22px;
+    color: $black;
+    border: 1px solid $black;
+    cursor: pointer;
+}
+
+.hideLetters {
+    color: transparent;
+}
+
+.noGrid {
+    border: 1px solid transparent;
+}
+
+.redacted {
+    background-color: $black;
+    color: $white;
+}
+
+.redacted.hideLetters {
+    color: $black;
+}
+
+.selected {
+    background-color: $atlantis;
+    color: $black;
+}
+
+.bank {
+    list-style: none;
+    padding-inline-start: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 80px;
+}
+
+.word {
+    width: 200px;
+    cursor: pointer;
+}
+
+.found {
+    background-color: $black;
+    color: $white;
+    text-decoration: line-through;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .content {
+        padding-top: 0px;
+    }
+
+    .content::before {
+        content: "";
+    }
+}
