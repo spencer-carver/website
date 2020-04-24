@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import puzzles, { Puzzle } from "../../puzzles";
 import getCookieValue from "../../utils/getCookieValue";
-import { PuzzleComplete } from "../puzzle";
-import styles from "../puzzle/styles.module.scss";
+import { PuzzleComplete } from "./puzzle";
+import styles from "./puzzle/styles.module.scss";
 
 const Puzzles = (): JSX.Element => {
     const answerCount = Object.keys(puzzles).reduce((count: number, puzzleId: string): number => count + (getCookieValue(puzzleId) ? 1 : 0), 0);
