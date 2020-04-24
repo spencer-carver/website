@@ -1,0 +1,62 @@
+@import "../../../styles/colors.scss";
+
+.recipe {
+    margin: 0 auto;
+    padding: 30px 0;
+    max-width: 800px;
+}
+
+.title {
+    text-align: center;
+}
+
+.section {
+    margin: 0 20px;
+}
+
+.ingredient {
+    margin-left: 30px;
+}
+
+.ingredientQuantity {
+    border: none;
+    width: 50px;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    -moz-appearance: textfield;
+}
+
+.stepNumber {
+    position: absolute;
+    font-size: 40px;
+    font-weight: bold;
+    color: $atlantis;
+    left: -30px;
+    z-index: -1;
+}
+
+.stepNumber.complete {
+    color: $alto;
+}
+
+.step {
+    position: relative;
+    margin: 0 10px 0 40px;
+    padding: 10px 0 30px;
+    border-top: 1px dotted $black;
+    cursor: pointer;
+
+    &:first-of-type {
+        margin-top: 20px;
+        border-top: none;
+    }
+}
+
+.step.complete {
+    color: $gray;
+    text-decoration: line-through;
+}

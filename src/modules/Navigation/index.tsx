@@ -127,8 +127,9 @@ const SiteNav = ({ expanded }: SiteNavProps): JSX.Element => {
         <div className={ `${ styles.siteNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
             <div className={ styles.siteNavContents }>
                 <Link to="/" className={ styles.link }>Home</Link>
-                <Link to="/cocktails" className={ styles.link }>Cocktails</Link>
                 <Link to="/puzzles" className={ styles.link }>Puzzles</Link>
+                <Link to="/recipes" className={ styles.link }>Recipes</Link>
+                <Link to="/cocktails" className={ styles.link }>Cocktails</Link>
                 <ExternalLink to={ GITHUB_URL } linkStyle={ styles.link }>Github</ExternalLink>
             </div>
         </div>
