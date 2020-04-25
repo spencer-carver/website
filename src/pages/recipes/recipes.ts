@@ -5,12 +5,24 @@ export interface Ingredient {
     item: string;
 }
 
-export interface Recipe {
-    id: string;
+export interface RecipeDetails {
     name: string;
     author?: string;
     link?: string;
-    serves?: number;
+    tools: string;
+    timing: {
+        prepTime: string;
+        cookTime: string;
+        totalTime: string;
+    };
+    output?: {
+        amount: number;
+        unit: string;
+    };
+}
+
+export interface Recipe extends RecipeDetails {
+    id: string;
     ingredients: Ingredient[];
     directions: string[];
     notes?: string[];
@@ -24,8 +36,16 @@ export const FIREHOUSE_CHILI: Recipe = {
     id: "firehouse-chili",
     name: "Fire House Chili",
     author: "Auntie Don",
-    link: "",
-    serves: 12,
+    tools: "Crock Pot or Large Stovetop Pot",
+    timing: {
+        prepTime: "15 minutes",
+        cookTime: "6 hours",
+        totalTime: "6 hours 30 minutes"
+    },
+    output: {
+        amount: 12,
+        unit: "bowl"
+    },
     ingredients: [
         { quantity: 2, measurement: "lb", item: "lean ground beef" },
         { quantity: 2, measurement: "lb", item: "hot italian sausage" },
@@ -38,23 +58,23 @@ export const FIREHOUSE_CHILI: Recipe = {
         { quantity: 2, measurement: "tbsp", item: "sugar" },
         { quantity: 0.75, measurement: "cup", item: "chili powder" },
         { quantity: 2, measurement: "tbsp", item: "paprika" },
-        { quantity: 2, measurement: "tbsp", item: "oregano"},
+        { quantity: 2, measurement: "tbsp", item: "oregano" },
         { quantity: 2, measurement: "tbsp", item: "dried parsley" },
         { quantity: 1, measurement: "tsp", item: "cumin" },
         { quantity: 12, measurement: "oz", item: "beer" },
-        { quantity: 1, measurement: "can", item: "mild chili beans with sauce"},
+        { quantity: 1, measurement: "can", item: "chili beans with sauce" },
         { quantity: 1, measurement: "can", item: "refried pinto beans" },
-        { quantity: 3, measurement: "can", item: "dark red kidney beans"},
+        { quantity: 3, measurement: "can", item: "dark red kidney beans" },
         { item: "salt", quantity: "to taste" },
         { item: "pepper", quantity: "to taste" }
     ],
     directions: [
         "Brown beef, pork sausage, onion and garlic.",
-        "add tomatoes and tomato paste, green peppers, coffee, sugar, spices and beer.",
-        "bring to a boil and cover.",
-        "simmer for two hours on high.",
-        "mix chili beans, refried beans, and kidney beans together and stir in to chili.",
-        "simmer an additional 3-4 hours on low."
+        "Add tomatoes and tomato paste, green peppers, coffee, sugar, spices and beer.",
+        "Bring to a boil and cover.",
+        "Simmer for two hours on high.",
+        "Mix chili beans, refried beans, and kidney beans together and stir in to chili.",
+        "Simmer an additional 3-4 hours on low."
     ],
     notes: [
         "The original recipe did not have kidney beans. I like them, so added.",
@@ -66,6 +86,16 @@ export const SOURDOUGH_BREAD: Recipe = {
     id: "sourdough-bread",
     name: "Sourdough Bread",
     link: "https://www.kingarthurflour.com/learn/guides/sourdough/bake",
+    tools: "Oven",
+    timing: {
+        prepTime: "4 hours 40 minutes",
+        cookTime: "40 minutes",
+        totalTime: "5 hours 20 minutes"
+    },
+    output: {
+        amount: 2,
+        unit: "boule"
+    },
     ingredients: [
         { quantity: 454, measurement: "g", item: "ripe (fed) sourdough starter" },
         { quantity: 602, measurement: "g", item: "flour" },
@@ -95,6 +125,16 @@ export const KVASS: Recipe = {
     id: "kvass",
     name: "Kvass",
     link: "https://www.fermentingforfoodies.com/traditonal-sourdough-kvass/",
+    tools: "Oven, Fermenting Container and Bottles",
+    timing: {
+        prepTime: "15 minutes",
+        cookTime: "6 hours",
+        totalTime: "6 hours 30 minutes"
+    },
+    output: {
+        amount: 3,
+        unit: "liter"
+    },
     ingredients: [
         { quantity: 1, measurement: "lb", item: "bread" },
         { quantity: 3, measurement: "L", item: "water" },
