@@ -24,7 +24,7 @@ const AboutMe = (): JSX.Element => {
                     </div>
                     <div className={ styles.personalDetails }>
                         <p>
-                            I&apos;m a {calculateYearsBetween(MY_BIRTHDAY)} year old Software Developer based out of New York, New York.
+                            I&apos;m a { calculateYearsBetween(MY_BIRTHDAY) } year old Software Developer based out of New York, New York.
                         </p>
                         <p>
                             I enjoy <ExternalLink linkStyle={ styles.link } to={ MOUNTAINPROJECT_URL }>Rock Climbing</ExternalLink>,

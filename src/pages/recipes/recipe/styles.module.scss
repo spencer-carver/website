@@ -1,25 +1,80 @@
 @import "../../../styles/colors.scss";
 
 .recipe {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
-    padding: 30px 0;
-    max-width: 800px;
+    padding: 30px;
+    max-width: 1060px;
+}
+
+.header {
+    padding: 20px;
+    border-radius: 10px;
+    color: $white;
+    background-color: $deep-cerulean;
+
+    span {
+        display: inline-block;
+        border-bottom: 1px dotted $white;
+        margin-bottom: 10px;
+    }
+
+    a {
+        display: inline-block;
+        margin-bottom: 10px;
+
+        &:visited {
+            color: $white;
+        }
+    }
 }
 
 .title {
+    margin-top: 0;
     text-align: center;
 }
 
-.section {
-    margin: 0 20px;
+.timing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ingredients {
+    width: 250px;
+    margin-right: 20px;
+    margin-top: 15px;
+    border-radius: 10px;
+    background-color: $alto;
+}
+
+.ingredients,
+.directions {
+    padding: 5px;
+
+    h3 {
+        margin-top: 0;
+    }
 }
 
 .ingredient {
-    margin-left: 30px;
+    line-height: 25px;
+    border-bottom: 1px dotted $black;
+    list-style-type: none;
+    cursor: pointer;
+
+    &:hover {
+        border-bottom: 1px solid $atlantis;
+    }
 }
 
-.ingredientQuantity {
-    border: none;
+span.ingredientQuantity {
+    margin-right: 3px;
+    font-weight: bold;
+}
+
+input.ingredientQuantity {
     width: 50px;
 
     &::-webkit-inner-spin-button,
@@ -35,7 +90,7 @@
     font-size: 40px;
     font-weight: bold;
     color: $atlantis;
-    left: -30px;
+    left: -40px;
     z-index: -1;
 }
 
@@ -45,9 +100,11 @@
 
 .step {
     position: relative;
+    min-height: 40px;
     margin: 0 10px 0 40px;
-    padding: 10px 0 30px;
+    padding: 10px 0;
     border-top: 1px dotted $black;
+    list-style-type: none;
     cursor: pointer;
 
     &:first-of-type {
@@ -59,4 +116,17 @@
 .step.complete {
     color: $gray;
     text-decoration: line-through;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .timing {
+        flex-direction: row;
+    }
+
+    .bodyContent {
+        display: flex;
+        flex-direction: row;
+        margin: 0 20px;
+    }
 }
