@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "../../../modules/Navigation";
-import recipes, { Recipe, RecipeDetails } from "../recipes";
+import { Recipe, RecipeDetails, Direction, RecipeListDetails } from "../../../@types/recipes";
 import styles from "./styles.module.scss";
+import { API_URL } from "../../../constants/ExternalUrls";
+import fetchFromCache from "../../../utils/cache";
 
 interface RecipeRouterProps {
     match: {
@@ -16,10 +19,26 @@ const RecipeComponent = (props: RecipeRouterProps): JSX.Element => {
         recipeName
     } = props.match.params;
 
+    const [ loaded, setLoaded ] = useState(false);
+    const [ recipe, setRecipe ] = useState(null as unknown as Recipe);
     const [ scaleFactor, setScaleFactor ] = useState(1.0);
 
+    useEffect(() => {
+        fetchFromCache(`${ API_URL }/api/recipes/${ recipeName }`)
+            .then((data: JSON) => {
+                setLoaded(true);
+                setRecipe(data as unknown as Recipe);
+            });
+    }, [ recipeName ]);
 
-    const recipe = (recipes as { [key: string]: Recipe })[recipeName];
+
+    if (!loaded) {
+        return (
+            <Navigation isHomepage={ false }>
+                <div></div>
+            </Navigation>
+        );
+    }
 
     if (!recipe) {
         return (
@@ -31,7 +50,8 @@ const RecipeComponent = (props: RecipeRouterProps): JSX.Element => {
 
     const {
         ingredients,
-        directions
+        directions,
+        relatedRecipes = {}
     } = recipe;
 
     return (
@@ -44,7 +64,7 @@ const RecipeComponent = (props: RecipeRouterProps): JSX.Element => {
                         { ingredients.map(({ quantity, item, style, measurement }, index) => {
                             if (quantity === "to taste") {
                                 return (
-                                    <li className={ styles.ingredient }>
+                                    <li key={ index } className={ styles.ingredient }>
                                         { item } { quantity }
                                     </li>
                                 );
@@ -69,6 +89,24 @@ const RecipeComponent = (props: RecipeRouterProps): JSX.Element => {
                         { directions.map((direction, index) => <Step key={ index } index={ index } direction={ direction } />) }
                     </ul>
                 </div>
+                <div>
+                    {
+                        relatedRecipes.prev && (
+                            <div className={ `${ styles.relatedRecipes } ${ styles.prev }` }>
+                                <h3>Prerequisite recipes:</h3>
+                                <RelatedRecipe { ...relatedRecipes.prev[0] } />
+                            </div>
+                        )
+                    }
+                    {
+                        relatedRecipes.next && (
+                            <div className={ `${ styles.relatedRecipes } ${ styles.next }` }>
+                                <h3>Use this in:</h3>
+                                <RelatedRecipe { ...relatedRecipes.next[0] } />
+                            </div>
+                        )
+                    }
+                </div>
             </div>
         </Navigation>
     );
@@ -81,6 +119,41 @@ function formatQuantity(value: number): string {
     }
 
     return value.toString();
+}
+
+function minutesToLargerTime(value: number): string {
+    let remaining = value;
+
+    const day = Math.floor(remaining / 1440);
+    remaining = remaining % 1440;
+    const hour = Math.floor(remaining / 60);
+    remaining = remaining % 60;
+
+    const time: { [key: string]: number } = {
+        day,
+        hour,
+        minute: remaining
+    };
+
+    return Object.keys(time).reduce((acc, part) => {
+        const partValue = time[part];
+
+        if (partValue === 0) {
+            return acc;
+        }
+
+        if (acc === "") {
+            return `${ partValue } ${ part }${ partValue === 1 ? "" : "s" }`;
+        }
+
+        if (part === "minute") {
+            return `${ acc } and ${ partValue } ${ part }${ partValue === 1 ? "" : "s" }`;
+        }
+
+        return `${ acc } ${ partValue } ${ part }${ partValue === 1 ? "" : "s" }`;
+
+
+    }, "");
 }
 
 interface HeaderProps extends RecipeDetails {
@@ -100,9 +173,9 @@ const Header = ({ name, scaleFactor, author, link, tools, timing: { prepTime, co
             <span><b>Requires:</b> { tools }</span>
             <div>
                 <div className={ styles.timing }>
-                    <span><b>Prep Time:</b> { prepTime }</span>
-                    <span><b>Cook Time:</b> { cookTime }</span>
-                    <span><b>Total Time:</b> { totalTime }</span>
+                    <span><b>Prep Time:</b> { minutesToLargerTime(prepTime) }</span>
+                    <span><b>Cook Time:</b> { minutesToLargerTime(cookTime) }</span>
+                    <span><b>Total Time:</b> { minutesToLargerTime(totalTime) }</span>
                 </div>
                 { output && <span><b>Yield:</b> { makes } { makes !== 1 ? `${ units }s` : units }</span> }
             </div>
@@ -188,7 +261,7 @@ const ScaleByIngredent = ({ originalAmount, currentAmount, editable, setScaleFac
 
 interface StepProps {
     index: number;
-    direction: string;
+    direction: Direction;
 }
 
 const Step = ({ index, direction }: StepProps): JSX.Element => {
@@ -200,10 +273,13 @@ const Step = ({ index, direction }: StepProps): JSX.Element => {
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
         <li className={ `${ styles.step } ${ complete ? styles.complete : "" }` } role="button" tabIndex={ 0 } onClick={ toggleComplete } onKeyPress={ toggleComplete }>
             <span className={ `${ styles.stepNumber } ${ complete ? styles.complete : "" }` }>{ index + 1 }</span>
-            <span>{ direction }</span>
+            <span>{ direction.instructions }</span>
         </li>
     );
 };
 
+const RelatedRecipe = ({ id, name }: RecipeListDetails): JSX.Element => {
+    return <Link to={ `/recipe/${ id }` }>{ name }</Link>;
+};
 
 export default RecipeComponent;

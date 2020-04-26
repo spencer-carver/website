@@ -1,22 +1,7 @@
-import { FunctionalComponent } from "../constants/Types";
 import Tutorial from "./tutorial";
 import CheeseSampler from "./cheese-sampler";
 import ExplosiveDiscovery from "./an-explosive-discovery";
-
-export enum PuzzleType {
-    video = "video",
-    pdf = "pdf",
-    html = "html"
-}
-
-export interface Puzzle {
-    title: string;
-    description?: string;
-    type: PuzzleType;
-    srcUrl?: string;
-    assetSrc?: string;
-    content?: FunctionalComponent;
-}
+import { PuzzleType, Puzzle } from "../@types/puzzles";
 
 const PUZZLES: { [key: string]: Puzzle } = {
     "tutorial": {

@@ -4,7 +4,8 @@ import ExternalLink from "../../components/link";
 import Skills from "../Skills";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import {
-    MOUNTAINPROJECT_URL
+    MOUNTAINPROJECT_URL,
+    GOODREADS_URL
 } from "../../constants/ExternalUrls";
 import thinking from "../../images/thinking.jpg";
 import thinkingWebp from "../../images/thinking.webp";
@@ -32,7 +33,7 @@ const AboutMe = (): JSX.Element => {
                             and <Link to ="/cocktails" className={ styles.link }>Cocktails</Link> though I wouldn&apos;t recommend combining them into a single activity.
                         </p>
                         <p>
-                            I&apos;ve also recently become a fan of <Link to="/puzzles" className={ styles.link }>Puzzles</Link>!
+                            I&apos;m also a fan of <Link to="/puzzles" className={ styles.link }>Puzzles</Link>, <Link to ="/recipes" className={ styles.link }>Baking and Cooking</Link>, and <ExternalLink linkStyle={ styles.link } to={ GOODREADS_URL }>Science Fiction and Fantasy novels</ExternalLink>.
                         </p>
                     </div>
                 </div>

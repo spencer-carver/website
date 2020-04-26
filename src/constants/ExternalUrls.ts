@@ -8,3 +8,4 @@ export const GITHUB_URL = "https://github.com/spencer-carver";
 export const INSTAGRAM_URL = "https://www.instagram.com/spencer_carver/";
 
 export const MOUNTAINPROJECT_URL = "https://www.mountainproject.com/user/112091331/spencer-carver";
+export const GOODREADS_URL = "https://www.goodreads.com/user/show/76280404-spencer";
