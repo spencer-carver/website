@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Navigation from "../../../modules/Navigation";
 import Video from "../../../components/video";
 import PuzzleAnswerSubmission from "../../../modules/PuzzleAnswerSubmission";
-import puzzles, { Puzzle, PuzzleType } from "../../../puzzles";
+import puzzles from "../../../puzzles";
 import getCookieValue from "../../../utils/getCookieValue";
-import { FunctionalComponent } from "../../../constants/Types";
+import { FunctionalComponent } from "../../../@types/generic";
+import { Puzzle, PuzzleType } from "../../../@types/puzzles";
 import styles from "./styles.module.scss";
 
 interface PuzzleRouterProps {

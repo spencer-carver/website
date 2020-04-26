@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
-import puzzles, { Puzzle } from "../../puzzles";
+import puzzles from "../../puzzles";
 import getCookieValue from "../../utils/getCookieValue";
 import { PuzzleComplete } from "./puzzle";
+import { Puzzle } from "../../@types/puzzles";
 import styles from "./puzzle/styles.module.scss";
 
 const Puzzles = (): JSX.Element => {

@@ -16,7 +16,7 @@ import {
     GITHUB_LOGO,
     ALEXA_LOGO
 } from "../../constants/Logos";
-import { FunctionalComponent } from "../../constants/Types";
+import { FunctionalComponent } from "../../@types/generic";
 import styles from "./styles.module.scss";
 import "../styles.scss";
 

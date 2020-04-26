@@ -8,7 +8,7 @@ import climbing from "../../images/climbing.jpg";
 import climbingWebp from "../../images/climbing.webp";
 import seated from "../../images/seated.jpg";
 import seatedWebp from "../../images/seated.webp";
-import { FunctionalComponent } from "../../constants/Types";
+import { FunctionalComponent } from "../../@types/generic";
 
 const slideshowProps = [
     { image: { src: seated, srcWebp: seatedWebp } },
