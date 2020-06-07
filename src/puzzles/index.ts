@@ -1,6 +1,7 @@
 import Tutorial from "./tutorial";
 import CheeseSampler from "./cheese-sampler";
 import ExplosiveDiscovery from "./an-explosive-discovery";
+import YakuzaZero from "./yakuza-zero";
 import { PuzzleType, Puzzle } from "../@types/puzzles";
 
 const PUZZLES: { [key: string]: Puzzle } = {
@@ -22,6 +23,12 @@ const PUZZLES: { [key: string]: Puzzle } = {
         type: PuzzleType.html,
         description: "Find everything, but tread carefully!",
         content: ExplosiveDiscovery
+    },
+    "yakuza-zero": {
+        title: "Yakuza 0",
+        type: PuzzleType.html,
+        description: "Is this really a game about the Japanese Mafia? Maybe we should google it...",
+        content: YakuzaZero
     },
     "cheese-sampler": {
         title: "Cheese Sampler",
