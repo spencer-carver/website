@@ -38,6 +38,8 @@ export interface RecipeDetails extends RecipeListDetails {
         amount: number;
         unit: string;
     };
+    image?: string;
+    video?: string;
 }
 
 export interface Recipe extends RecipeDetails {

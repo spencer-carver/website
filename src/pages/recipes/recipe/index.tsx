@@ -5,6 +5,8 @@ import { Recipe, RecipeDetails, Direction, RecipeListDetails } from "../../../@t
 import styles from "./styles.module.scss";
 import { API_URL } from "../../../constants/ExternalUrls";
 import fetchFromCache from "../../../utils/cache";
+import Video from "../../../components/video";
+import Image from "../../../components/image";
 
 interface RecipeRouterProps {
     match: {
@@ -160,25 +162,30 @@ interface HeaderProps extends RecipeDetails {
     scaleFactor: number;
 }
 
-const Header = ({ name, scaleFactor, author, link, tools, timing: { prepTime, cookTime, totalTime }, output }: HeaderProps): JSX.Element => {
+const Header = (props: HeaderProps): JSX.Element => {
+    const { name, scaleFactor, author, link, tools, timing: { prepTime, cookTime, totalTime }, output, image, video } = props;
     const makes = output ? Math.max(Math.floor(scaleFactor * output.amount), 1) : 1;
     const units = output ? output.unit : "serving";
 
     return (
         <div className={ styles.header }>
-            <h2 className={ styles.title }>{ name }</h2>
-            { author && <span><b>Recipe From:</b> { author }</span> }
-            { link && <a href={ link } rel="noopener noreferrer" target="_blank">Source</a> }
-            <br />
-            <span><b>Requires:</b> { tools }</span>
-            <div>
-                <div className={ styles.timing }>
-                    <span><b>Prep Time:</b> { minutesToLargerTime(prepTime) }</span>
-                    <span><b>Cook Time:</b> { minutesToLargerTime(cookTime) }</span>
-                    <span><b>Total Time:</b> { minutesToLargerTime(totalTime) }</span>
+            <div className={ styles.details }>
+                <h2 className={ styles.title }>{ name }</h2>
+                { author && <span><b>Recipe From:</b> { author }</span> }
+                { link && <a href={ link } rel="noopener noreferrer" target="_blank">Source</a> }
+                <br />
+                <span><b>Requires:</b> { tools }</span>
+                <div>
+                    <div className={ styles.timing }>
+                        <span><b>Prep Time:</b> { minutesToLargerTime(prepTime) }</span>
+                        <span><b>Cook Time:</b> { minutesToLargerTime(cookTime) }</span>
+                        <span><b>Total Time:</b> { minutesToLargerTime(totalTime) }</span>
+                    </div>
+                    { output && <span><b>Yield:</b> { makes } { makes !== 1 ? `${ units }s` : units }</span> }
                 </div>
-                { output && <span><b>Yield:</b> { makes } { makes !== 1 ? `${ units }s` : units }</span> }
             </div>
+            { video && <div className={ styles.video }><Video src={ video } poster={ image }/></div> }
+            { !video && image && <Image image={ { src: image } } alt={ name } imageStyle="" /> }
         </div>
     );
 };

@@ -4,11 +4,12 @@ import styles from "./styles.module.scss";
 interface ContentProps {
     src: string;
     subtitleSrc?: string;
+    poster?: string;
 }
 
-const Video = ({ src, subtitleSrc }: ContentProps): JSX.Element => {
+const Video = ({ src, subtitleSrc, poster }: ContentProps): JSX.Element => {
     return (
-        <video className={ styles.video } controls>
+        <video className={ styles.video } controls poster={ poster }>
             <source src={ src } type="video/mp4" />
             <track label="English" kind="captions" srcLang="en" src={ subtitleSrc } default />
             <span className={ styles.fallback }>
