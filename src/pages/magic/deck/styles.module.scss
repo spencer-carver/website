@@ -1,0 +1,62 @@
+.deck {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-bottom: 310px;
+    margin: 0 320px 0 0;
+}
+
+.cardContainer {
+    position: relative;
+    height: 44px;
+    overflow-y: visible;
+
+    &:hover .card {
+        z-index: 2;
+    }
+
+    &:hover .tooltip {
+        display: block;
+        top: 0px;
+        left: 260px;
+        z-index: 3;
+        background-color: rgba(0,0,0,0.9);
+        border-radius: 5px;
+        padding: 0 10px;
+        color: white;
+    }
+}
+
+.card {
+    position: relative;
+    width: 250px;
+    margin: 0 5px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.tooltip {
+    position: absolute;
+    display: none;
+    width: 300px;
+    pointer-events: none;
+}
+
+.manaCost {
+    float: right;
+}
+
+.flavorText {
+    font-style: italic;
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .deck {
+        height: 440px;
+    }
+
+    .cardContainer {
+        height: 44px;
+    }
+}
