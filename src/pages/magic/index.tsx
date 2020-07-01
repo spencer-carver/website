@@ -28,14 +28,14 @@ const Magic = (): JSX.Element => {
                     <ul>
                         <DeckLink name="Lands" id="lands" />
                         <DeckLink name="Death &amp; Taxes" id="death-and-taxes" />
-                        <li className={ styles.deck }><h2>Miracles</h2></li>
-                        <li className={ styles.deck }><h2>Omni-tell</h2></li>
-                        <li className={ styles.deck }><h2>Painter</h2></li>
-                        <li className={ styles.deck }><h2>Reanimator</h2></li>
-                        <li className={ styles.deck }><h2>Manaless Dredge</h2></li>
-                        <li className={ styles.deck }><h2>Temur Delver</h2></li>
-                        <li className={ styles.deck }><h2>Storm</h2></li>
-                        <li className={ styles.deck }><h2>Enchantress</h2></li>
+                        <DeckLink name="Miracles" id="miracles" />
+                        <DeckLink name="Omnitell" id="omnitell" />
+                        <DeckLink name="Painter" id="strawberry-shortcake" />
+                        <DeckLink name="Reanimator" id="reanimator" />
+                        <DeckLink name="Manaless Dredge" id="manaless-dredge" />
+                        <DeckLink name="Temur Delver" id="rug-delver" />
+                        <DeckLink name="Storm" id="storm" />
+                        <DeckLink name="Enchantress" id="enchantress" />
                     </ul>
                 </div>
                 <div>
