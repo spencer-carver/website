@@ -10,18 +10,18 @@
     flex-direction: column;
     flex-wrap: wrap;
     padding-top: 10px;
-    padding-bottom: 310px;
+    padding-bottom: 320px;
     width: 100%;
     margin: 0 auto;
 }
 
 .overlay {
-    position: absolute;
+    position: fixed;
     display: none;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
     background-color: rgba(0,0,0,0.6);
 }
@@ -37,8 +37,7 @@
     }
 
     &:hover .tooltipContainer {
-        display: flex;
-        flex-direction: row;
+        display: block;
         z-index: 4;
 
         &.left {
@@ -59,21 +58,30 @@
     z-index: 1;
 }
 
+.cardSpacer {
+    display: inline-block;
+    width: 250px;
+    margin: 0 5px;
+}
+
 .tooltipContainer {
     position: absolute;
     display: none;
-    pointer-events: none;
     top: 350px;
     text-align: left;
+    pointer-events: none;
 }
 
 .tooltip {
-    display: block;
+    display: inline-block;
+    position: relative;
     width: 300px;
     background-color: rgba(0,0,0,0.9);
     border-radius: 5px;
     padding: 0 10px;
+    margin-bottom: 5px;
     color: white;
+    pointer-events: all;
 }
 
 .manaCost {
@@ -94,11 +102,24 @@
     display: none;
 }
 
+.sideboard.commander {
+    display: none;
+}
+
+.frontFace {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.backFace {
+    display: none;
+    flex-direction: row;
+}
+
 /* tablet */
 @media screen and (min-width: 760px) {
     .playmat {
         width: 740px;
-        text-align: unset;
     }
 
     .deck {
@@ -106,25 +127,24 @@
         height: 500px;
     }
 
+    .deck.commander {
+        height: 625px;
+        width: 640px;
+        padding-bottom: 200px;
+    }
+
     .sideboard {
         width: 170px;
-        margin-left: 0px;
 
         & .cardContainer:nth-of-type(2n) {
             margin-left: 100px;
-
-            .tooltipContainer {
-                left: unset;
-                right: 160px;
-            }
         }
 
         & .cardContainer:nth-of-type(2n+1) {
             margin-left: 0px;
 
             .tooltipContainer {
-                left: unset;
-                right: 210px;
+                right: 50px;
             }
         }
     }
@@ -133,15 +153,30 @@
         height: 25px;
     }
 
-    .card {
+    .card,
+    .tooltipCard,
+    .cardSpacer {
         width: 150px;
     }
 
     .tooltipContainer {
         top: 0px;
-    
-        &.right {
-            left: 160px;
+
+        &.left {
+            right: 0;
+            
+            .frontFace,
+            .backFace {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+
+    .backFace {
+        display: inline-flex;
+
+        .tooltipCard {
+            display: inline-block;
         }
     }
 }
@@ -157,25 +192,13 @@
         height: 450px;
     }
 
+    .deck.commander {
+        height: 625px;
+        width: 950px;
+    }
+
     .sideboard {
-        width: 270px;
-        margin-left: 50px;
-
-        & .cardContainer:nth-of-type(2n) {
-            margin-left: 100px;
-
-            .tooltipContainer {
-                right: 190px;
-            }
-        }
-
-        & .cardContainer:nth-of-type(2n+1) {
-            margin-left: 0px;
-
-            .tooltipContainer {
-                right: 240px;
-            }
-        }
+        width: 320px;
     }
 
     .cardContainer {
@@ -183,19 +206,25 @@
     }
 
     .card,
-    .tooltipCard {
+    .tooltipCard,
+    .cardSpacer {
         width: 180px;
     }
 
+    .tooltip {
+        vertical-align: top;
+    }
+
     .tooltipCard {
-        display: block;
+        display: inline-block;
     }
 
     .tooltipContainer {
-        top: 0px;
-    
-        &.right {
-            left: 190px;
+
+        &.left {
+            .tooltip {
+                margin-right: 15px;
+            }
         }
     }
 }
@@ -211,25 +240,14 @@
         height: 880px;
     }
 
+    .deck.commander {
+        height: 1100px;
+        width: 1050px;
+        padding-bottom: 310px;
+    }
+
     .sideboard {
-        width: 270px;
-        margin-left: 30px;
-
-        & .cardContainer:nth-of-type(2n) {
-            margin-left: 100px;
-
-            .tooltipContainer {
-                right: 260px;
-            }
-        }
-
-        & .cardContainer:nth-of-type(2n+1) {
-            margin-left: 0px;
-
-            .tooltipContainer {
-                right: 310px;
-            }
-        }
+        width: 350px;
     }
 
     .cardContainer {
@@ -237,15 +255,21 @@
     }
 
     .card,
-    .tooltipCard {
+    .tooltipCard,
+    .cardSpacer {
         width: 250px;
     }
 
+    .cardSpacer {
+        height: 354px;
+    }
+
     .tooltipContainer {
-        top: 0px;
-    
-        &.right {
-            left: 260px;
+
+        &.left {
+            .tooltip {
+                margin-right: 0;
+            }
         }
     }
 }
@@ -261,7 +285,21 @@
         height: 660px;
     }
 
+    .deck.commander {
+        height: 880px;
+        width: 1300px;
+    }
+
     .sideboard {
-        margin-left: 50px;
+        width: 370px;
+    }
+
+    .tooltipContainer {
+
+        &.left {
+            .tooltip {
+                margin-right: 5px;
+            }
+        }
     }
 }

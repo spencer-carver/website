@@ -31,7 +31,7 @@ interface MTGDeck {
         nonlands?: Card[];
         lands?: Card[];
         sideboard?: Card[];
-    }
+    };
 }
 
 interface FormattedDeck {
@@ -39,26 +39,45 @@ interface FormattedDeck {
         featured: Card[];
         mainboard: Card[];
         sideboard: Card[];
+    };
+}
+
+function massageList(data?: Card[]): Card[] {
+    if (!data) {
+        return [];
     }
+
+    return data.map((card) => {
+        const output = [];
+
+        if (!card.card_digest) {
+            return [];
+        }
+
+        for (let i = 0; i < card.count; ++i) {
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            output.push({ count: 1, card_digest: card.card_digest });
+        }
+
+        return output;
+    }).flat();
 }
 
 function massageDeck(data: MTGDeck): FormattedDeck {
     return {
         entries: {
             featured: ([] as Card[]).concat(
-                data.entries.commanders || [],
-                data.entries.oathbreakers || [],
+                massageList(data.entries.commanders),
+                massageList(data.entries.oathbreakers),
             ),
             mainboard: ([] as Card[]).concat(
-                data.entries.mainboard || [],
-                data.entries.nonlands || [],
-                data.entries.lands || []
+                massageList(data.entries.mainboard),
+                massageList(data.entries.nonlands),
+                massageList(data.entries.lands)
             ),
-            sideboard: data.entries.sideboard || []
+            sideboard: massageList(data.entries.sideboard)
         }
     };
-
-    return data as FormattedDeck;
 }
 
 const Deck = (props: RecipeRouterProps): JSX.Element => {
@@ -102,39 +121,19 @@ const Deck = (props: RecipeRouterProps): JSX.Element => {
     return (
         <Navigation isHomepage={ false }>
             <div className={ styles.playmat }>
-                <div className={ styles.deck }>
+                <div className={ `${ styles.deck } ${ styles[maindeckType] }` }>
                     {
-                        deck.entries.mainboard.map(({ count, card_digest: cardDigest }) => {
-                            const output = [];
-
-                            if (!cardDigest) {
-                                return [];
-                            }
-
-                            for (let i = 0; i < count; ++i) {
-                                output.push(<CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } type={ maindeckType } />);
-                            }
-
-                            return output;
-                        }).flat()
+                        deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
+                            return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type={ maindeckType } />;
+                        })
                     }
                     <div className={ styles.overlay }></div>
                 </div>
-                <div className={ styles.sideboard }>
+                <div className={ `${ styles.sideboard } ${ styles[maindeckType] }` }>
                     {
-                        deck.entries.sideboard.map(({ count, card_digest: cardDigest }) => {
-                            const output = [];
-
-                            if (!cardDigest) {
-                                return [];
-                            }
-
-                            for (let i = 0; i < count; ++i) {
-                                output.push(<CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } type="sideboard" />);
-                            }
-
-                            return output;
-                        }).flat()
+                        deck.entries.sideboard.map(({ card_digest: cardDigest }, i) => {
+                            return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="sideboard" />;
+                        })
                     }
                     <div className={ styles.overlay }></div>
                 </div>
@@ -148,6 +147,7 @@ interface CardComponentProps {
     image?: string;
     id: string;
     type?: "constructed" | "commander" | "sideboard";
+    index: number;
 }
 
 interface RelatedCard {
@@ -161,7 +161,7 @@ interface Faces {
     mana_cost: string;
     type_line: string;
     oracle_text: string;
-    flavor_test?: string;
+    flavor_text?: string;
     image_uris?: {
         border_crop: string;
     };
@@ -189,7 +189,7 @@ const FetchAndRenderCard: React.FunctionComponent<CardComponentProps> = ({ name,
         fetchFromCache(`https://api.scryfall.com/cards/${ id }`, CARD_TTL)
             .then((data: JSON) => {
                 const cardInfo = data as unknown as CardInfo;
-                setImageUrl(cardInfo.image_uris && cardInfo.image_uris.border_crop || null as unknown as string);
+                setImageUrl(cardInfo.image_uris ? cardInfo.image_uris.border_crop : null as unknown as string);
                 console.log(cardInfo);
             });
     });
@@ -232,6 +232,8 @@ function fillInMissingData(data: CardInfo) {
             type_line: frontFace.type_line,
             // eslint-disable-next-line @typescript-eslint/camelcase
             oracle_text: frontFace.oracle_text,
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            flavor_text: frontFace.flavor_text,
             backFace
         };
     }
@@ -253,20 +255,21 @@ function filterAllParts({ id: cardId, all_parts: allParts }: CardInfo): RelatedC
     });
 }
 
-const Tooltip: React.FunctionComponent<CardInfo> = ({ name, mana_cost, type_line, oracle_text, flavor_text }) => {
+const Tooltip: React.FunctionComponent<CardInfo> = ({ name, mana_cost, type_line, oracle_text, flavor_text, backFace }) => {
     return (
-        <div className={ styles.tooltip }>
-            <p>{ name } <span className={ styles.manaCost }>{ mana_cost }</span></p>
-            <p>{ type_line }</p>
-            <p className={ styles.oracleText }>{ oracle_text }</p>
-            { flavor_text && <p className={ styles.flavorText }>{ flavor_text }</p> }
+        <div>
+            <div className={ styles.tooltip }>
+                <p>{ name } <span className={ styles.manaCost }>{ mana_cost }</span></p>
+                <p>{ type_line }</p>
+                <p className={ styles.oracleText }>{ oracle_text }</p>
+                { flavor_text && <p className={ styles.flavorText }>{ flavor_text }</p> }
+            </div>
+            { backFace && !backFace.image_uris && <Tooltip id={ backFace.name } { ...backFace } /> }
         </div>
     );
 };
 
-const MAX_TOOLTIP_WIDTH = 860;
-
-const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, image, id, type }) => {
+const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, image, id, type, index }) => {
     const [ tooltip, setTooltip ] = useState(null as unknown as CardInfo);
 
     const fetchTooltip = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
@@ -277,21 +280,24 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
             });
     };
 
-    const side = type === "sideboard" ? "left" : "right";
+    const side = type === "sideboard" || (type === "commander" && index >= 50) ? "left" : "right";
     
     return (
         <div className={ styles.cardContainer } onMouseOver={ fetchTooltip }>
             <img className={ styles.card } src={ image?.replace("large", "border_crop") } alt={ name } />
             { tooltip && (
                 <div className={ `${ styles.tooltipContainer } ${ styles[side] }` }>
-                    <Tooltip { ...tooltip }/>
-                    { tooltip.backFace && (
-                        <React.Fragment key={ tooltip.backFace.name }>
-                            { tooltip.backFace.image_uris && <img className={ styles.tooltipCard } src={ tooltip.backFace.image_uris.border_crop } alt={ tooltip.backFace.name } /> }
+                    <div className={ styles.frontFace }>
+                        <div className={ styles.cardSpacer } />
+                        <Tooltip { ...tooltip }/>
+                        { tooltip.all_parts && filterAllParts(tooltip).map((card) => <FetchAndRenderCard key={ card.id } index={ 0 } { ...card } />) }
+                    </div>
+                    { tooltip.backFace && tooltip.backFace.image_uris && (
+                        <div key={ tooltip.backFace.name } className={ styles.backFace }>
+                            { <div><img className={ styles.tooltipCard } src={ tooltip.backFace.image_uris.border_crop } alt={ tooltip.backFace.name } /></div> }
                             <Tooltip id={ tooltip.backFace.name } { ...tooltip.backFace } />
-                        </React.Fragment>
+                        </div>
                     ) }
-                    { tooltip.all_parts && filterAllParts(tooltip).map((card) => <FetchAndRenderCard key={ card.id } { ...card } />) }
                 </div>
             ) }
         </div>

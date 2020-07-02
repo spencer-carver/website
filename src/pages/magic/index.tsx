@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import styles from "./styles.module.scss";
 
-const cards = {
-    "mox_diamond": "https://img.scryfall.com/cards/art_crop/front/b/f/bf9fecfd-d122-422f-bd0a-5bf69b434dfe.jpg?1562431287"
-};
-
 const Magic = (): JSX.Element => {
     return (
         <Navigation>
@@ -40,9 +36,12 @@ const Magic = (): JSX.Element => {
                 </div>
                 <div>
                     <h1>Commander</h1>
-                    <li className={ styles.deck }><h2>Muldrotha</h2></li>
-                    <li className={ styles.deck }><h2>Sen Triplets</h2></li>
-                    <li className={ styles.deck }><h2>Zedruu</h2></li>
+                    <ul>
+                        <DeckLink name="Sasaya" id="sasaya" />
+                        <DeckLink name="Muldrotha" id="muldrotha" />
+                        <li className={ styles.deck }><h2>Sen Triplets</h2></li>
+                        <li className={ styles.deck }><h2>Zedruu</h2></li>
+                    </ul>
                 </div>
             </div>
         </Navigation>
