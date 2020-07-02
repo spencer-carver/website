@@ -44,6 +44,7 @@ module.exports = {
         "object-curly-spacing": ["error", "always"],
         "quotes": [ "error", "double" ],
         "react/jsx-curly-spacing": [2, { "when": "always", "children": true }],
+        "react/prop-types": "off",
         "semi": [ "error", "always" ],
         "space-infix-ops": [ "error" ],
         "template-curly-spacing": ["error", "always"]

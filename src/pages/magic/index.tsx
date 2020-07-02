@@ -7,41 +7,52 @@ const Magic = (): JSX.Element => {
     return (
         <Navigation>
             <div className={ styles.content }>
-                <div>
-                    <h1>Modern</h1>
-                    <ul>
-                        <DeckLink name="Amulet Titan" id="amulet-titan" />
-                    </ul>
-                </div>
-                <div>
-                    <h1>Pauper</h1>
-                    <ul>
-                        <DeckLink name="Tortured Existance" id="tortured-existance" />
-                    </ul>
-                </div>
-                <div>
-                    <h1>Legacy</h1>
-                    <ul>
-                        <DeckLink name="Lands" id="lands" />
-                        <DeckLink name="Death &amp; Taxes" id="death-and-taxes" />
-                        <DeckLink name="Miracles" id="miracles" />
-                        <DeckLink name="Omnitell" id="omnitell" />
-                        <DeckLink name="Painter" id="strawberry-shortcake" />
-                        <DeckLink name="Reanimator" id="reanimator" />
-                        <DeckLink name="Manaless Dredge" id="manaless-dredge" />
-                        <DeckLink name="Temur Delver" id="rug-delver" />
-                        <DeckLink name="Storm" id="storm" />
-                        <DeckLink name="Enchantress" id="enchantress" />
-                    </ul>
-                </div>
-                <div>
-                    <h1>Commander</h1>
-                    <ul>
-                        <DeckLink name="Sasaya" id="sasaya" />
-                        <DeckLink name="Muldrotha" id="muldrotha" />
-                        <li className={ styles.deck }><h2>Sen Triplets</h2></li>
-                        <li className={ styles.deck }><h2>Zedruu</h2></li>
-                    </ul>
+                <h1 className={ styles.heading }>
+                    My Magic: the Gathering decks
+                </h1>
+                <div className={ styles.decks }>
+                    <div>
+                        <h2>Modern</h2>
+                        <ul>
+                            <DeckLink name="Amulet Titan" id="amulet-titan" />
+                            <DeckLink name="Eldrazi Tron" id="eldrazi-tron" />
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Legacy</h2>
+                        <p>
+                            I have a Legacy Battlebox with 10 decks designed to play against each other.
+                            Each deck is playable in a general Legacy metagame, but will not be the most
+                            up-to-date or tuned.
+                        </p>
+                        <ul>
+                            <DeckLink name="Lands" id="lands" />
+                            <DeckLink name="Death &amp; Taxes" id="death-and-taxes" />
+                            <DeckLink name="Miracles" id="miracles" />
+                            <DeckLink name="Omnitell" id="omnitell" />
+                            <DeckLink name="Painter" id="strawberry-shortcake" />
+                            <DeckLink name="Reanimator" id="reanimator" />
+                            <DeckLink name="Manaless Dredge" id="manaless-dredge" />
+                            <DeckLink name="Temur Delver" id="rug-delver" />
+                            <DeckLink name="Storm" id="storm" />
+                            <DeckLink name="Enchantress" id="enchantress" />
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Commander</h2>
+                        <ul>
+                            <DeckLink name="Sasaya" id="sasaya" />
+                            <DeckLink name="Muldrotha" id="muldrotha" />
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Other</h2>
+                        <ul>
+                            <DeckLink name="Pauper: Tortured Existance" id="tortured-existance" />
+                            <DeckLink name="Pioneer: UW Control" id="uw-control" />
+                            <DeckLink name="Oathbreaker: Wrenn &amp; Six" id="wrenn-and-six" />
+                        </ul>
+                    </div>
                 </div>
             </div>
         </Navigation>

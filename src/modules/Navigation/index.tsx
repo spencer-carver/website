@@ -130,6 +130,7 @@ const SiteNav = ({ expanded }: SiteNavProps): JSX.Element => {
                 <Link to="/puzzles" className={ styles.link }>Puzzles</Link>
                 <Link to="/recipes" className={ styles.link }>Recipes</Link>
                 <Link to="/cocktails" className={ styles.link }>Cocktails</Link>
+                <Link to="/magic" className={ styles.link }>Magic</Link>
                 <ExternalLink to={ GITHUB_URL } linkStyle={ styles.link }>Github</ExternalLink>
             </div>
         </div>
