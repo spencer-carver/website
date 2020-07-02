@@ -1,0 +1,21 @@
+.content {
+    background-color: red;
+}
+
+.flair {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+        height: 60px;
+        width: 60px;
+        margin-left: -5px;
+        margin-top: -5px;
+    }
+}
+
+.deck {
+    list-style: none;
+}

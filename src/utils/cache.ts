@@ -1,6 +1,6 @@
 const BROWSER_CACHE_TTL = 14400000; // 4 hours
 
-async function fetchFromCache(url: string): Promise<JSON> {
+async function fetchFromCache(url: string, ttl: number = BROWSER_CACHE_TTL): Promise<JSON> {
     try {
         const cachedData = localStorage.getItem(url);
 
@@ -15,7 +15,7 @@ async function fetchFromCache(url: string): Promise<JSON> {
 
         const now = (new Date()).getTime();
 
-        if (!time || now - time > BROWSER_CACHE_TTL) {
+        if (!time || now - time > ttl) {
             throw new Error("cache expired");
         }
 

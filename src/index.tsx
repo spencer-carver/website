@@ -9,6 +9,8 @@ import Puzzle from "./pages/puzzles/puzzle";
 import Cocktails from "./pages/cocktails";
 import Recipes from "./pages/recipes";
 import Recipe from "./pages/recipes/recipe";
+import Magic from "./pages/magic";
+import MagicDeck from "./pages/magic/deck";
 import Error from "./pages/error";
 import { unregister as unregisterServiceWorker } from "./registerServiceWorker";
 import "./index.scss";
@@ -26,6 +28,9 @@ const Sitemap = (): JSX.Element => (
                 <Redirect from="/recipe" exact to="/recipes" />
                 <Route path="/recipes" exact component={ Recipes } />
                 <Route path="/recipe/:recipeName" exact component={ Recipe } />
+                <Redirect from="/mtg" exact to="/magic" />
+                <Route path="/magic" exact component={ Magic } />
+                <Route path="/magic/deck/:deckName" exact component={ MagicDeck } />
                 <Route path="*" render={ (): JSX.Element => <Error errorCode={ 404 } /> } />
             </Switch>
             <Footer />

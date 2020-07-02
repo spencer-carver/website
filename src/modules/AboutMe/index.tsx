@@ -28,8 +28,8 @@ const AboutMe = (): JSX.Element => {
                             I&apos;m a { calculateYearsBetween(MY_BIRTHDAY) } year old Software Developer based out of New York, New York.
                         </p>
                         <p>
-                            I enjoy <ExternalLink linkStyle={ styles.link } to={ MOUNTAINPROJECT_URL }>Rock Climbing</ExternalLink>,
-                            Magic: the Gathering,
+                            I enjoy <ExternalLink linkStyle={ styles.link } to={ MOUNTAINPROJECT_URL }>Rock Climbing</ExternalLink>
+                            , <Link to ="/magic" className={ styles.link }>Magic: the Gathering</Link>,
                             and <Link to ="/cocktails" className={ styles.link }>Cocktails</Link> though I wouldn&apos;t recommend combining them into a single activity.
                         </p>
                         <p>

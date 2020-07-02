@@ -1,0 +1,305 @@
+.playmat {
+    background-color: gray;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.deck,
+.sideboard {
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 320px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.cardContainer {
+    position: relative;
+    height: 44px;
+    overflow-y: visible;
+    text-align: center;
+
+    &:hover .card {
+        z-index: 3;
+    }
+
+    &:hover .tooltipContainer {
+        display: block;
+        z-index: 4;
+
+        &.left {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &:hover ~ .overlay {
+        display: block;
+        z-index: 2;
+    }
+}
+
+.card {
+    position: relative;
+    width: 250px;
+    margin: 0 5px;
+    z-index: 1;
+}
+
+.cardSpacer {
+    display: inline-block;
+    width: 250px;
+    margin: 0 5px;
+}
+
+.tooltipContainer {
+    position: absolute;
+    display: none;
+    top: 350px;
+    text-align: left;
+    pointer-events: none;
+}
+
+.tooltip {
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 5px;
+    padding: 0 10px;
+    margin-bottom: 5px;
+    color: white;
+    pointer-events: all;
+}
+
+.manaCost {
+    float: right;
+}
+
+.oracleText {
+    white-space: pre-wrap;
+}
+
+.flavorText {
+    font-style: italic;
+}
+
+.tooltipCard {
+    width: 250px;
+    margin: 0 5px;
+    display: none;
+}
+
+.sideboard.commander {
+    display: none;
+}
+
+.frontFace {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.backFace {
+    display: none;
+    flex-direction: row;
+}
+
+/* tablet */
+@media screen and (min-width: 760px) {
+    .playmat {
+        width: 740px;
+    }
+
+    .deck {
+        width: 480px;
+        height: 500px;
+    }
+
+    .deck.commander {
+        height: 625px;
+        width: 640px;
+        padding-bottom: 200px;
+    }
+
+    .sideboard {
+        width: 170px;
+
+        & .cardContainer:nth-of-type(2n) {
+            margin-left: 100px;
+        }
+
+        & .cardContainer:nth-of-type(2n+1) {
+            margin-left: 0px;
+
+            .tooltipContainer {
+                right: 50px;
+            }
+        }
+    }
+
+    .cardContainer {
+        height: 25px;
+    }
+
+    .card,
+    .tooltipCard,
+    .cardSpacer {
+        width: 150px;
+    }
+
+    .tooltipContainer {
+        top: 0px;
+
+        &.left {
+            right: 0;
+            
+            .frontFace,
+            .backFace {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+
+    .backFace {
+        display: inline-flex;
+
+        .tooltipCard {
+            display: inline-block;
+        }
+    }
+}
+
+/* small desktop */
+@media screen and (min-width: 1100px) {
+    .playmat {
+        width: 1080px;
+    }
+
+    .deck {
+        width: 720px;
+        height: 450px;
+    }
+
+    .deck.commander {
+        height: 625px;
+        width: 950px;
+    }
+
+    .sideboard {
+        width: 320px;
+    }
+
+    .cardContainer {
+        height: 30px;
+    }
+
+    .card,
+    .tooltipCard,
+    .cardSpacer {
+        width: 180px;
+    }
+
+    .tooltip {
+        vertical-align: top;
+    }
+
+    .tooltipCard {
+        display: inline-block;
+    }
+
+    .tooltipContainer {
+
+        &.left {
+            .tooltip {
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+/* medium desktop */
+@media screen and (min-width: 1180px) {
+    .playmat {
+        width: 1160px;
+    }
+
+    .deck {
+        width: 770px;
+        height: 880px;
+    }
+
+    .deck.commander {
+        height: 1100px;
+        width: 1050px;
+        padding-bottom: 310px;
+    }
+
+    .sideboard {
+        width: 350px;
+    }
+
+    .cardContainer {
+        height: 44px;
+    }
+
+    .card,
+    .tooltipCard,
+    .cardSpacer {
+        width: 250px;
+    }
+
+    .cardSpacer {
+        height: 354px;
+    }
+
+    .tooltipContainer {
+
+        &.left {
+            .tooltip {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+/* large desktop */
+@media screen and (min-width: 1460px) {
+    .playmat {
+        width: 1440px;
+    }
+
+    .deck {
+        width: 1020px;
+        height: 660px;
+    }
+
+    .deck.commander {
+        height: 880px;
+        width: 1300px;
+    }
+
+    .sideboard {
+        width: 370px;
+    }
+
+    .tooltipContainer {
+
+        &.left {
+            .tooltip {
+                margin-right: 5px;
+            }
+        }
+    }
+}
