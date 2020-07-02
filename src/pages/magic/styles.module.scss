@@ -1,5 +1,22 @@
 .content {
-    background-color: red;
+    background-color: gray;
+    padding: 20px 0;
+}
+
+.heading {
+    text-align: center;
+}
+
+.decks {
+    background-color: white;
+    width: 300px;
+    padding: 5px;
+    margin: 0 auto;
+    border-radius: 5px;
+
+    h2:first-of-type {
+        margin-top: 0;
+    }
 }
 
 .flair {
@@ -18,4 +35,11 @@
 
 .deck {
     list-style: none;
+}
+
+/* tablet & up */
+@media screen and (min-width: 760px) {
+    .decks {
+        width: 740px;
+    }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { useState, useEffect } from "react";
 import Navigation from "../../../modules/Navigation";
 import styles from "./styles.module.scss";
@@ -24,6 +25,8 @@ interface Card {
 }
 
 interface MTGDeck {
+    name: string;
+    description?: string;
     entries: {
         mainboard?: Card[];
         commanders?: Card[];
@@ -35,6 +38,9 @@ interface MTGDeck {
 }
 
 interface FormattedDeck {
+    name: string;
+    description?: string;
+    type: "commander" | "oathbreaker" | "constructed";
     entries: {
         featured: Card[];
         mainboard: Card[];
@@ -55,16 +61,27 @@ function massageList(data?: Card[]): Card[] {
         }
 
         for (let i = 0; i < card.count; ++i) {
-            // eslint-disable-next-line @typescript-eslint/camelcase
+            
             output.push({ count: 1, card_digest: card.card_digest });
         }
 
         return output;
-    }).flat();
+    }).reduce((acc, arrEl) => {
+        return acc.concat(arrEl);
+    }, []);
 }
 
 function massageDeck(data: MTGDeck): FormattedDeck {
+    const type = data.entries.commanders
+        ? "commander"
+        : data.entries.oathbreakers
+            ? "oathbreaker"
+            : "constructed";
+
     return {
+        name: data.name,
+        description: data.description,
+        type,
         entries: {
             featured: ([] as Card[]).concat(
                 massageList(data.entries.commanders),
@@ -114,28 +131,34 @@ const Deck = (props: RecipeRouterProps): JSX.Element => {
         );
     }
 
-    const maindeckType = deck.entries.mainboard.length <= 60
-        ? "constructed"
-        : "commander";
-
     return (
         <Navigation isHomepage={ false }>
-            <div className={ styles.playmat }>
-                <div className={ `${ styles.deck } ${ styles[maindeckType] }` }>
-                    {
-                        deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
-                            return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type={ maindeckType } />;
-                        })
-                    }
-                    <div className={ styles.overlay }></div>
-                </div>
-                <div className={ `${ styles.sideboard } ${ styles[maindeckType] }` }>
-                    {
-                        deck.entries.sideboard.map(({ card_digest: cardDigest }, i) => {
-                            return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="sideboard" />;
-                        })
-                    }
-                    <div className={ styles.overlay }></div>
+            <div className={ styles.content }>
+                <div className={ styles.playmat }>
+                    <div className={ `${ styles.featured } ${ styles[deck.type] }` }>
+                        {
+                            deck.entries.featured.map(({ card_digest: cardDigest }, i) => {
+                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="featured" />;
+                            })
+                        }
+                    </div>
+                    <div className={ styles.description }>{ deck.description }</div>
+                    <div className={ `${ styles.deck } ${ styles[deck.type] }` }>
+                        {
+                            deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
+                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type={ deck.type } />;
+                            })
+                        }
+                        <div className={ styles.overlay }></div>
+                    </div>
+                    <div className={ `${ styles.sideboard } ${ styles[deck.type] }` }>
+                        {
+                            deck.entries.sideboard.map(({ card_digest: cardDigest }, i) => {
+                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="sideboard" />;
+                            })
+                        }
+                        <div className={ styles.overlay }></div>
+                    </div>
                 </div>
             </div>
         </Navigation>
@@ -146,7 +169,7 @@ interface CardComponentProps {
     name: string;
     image?: string;
     id: string;
-    type?: "constructed" | "commander" | "sideboard";
+    type?: "constructed" | "commander" | "oathbreaker" | "sideboard" | "featured";
     index: number;
 }
 
@@ -154,6 +177,7 @@ interface RelatedCard {
     id: string;
     name: string;
     component: string;
+    type_line: string;
 }
 
 interface Faces {
@@ -190,7 +214,6 @@ const FetchAndRenderCard: React.FunctionComponent<CardComponentProps> = ({ name,
             .then((data: JSON) => {
                 const cardInfo = data as unknown as CardInfo;
                 setImageUrl(cardInfo.image_uris ? cardInfo.image_uris.border_crop : null as unknown as string);
-                console.log(cardInfo);
             });
     });
 
@@ -201,16 +224,18 @@ const FetchAndRenderCard: React.FunctionComponent<CardComponentProps> = ({ name,
     return <img className={ styles.tooltipCard } src={ imageUrl } alt={ name } />;
 };
 
-function fillInMissingData(data: CardInfo) {
+function fillInMissingData(data: CardInfo): CardInfo {
     // Palace Jailer doesn't link to the monarch card
     if (data.id === "78cef262-c753-4658-b3ec-fec8db47f944") {
         return {
             ...data,
-            // eslint-disable-next-line @typescript-eslint/camelcase
+            
             all_parts: [{
                 id: "40b79918-22a7-4fff-82a6-8ebfe6e87185",
                 name: "The Monarch",
-                component: "token"
+                component: "token",
+                
+                type_line: "Card"
             }]
         };
     }
@@ -226,13 +251,9 @@ function fillInMissingData(data: CardInfo) {
         return {
             ...data,
             name: frontFace.name,
-            // eslint-disable-next-line @typescript-eslint/camelcase
             mana_cost: frontFace.mana_cost,
-            // eslint-disable-next-line @typescript-eslint/camelcase
             type_line: frontFace.type_line,
-            // eslint-disable-next-line @typescript-eslint/camelcase
             oracle_text: frontFace.oracle_text,
-            // eslint-disable-next-line @typescript-eslint/camelcase
             flavor_text: frontFace.flavor_text,
             backFace
         };
@@ -246,9 +267,15 @@ function filterAllParts({ id: cardId, all_parts: allParts }: CardInfo): RelatedC
         return [];
     }
 
-    return allParts.filter(({ id, component }: RelatedCard) => {
+    
+    return allParts.filter(({ id, component, type_line }: RelatedCard) => {
         if (cardId === id) {
             return false;
+        }
+
+        
+        if (type_line.indexOf("Emblem") !== -1) {
+            return true;
         }
 
         return component === "token";
@@ -272,7 +299,7 @@ const Tooltip: React.FunctionComponent<CardInfo> = ({ name, mana_cost, type_line
 const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, image, id, type, index }) => {
     const [ tooltip, setTooltip ] = useState(null as unknown as CardInfo);
 
-    const fetchTooltip = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+    const fetchTooltip = (): void => {
         fetchFromCache(`https://api.scryfall.com/cards/${ id }`, CARD_TTL)
             .then((data: JSON) => {
                 const cardInfo = data as unknown as CardInfo;
@@ -280,10 +307,39 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
             });
     };
 
-    const side = type === "sideboard" || (type === "commander" && index >= 50) ? "left" : "right";
+    const side = type === "sideboard" || (type === "commander" && index >= 50) || (type === "oathbreaker" && index >= 30)
+        ? "left"
+        : "right";
+
+    if (type === "featured") {
+        !tooltip && fetchTooltip();
+
+        return (
+            <div className={ styles.featuredCard }>
+                <img className={ styles.card } src={ image?.replace("large", "border_crop") } alt={ name } />
+                { tooltip && (
+                    <div className={ `${ styles.tooltipContainer } ${ styles[side] }` }>
+                        <div className={ styles.frontFace }>
+                            <Tooltip { ...tooltip }/>
+                        </div>
+                        { tooltip.backFace && tooltip.backFace.image_uris && (
+                            <div key={ tooltip.backFace.name } className={ styles.backFace }>
+                                <div>
+                                    <img className={ styles.tooltipCard }
+                                        src={ tooltip.backFace.image_uris.border_crop }
+                                        alt={ tooltip.backFace.name } />
+                                </div>
+                                <Tooltip id={ tooltip.backFace.name } { ...tooltip.backFace } />
+                            </div>
+                        ) }
+                    </div>
+                ) }
+            </div>
+        );
+    }
     
     return (
-        <div className={ styles.cardContainer } onMouseOver={ fetchTooltip }>
+        <div className={ styles.cardContainer } onMouseOver={ fetchTooltip } onFocus={ fetchTooltip }>
             <img className={ styles.card } src={ image?.replace("large", "border_crop") } alt={ name } />
             { tooltip && (
                 <div className={ `${ styles.tooltipContainer } ${ styles[side] }` }>
@@ -294,7 +350,9 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
                     </div>
                     { tooltip.backFace && tooltip.backFace.image_uris && (
                         <div key={ tooltip.backFace.name } className={ styles.backFace }>
-                            { <div><img className={ styles.tooltipCard } src={ tooltip.backFace.image_uris.border_crop } alt={ tooltip.backFace.name } /></div> }
+                            <div>
+                                <img className={ styles.tooltipCard } src={ tooltip.backFace.image_uris.border_crop } alt={ tooltip.backFace.name } />
+                            </div>
                             <Tooltip id={ tooltip.backFace.name } { ...tooltip.backFace } />
                         </div>
                     ) }
