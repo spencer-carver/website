@@ -1,0 +1,63 @@
+@import "../../styles/colors";
+@import "../../styles/icons";
+
+.spinner {
+    position: absolute;
+    width: 100vw;
+    height: calc(100vh - 50px);
+    background-color: rgba(0,0,0,0.7);
+    z-index: 10;
+}
+
+.logoS,
+.logoC {
+    position: absolute;
+    top: calc(42vh - 150px);
+    left: calc(50vw - 150px);
+    width: 300px;
+    height: 300px;
+    font-size: 0;
+}
+
+.logoC {
+    @include my-logo-c($icon-color: $black, $width: 300, $height: 300);
+    background-repeat: no-repeat;
+    background-position: left;
+    animation-name: spin-back;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.logoS {
+    @include my-logo-s($icon-color: $black, $width: 300, $height: 300);
+    background-repeat: no-repeat;
+    background-position: left;
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes spin-back {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(-360deg);
+    }
+}
+
+// animation-name: spin;
+// animation-duration: 5000ms;
+// animation-iteration-count: infinite;
+// animation-timing-function: linear;

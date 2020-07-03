@@ -36,7 +36,7 @@ const RecipeComponent = (props: RecipeRouterProps): JSX.Element => {
 
     if (!loaded) {
         return (
-            <Navigation isHomepage={ false }>
+            <Navigation isLoading={ true }>
                 <div></div>
             </Navigation>
         );
@@ -44,7 +44,7 @@ const RecipeComponent = (props: RecipeRouterProps): JSX.Element => {
 
     if (!recipe) {
         return (
-            <Navigation isHomepage={ false }>
+            <Navigation>
                 <div>This isn&apos;t a recipe</div>
             </Navigation>
         );
@@ -57,7 +57,7 @@ const RecipeComponent = (props: RecipeRouterProps): JSX.Element => {
     } = recipe;
 
     return (
-        <Navigation isHomepage={ false }>
+        <Navigation>
             <div className={ styles.recipe }>
                 <Header scaleFactor={ scaleFactor } { ...recipe } />
                 <div className={ styles.bodyContent }>

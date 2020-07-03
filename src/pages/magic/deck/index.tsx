@@ -117,7 +117,7 @@ const Deck = (props: RecipeRouterProps): JSX.Element => {
 
     if (!loaded) {
         return (
-            <Navigation isHomepage={ false }>
+            <Navigation isLoading={ true }>
                 <div></div>
             </Navigation>
         );
@@ -125,14 +125,14 @@ const Deck = (props: RecipeRouterProps): JSX.Element => {
 
     if (!deck) {
         return (
-            <Navigation isHomepage={ false }>
+            <Navigation>
                 <div>This isn&apos;t a valid deck</div>
             </Navigation>
         );
     }
 
     return (
-        <Navigation isHomepage={ false }>
+        <Navigation>
             <div className={ styles.content }>
                 <div className={ styles.playmat }>
                     <div className={ `${ styles.featured } ${ styles[deck.type] }` }>

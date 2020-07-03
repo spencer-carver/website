@@ -17,7 +17,7 @@ const Puzzles = (): JSX.Element => {
     };
 
     return (
-        <Navigation isHomepage={ false }>
+        <Navigation>
             <PuzzleComplete answer={ `SOLVED: ${ numberAnswered }` } />
             <div className={ styles.puzzle }>
                 <div className={ styles.title }>Puzzles</div>

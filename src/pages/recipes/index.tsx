@@ -20,7 +20,7 @@ const RecipesPage = (): JSX.Element => {
 
     if (!loaded) {
         return (
-            <Navigation isHomepage={ false }>
+            <Navigation isLoading={ true }>
                 <div></div>
             </Navigation>
         );

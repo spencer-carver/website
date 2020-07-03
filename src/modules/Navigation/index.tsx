@@ -9,6 +9,7 @@ import {
     INSTAGRAM_URL,
     GITHUB_URL
 } from "../../constants/ExternalUrls";
+import LoadingSpinner from "../../components/loading-spinner";
 import styles from "./styles.module.scss";
 
 function ensureArray(value: Array<ReactElement> | ReactElement): Array<ReactElement> {
@@ -18,12 +19,15 @@ function ensureArray(value: Array<ReactElement> | ReactElement): Array<ReactElem
 }
 
 interface NavigationProps {
+    isLoading?: boolean;
     children: Array<ReactElement> | ReactElement;
 }
 
-const Navigation = ({ children }: NavigationProps): JSX.Element => {
+const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Element => {
     const [ focus, setFocus ] = useState(0);
     const [ expanded, setExpanded ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
+    const [ stillLoading, setStillLoading ] = useState(false);
 
     function toggleMenu(): void {
         setExpanded(!expanded);
@@ -63,6 +67,21 @@ const Navigation = ({ children }: NavigationProps): JSX.Element => {
         };
     });
 
+    useEffect(() => {
+        if (isLoading && !stillLoading) {
+            setTimeout(() => setStillLoading(isLoading), 75);
+        }
+
+        if (stillLoading && !loading) {
+            setStillLoading(false);
+            setLoading(isLoading);
+        }
+
+        if (!isLoading && loading) {
+            setTimeout(() => setLoading(isLoading), 750);
+        }
+    }, [ isLoading, loading, stillLoading ]);
+
     return (
         <div className={ styles.spacer }>
             <nav className={ styles.navigation }>
@@ -71,13 +90,14 @@ const Navigation = ({ children }: NavigationProps): JSX.Element => {
                 <SiteNav expanded={ expanded } />
                 <PageNav sections={ sectionNames } selected={ focus } setSelected={ setFocus } expanded={ expanded } />
             </nav>
+            { loading && <LoadingSpinner /> }
             { children }
         </div>
     );
 };
 
 Navigation.propTypes = {
-    isHomepage: PropTypes.bool,
+    isLoading: PropTypes.bool,
     children: PropTypes.any
 };
 
