@@ -15,7 +15,9 @@ const Magic = (): JSX.Element => {
                         <h2>Modern</h2>
                         <ul>
                             <DeckLink name="Amulet Titan" id="amulet-titan" />
+                            <DeckLink name="Bogles" id="bogles" />
                             <DeckLink name="Eldrazi Tron" id="eldrazi-tron" />
+                            <DeckLink name="🐠" id="merfolk" />
                         </ul>
                     </div>
                     <div>
@@ -26,31 +28,42 @@ const Magic = (): JSX.Element => {
                             up-to-date or tuned.
                         </p>
                         <ul>
-                            <DeckLink name="Lands" id="lands" />
                             <DeckLink name="Death &amp; Taxes" id="death-and-taxes" />
+                            <DeckLink name="Enchantress" id="enchantress" />
+                            <DeckLink name="Lands" id="lands" />
+                            <DeckLink name="Manaless Dredge" id="manaless-dredge" />
                             <DeckLink name="Miracles" id="miracles" />
                             <DeckLink name="Omnitell" id="omnitell" />
                             <DeckLink name="Painter" id="strawberry-shortcake" />
                             <DeckLink name="Reanimator" id="reanimator" />
-                            <DeckLink name="Manaless Dredge" id="manaless-dredge" />
-                            <DeckLink name="Temur Delver" id="rug-delver" />
                             <DeckLink name="Storm" id="storm" />
-                            <DeckLink name="Enchantress" id="enchantress" />
+                            <DeckLink name="Temur Delver" id="rug-delver" />
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Pauper</h2>
+                        <ul>
+                            <DeckLink name="Mono-Green Land Destruction" id="mono-g-ponza" />
+                            <DeckLink name="Tortured Existance" id="tortured-existance" />
                         </ul>
                     </div>
                     <div>
                         <h2>Commander</h2>
                         <ul>
-                            <DeckLink name="Sasaya" id="sasaya" />
+                            <DeckLink name="Karador" id="karador" />
                             <DeckLink name="Muldrotha" id="muldrotha" />
+                            <DeckLink name="Nahiri" id="nahiri" />
+                            <DeckLink name="Sasaya" id="sasaya" />
+                            <DeckLink name="Sen Triplets" id="sen-triplets" />
+                            <DeckLink name="Zedruu" id="zedruu" />
+                            <DeckLink name="Zur" id="zur" />
                         </ul>
                     </div>
                     <div>
                         <h2>Other</h2>
                         <ul>
-                            <DeckLink name="Pauper: Tortured Existance" id="tortured-existance" />
-                            <DeckLink name="Pioneer: UW Control" id="uw-control" />
                             <DeckLink name="Oathbreaker: Wrenn &amp; Six" id="wrenn-and-six" />
+                            <DeckLink name="Pioneer: UW Control" id="uw-control" />
                         </ul>
                     </div>
                 </div>
