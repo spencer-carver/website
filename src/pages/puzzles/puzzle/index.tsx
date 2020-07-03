@@ -27,7 +27,7 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
 
     if (!puzzle) {
         return (
-            <Navigation isHomepage={ false }>
+            <Navigation>
                 <div>This isn&apos;t a puzzle</div>
             </Navigation>
         );
@@ -43,7 +43,7 @@ const PuzzleComponent = (props: PuzzleRouterProps): JSX.Element => {
     } = puzzle;
 
     return (
-        <Navigation isHomepage={ false }>
+        <Navigation>
             <PuzzleComplete answer={ answer } />
             <div className={ styles.puzzle }>
                 <div className={ styles.title }>{ title }</div>
