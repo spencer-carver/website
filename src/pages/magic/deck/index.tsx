@@ -160,6 +160,14 @@ const Deck = (props: RecipeRouterProps): JSX.Element => {
                         <div className={ styles.overlay }></div>
                     </div>
                 </div>
+                <div className={ styles.howToPlay }>
+                    Coming soon: How To Play this deck
+                </div>
+                { deck.type === "constructed" && (
+                    <div className={ styles.sideboardingGuide }>
+                        Coming Soon: Sideboarding guide for this deck
+                    </div>
+                ) }
             </div>
         </Navigation>
     );
@@ -242,11 +250,20 @@ function fillInMissingData(data: CardInfo): CardInfo {
 
     if (data.card_faces) {
         const castable = data.card_faces.filter(({ mana_cost: manaCost }) => manaCost);
+        let frontFace;
+        let backFace;
 
-        const frontFace = castable[0];
-        const backFace = castable.length > 1
-            ? castable[1] :
-            data.card_faces.filter(({ mana_cost: manaCost }) => !manaCost)[0];
+        if (castable.length === 0) {
+            // it's a land (e.g. Westvale Abbey)
+
+            frontFace = data.card_faces[0];
+            backFace = data.card_faces[1];
+        } else {
+            frontFace = castable[0];
+            backFace = castable.length > 1
+                ? castable[1] :
+                data.card_faces.filter(({ mana_cost: manaCost }) => !manaCost)[0];
+        }
 
         return {
             ...data,
@@ -354,6 +371,7 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
                                 <img className={ styles.tooltipCard } src={ tooltip.backFace.image_uris.border_crop } alt={ tooltip.backFace.name } />
                             </div>
                             <Tooltip id={ tooltip.backFace.name } { ...tooltip.backFace } />
+                            { tooltip.all_parts && filterAllParts(tooltip).map((_, i) => <div key={ i } className={ styles.cardSpacer } />) }
                         </div>
                     ) }
                 </div>
