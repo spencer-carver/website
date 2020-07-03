@@ -69,16 +69,20 @@ const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Eleme
 
     useEffect(() => {
         if (isLoading && !stillLoading) {
-            setTimeout(() => setStillLoading(isLoading), 75);
+            setTimeout(() => setStillLoading(true), 75);
         }
 
-        if (stillLoading && !loading) {
+        if (stillLoading && isLoading && !loading) {
+            setLoading(true);
+        }
+
+        if (stillLoading && !isLoading && !loading) {
             setStillLoading(false);
-            setLoading(isLoading);
         }
 
         if (!isLoading && loading) {
-            setTimeout(() => setLoading(isLoading), 750);
+            setStillLoading(false);
+            setTimeout(() => setLoading(false), 750);
         }
     }, [ isLoading, loading, stillLoading ]);
 
@@ -90,7 +94,7 @@ const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Eleme
                 <SiteNav expanded={ expanded } />
                 <PageNav sections={ sectionNames } selected={ focus } setSelected={ setFocus } expanded={ expanded } />
             </nav>
-            { loading && <LoadingSpinner /> }
+            { loading && <LoadingSpinner fadeOut={ !stillLoading } /> }
             { children }
         </div>
     );
