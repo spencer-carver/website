@@ -6,6 +6,8 @@ export const LINKEDIN_URL = "https://www.linkedin.com/in/spencerrc";
 export const FACEBOOK_URL = "https://www.facebook.com/spencerrc";
 export const GITHUB_URL = "https://github.com/spencer-carver";
 export const INSTAGRAM_URL = "https://www.instagram.com/spencer_carver/";
+export const TWITCH_URL = "https://www.twitch.tv/utxshiro";
+export const YOUTUBE_URL = "https://www.youtube.com/channel/UCNRklylcH_5harTqlSu7xTg";
 
 export const MOUNTAINPROJECT_URL = "https://www.mountainproject.com/user/112091331/spencer-carver";
 export const GOODREADS_URL = "https://www.goodreads.com/user/show/76280404-spencer";
