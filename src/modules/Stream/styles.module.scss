@@ -1,0 +1,77 @@
+@import "../../styles/colors.scss";
+
+.module {
+    margin: 20px auto 0;
+    position: relative;
+}
+
+.stream {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    top: 0;
+}
+
+.site {
+    width: 50%;
+    height: 280px;
+    text-decoration: none;
+    font-size: 24px;
+    color: $black;
+    line-height: 235px;
+    padding: 0 30px;
+    text-align: center;
+
+    .extra {
+        display: none;
+    }
+}
+
+.image {
+    text-align: center;
+    margin-bottom: 7px;
+    background-image: linear-gradient(to right, $white 0%, $alizarin-crimson 50%, $electric-violet 50%, $white 100%);
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+
+    img {
+        width: 300px;
+        margin: 10px -1px -10px 0;
+    }
+}
+
+/* tablet and desktop */
+@media screen and (min-width: 760px) {
+    .site {
+        line-height: 460px;
+
+        .extra {
+            display: unset;
+        }
+    }
+
+    .image {
+        img {
+            width: 600px;
+            margin: 10px -4px -10px 0;
+        }
+    }
+}
+
+/* desktop */
+@media screen and (min-width: 1240px) {
+    .module {
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+
+    .site {
+        line-height: 280px;
+        text-align: left;
+    }
+
+    .site:nth-of-type(2) {
+        text-align: right;
+    }
+}

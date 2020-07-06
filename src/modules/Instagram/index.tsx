@@ -7,7 +7,7 @@ import "../styles.scss";
 
 const Instagram = (): JSX.Element => {
     return (
-        <div id="instagram" className="section">
+        <div className="section">
             <div className={ `sectionContent ${ styles.instagram }` }>
                 <Link linkStyle={ styles.cards } to={ INSTAGRAM_URL }>Instagram Posts</Link>
                 <div className={ styles.blurb }>

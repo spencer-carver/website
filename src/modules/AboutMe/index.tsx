@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ExternalLink from "../../components/link";
-import Skills from "../Skills";
+import Stream from "../Stream";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import {
     MOUNTAINPROJECT_URL,
@@ -37,8 +37,8 @@ const AboutMe = (): JSX.Element => {
                         </p>
                     </div>
                 </div>
-                <Skills />
             </div>
+            <Stream />
         </div>
     );
 };

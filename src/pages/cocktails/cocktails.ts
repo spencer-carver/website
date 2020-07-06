@@ -64,6 +64,16 @@ const COCKTAILS: Cocktail[] = [
         link: "https://www.youtube.com/watch?v=w4KGTNH2Tkk"
     },
     {
+        name: "Matador",
+        ingredients: [
+            "Tequila",
+            "Lime Juice",
+            "Pineapple Juice"
+        ],
+        glass: Glass.lowball,
+        link: "https://www.thedrinkkings.com/matador-recipe/"
+    },
+    {
         name: "Pimm's & Ginger",
         ingredients: [
             "Pimm's No. 1",
