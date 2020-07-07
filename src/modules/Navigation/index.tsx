@@ -33,9 +33,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({ isLoading = false, chi
     }
 
     const sectionNames = ensureArray(children).reduce((accumulatedNames: string[], { props: { id } }: { props: { id: string } }) => {
-        if (id) {
-            accumulatedNames.push(id);
-        }
+        accumulatedNames.push(id || "");
 
         return accumulatedNames;
     }, []);
@@ -46,17 +44,13 @@ const Navigation: FunctionComponent<NavigationProps> = ({ isLoading = false, chi
                 return;
             }
 
-            const focusedSection = document.getElementById(sectionNames[focus]);
+            const inViewArr = document.elementsFromPoint(100, 200);
+            // This is a bit of a hack, but the 'elementsFromPoint' dom util always returns the hierarchy top down.
+            // I know bottom-up is: 'html', 'body', 'div#root', 'main.page', 'div.spacer', 'div#sectionId'
+            // So I can reverse index into the array and find the sectionId (if it exists)
+            const { id } = inViewArr[inViewArr.length - 6] || {};
 
-            if (!focusedSection) {
-                return;
-            }
-
-            if (focusedSection.getBoundingClientRect().bottom < 70) {
-                setFocus(focus + 1);
-            } else if (focusedSection.getBoundingClientRect().top > 70) {
-                setFocus(Math.max(focus - 1, 0));
-            }
+            setFocus(Math.max(0, sectionNames.indexOf(id)));
         }
 
         window.addEventListener("scroll", reportScrollY);
@@ -164,15 +158,21 @@ const PageNav: FunctionComponent<PageNavProps> = ({ sections = [], selected, set
             <div className={ styles.navContainer }>
                 <div className={ `${ styles.pageNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
                     {  
-                        sections.map((name, index) => (
-                            <NavItem
-                                key={ name }
-                                name={ name }
-                                index={ index }
-                                selected={ selected === index }
-                                setSelected={ setSelected }
-                            />
-                        ))
+                        sections.map((name, index) => {
+                            if (!name) {
+                                return null;
+                            }
+
+                            return (
+                                <NavItem
+                                    key={ name }
+                                    name={ name }
+                                    index={ index }
+                                    selected={ selected === index }
+                                    setSelected={ setSelected }
+                                />
+                            );
+                        })
                     }
                 </div>
                 <div className={ styles.siteNavBackground }></div>

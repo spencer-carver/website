@@ -13,51 +13,49 @@ const Skills: FunctionComponent = () => {
     const setCertificationsSelected = (): void => setSelectedCategory(SkillType.certification);
 
     return (
-        <div>
-            <div className={ styles.section }>
-                <div className={ styles.controls }>
-                    <span className={ `${ styles.selector } ${ styles.skills } ${ selectedCategory === SkillType.skill ? styles.enabled : styles.disabled }` }
-                        role="button"
-                        aria-label="Skills"
-                        tabIndex={ 0 }
-                        onClick={ setSkillsSelected }
-                        onKeyPress={ setSkillsSelected }>
-                        Skills
-                    </span> &amp; 
-                    <span className={ `${ styles.selector } ${ styles.interests } ${ selectedCategory === SkillType.interest ? styles.enabled : styles.disabled }` }
-                        role="button"
-                        aria-label="Interests"
-                        tabIndex={ 0 }
-                        onClick={ setInterestsSelected }
-                        onKeyPress={ setInterestsSelected }>
-                        Interests
-                    </span> &amp;
-                    <span className={ `${ styles.selector } ${ styles.certifications } ${ selectedCategory === SkillType.certification ? styles.enabled : styles.disabled }` }
-                        role="button"
-                        aria-label="Certifications"
-                        tabIndex={ 0 }
-                        onClick={ setCertificationsSelected }
-                        onKeyPress={ setCertificationsSelected }>
-                        Certifications
-                    </span>
-                </div>
-                {
-                    SKILLS.map((entry, index) => {
-                        return (
-                            <Flipcard key={ index }
-                                selected={ selectedCategory === entry.type }
-                                onClick={ (): void => setSelectedCategory(entry.type) }
-                                theme={ styles[entry.type] }
-                                id={ entry.id }
-                                imageSrc={ entry.imageSrc }
-                                imageAlt={ entry.imageAlt }
-                            >
-                                <SkillTab { ...entry }/>
-                            </Flipcard>
-                        );
-                    })
-                }
+        <div className={ styles.section }>
+            <div className={ styles.controls }>
+                <span className={ `${ styles.selector } ${ styles.skills } ${ selectedCategory === SkillType.skill ? styles.enabled : styles.disabled }` }
+                    role="button"
+                    aria-label="Skills"
+                    tabIndex={ 0 }
+                    onClick={ setSkillsSelected }
+                    onKeyPress={ setSkillsSelected }>
+                    Skills
+                </span> &amp; 
+                <span className={ `${ styles.selector } ${ styles.interests } ${ selectedCategory === SkillType.interest ? styles.enabled : styles.disabled }` }
+                    role="button"
+                    aria-label="Interests"
+                    tabIndex={ 0 }
+                    onClick={ setInterestsSelected }
+                    onKeyPress={ setInterestsSelected }>
+                    Interests
+                </span> &amp;
+                <span className={ `${ styles.selector } ${ styles.certifications } ${ selectedCategory === SkillType.certification ? styles.enabled : styles.disabled }` }
+                    role="button"
+                    aria-label="Certifications"
+                    tabIndex={ 0 }
+                    onClick={ setCertificationsSelected }
+                    onKeyPress={ setCertificationsSelected }>
+                    Certifications
+                </span>
             </div>
+            {
+                SKILLS.map((entry, index) => {
+                    return (
+                        <Flipcard key={ index }
+                            selected={ selectedCategory === entry.type }
+                            onClick={ (): void => setSelectedCategory(entry.type) }
+                            theme={ styles[entry.type] }
+                            id={ entry.id }
+                            imageSrc={ entry.imageSrc }
+                            imageAlt={ entry.imageAlt }
+                        >
+                            <SkillTab { ...entry }/>
+                        </Flipcard>
+                    );
+                })
+            }
         </div>
     );
 };

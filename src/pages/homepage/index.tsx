@@ -34,10 +34,12 @@ const Homepage: FunctionComponent = () => {
             <div className="section">
                 <InstagramSection />
             </div>
-            <div className="section fullwidth" id="projects">
+            <div className="section fullwidth" id="skills">
                 <Skills />
             </div>
-            <ProjectsSection />
+            <div id="projects">
+                <ProjectsSection />
+            </div>
         </Navigation>
     );
 };
