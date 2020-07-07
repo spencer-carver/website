@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import puzzles from "../../puzzles";
@@ -7,7 +7,7 @@ import { PuzzleComplete } from "./puzzle";
 import { Puzzle } from "../../@types/puzzles";
 import styles from "./puzzle/styles.module.scss";
 
-const Puzzles = (): JSX.Element => {
+const Puzzles: FunctionComponent = () => {
     const answerCount = Object.keys(puzzles).reduce((count: number, puzzleId: string): number => count + (getCookieValue(puzzleId) ? 1 : 0), 0);
     const [ numberAnswered, setNumberAnswered ] = useState(answerCount);
 

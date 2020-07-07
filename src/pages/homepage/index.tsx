@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import Navigation from "../../modules/Navigation";
 import Slideshow, { ImageSlide } from "../../modules/Slideshow";
-import AboutMeSection from "../../modules/AboutMe";
+import AboutMe from "../../modules/AboutMe";
 import InstagramSection from "../../modules/Instagram";
 import Skills from "../../modules/Skills";
 import ProjectsSection from "../../modules/Projects";
@@ -9,7 +9,6 @@ import climbing from "../../images/climbing.jpg";
 import climbingWebp from "../../images/climbing.webp";
 import seated from "../../images/seated.jpg";
 import seatedWebp from "../../images/seated.webp";
-import { FunctionalComponent } from "../../@types/generic";
 import "../../modules/styles.scss";
 
 const slideshowProps = [
@@ -17,24 +16,28 @@ const slideshowProps = [
     { image: { src: climbing, srcWebp: climbingWebp } }
 ];
 
-const Homepage = (): JSX.Element => {
+const Homepage: FunctionComponent = () => {
     return (
         <Navigation>
-            { Slideshow({
-                items: slideshowProps,
-                component: ImageSlide as FunctionalComponent,
-                options: {
+            <Slideshow
+                items={ slideshowProps }
+                component={ ImageSlide }
+                options={ {
                     isHero: true,
                     overlayLogo: true,
                     hideMobile: true
-                }
-            }) }
-            { AboutMeSection() }
-            { InstagramSection() }
+                } }
+            />
+            <div className="section" id="about-me">
+                <AboutMe />
+            </div>
             <div className="section">
+                <InstagramSection />
+            </div>
+            <div className="section fullwidth" id="projects">
                 <Skills />
             </div>
-            { ProjectsSection() }
+            <ProjectsSection />
         </Navigation>
     );
 };

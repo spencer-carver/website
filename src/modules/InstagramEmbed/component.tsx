@@ -1,11 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FunctionComponent } from "react";
 import Link from "../../components/link";
 import "./styles.scss";
 
 /* eslint-disable max-len */
 
-const InstagramEmbed = ({ postId }: { postId?: string }): JSX.Element | null => {
+const InstagramEmbed: FunctionComponent<{ postId?: string }> = ({ postId }) => {
     if (!postId) {
         return null;
     }
@@ -34,10 +33,6 @@ const InstagramEmbed = ({ postId }: { postId?: string }): JSX.Element | null => 
             </blockquote>
         </div>
     );
-};
-
-InstagramEmbed.propTypes = {
-    postId: PropTypes.string.isRequired
 };
 
 export default InstagramEmbed;

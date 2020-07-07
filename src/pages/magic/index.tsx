@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import styles from "./styles.module.scss";
 
-const Magic = (): JSX.Element => {
+const Magic: FunctionComponent = () => {
     return (
         <Navigation>
             <div className={ styles.content }>

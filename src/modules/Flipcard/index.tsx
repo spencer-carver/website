@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, FunctionComponent } from "react";
 import styles from "./styles.module.scss";
 
 interface FlipcardProps {
@@ -11,7 +11,7 @@ interface FlipcardProps {
     children?: Array<ReactElement> | ReactElement;
 }
 
-const Flipcard = (props: FlipcardProps): JSX.Element => {
+const Flipcard: FunctionComponent<FlipcardProps> = (props) => {
     const {
         id,
         imageSrc,

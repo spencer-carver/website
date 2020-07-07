@@ -1,6 +1,5 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import React, { ReactElement, useState, useEffect, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import ExternalLink from "../../components/link";
 import {
     FACEBOOK_URL,
@@ -23,7 +22,7 @@ interface NavigationProps {
     children: Array<ReactElement> | ReactElement;
 }
 
-const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Element => {
+const Navigation: FunctionComponent<NavigationProps> = ({ isLoading = false, children }) => {
     const [ focus, setFocus ] = useState(0);
     const [ expanded, setExpanded ] = useState(false);
     const [ loading, setLoading ] = useState(false);
@@ -100,12 +99,7 @@ const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Eleme
     );
 };
 
-Navigation.propTypes = {
-    isLoading: PropTypes.bool,
-    children: PropTypes.any
-};
-
-const SocialButtons = (): JSX.Element => {
+const SocialButtons: FunctionComponent = () => {
     return (
         <div className={ `${ styles.socialLinks } ${ styles.sticky }` }>
             <InstagramIcon />
@@ -128,7 +122,7 @@ const SocialButtons = (): JSX.Element => {
     );
 };
 
-export const InstagramIcon = ({ theme = "white" }): JSX.Element => {
+export const InstagramIcon: FunctionComponent<{ theme?: string }> = ({ theme = "white" }) => {
     return (
         <ExternalLink
             linkStyle={ `${ styles.socialIcon } ${ styles.instagram } ${ styles[theme] }` }
@@ -138,15 +132,11 @@ export const InstagramIcon = ({ theme = "white" }): JSX.Element => {
     );
 };
 
-InstagramIcon.propTypes = {
-    theme: PropTypes.string
-};
-
 interface SiteNavProps {
     expanded: boolean;
 }
 
-const SiteNav = ({ expanded }: SiteNavProps): JSX.Element => {
+const SiteNav: FunctionComponent<SiteNavProps> = ({ expanded }) => {
     return (
         <div className={ `${ styles.siteNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
             <div className={ styles.siteNavContents }>
@@ -161,10 +151,6 @@ const SiteNav = ({ expanded }: SiteNavProps): JSX.Element => {
     );
 };
 
-SiteNav.propTypes = {
-    expanded: PropTypes.bool.isRequired
-};
-
 interface PageNavProps {
     sections?: Array<string>;
     selected: number;
@@ -172,7 +158,7 @@ interface PageNavProps {
     expanded: boolean;
 }
 
-const PageNav = ({ sections = [], selected, setSelected, expanded }: PageNavProps): JSX.Element => {
+const PageNav: FunctionComponent<PageNavProps> = ({ sections = [], selected, setSelected, expanded }) => {
     return (
         <div id="navBar" className={ `${ styles.navBar } ${ expanded ? styles.expanded : styles.collapsed }` }>
             <div className={ styles.navContainer }>
@@ -195,19 +181,12 @@ const PageNav = ({ sections = [], selected, setSelected, expanded }: PageNavProp
     );
 };
 
-PageNav.propTypes = {
-    sections: PropTypes.arrayOf(PropTypes.string),
-    selected: PropTypes.number.isRequired,
-    setSelected: PropTypes.func.isRequired,
-    expanded: PropTypes.bool.isRequired
-};
-
 interface SiteLogoProps {
     expanded: boolean;
     onClick: ((event: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent) => void);
 }
 
-const SiteLogo = ({ expanded, onClick }: SiteLogoProps): JSX.Element => {
+const SiteLogo: FunctionComponent<SiteLogoProps> = ({ expanded, onClick }) => {
     return (
         <div className={ `${ styles.logo } ${ styles.sticky } ${ expanded ? styles.expanded : styles.collapsed }` }
             role="button"
@@ -235,7 +214,7 @@ declare module "react" {
     }
 }
 
-const NavItem = ({ name, index, selected = false, setSelected }: NavItemProps): JSX.Element => {
+const NavItem: FunctionComponent<NavItemProps> = ({ name, index, selected = false, setSelected }) => {
     function onItemClick(event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent): void {
         setSelected(index);
 
@@ -272,13 +251,6 @@ const NavItem = ({ name, index, selected = false, setSelected }: NavItemProps): 
             { readableName }
         </div>
     );
-};
-
-NavItem.propTypes = {
-    name: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
-    selected: PropTypes.bool,
-    setSelected: PropTypes.func.isRequired
 };
 
 export default Navigation;

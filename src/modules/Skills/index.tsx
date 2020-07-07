@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState, FunctionComponent } from "react";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import Flipcard from "../Flipcard";
 import SKILLS, { SkillType } from "./skills";
 import styles from "./styles.module.scss";
 
 
-const Skills = (): JSX.Element => {
+const Skills: FunctionComponent = () => {
     const [ selectedCategory, setSelectedCategory ] = useState(SkillType.skill);
 
     const setSkillsSelected = (): void => setSelectedCategory(SkillType.skill);
@@ -74,7 +73,7 @@ interface SkillTabParams {
     showTenure?: boolean;
 }
 
-const SkillTab = (props: SkillTabParams): JSX.Element => {
+const SkillTab: FunctionComponent<SkillTabParams> = (props) => {
     const {
         id,
         title,
@@ -105,14 +104,4 @@ const SkillTab = (props: SkillTabParams): JSX.Element => {
         </div>
     );
 };
-
-SkillTab.propTypes = {
-    title: PropTypes.string.isRequired,
-    startDate: PropTypes.instanceOf(Date),
-    endDate: PropTypes.instanceOf(Date),
-    experienceLevel: PropTypes.string,
-    showTenure: PropTypes.bool,
-    children: PropTypes.element
-};
-
 export default Skills;

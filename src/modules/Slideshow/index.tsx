@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 import Image, { ImageSrc } from "../../components/image";
 import backgroundImageWebp from "../../images/placeholder.webp";
 import backgroundImage from "../../images/placeholder.jpg";
-import { FunctionalComponent, PropsObject } from "../../@types/generic";
 import styles from "./styles.module.scss";
 
 const TRANSITION_TIME = 8000; // in ms
@@ -21,12 +20,14 @@ interface SlideshowOptions {
 }
 
 interface SlideshowProps {
-    items: Array<PropsObject>;
-    component: FunctionalComponent;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    items: Array<{ [key: string]: any }>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    component: FunctionComponent<any>;
     options: SlideshowOptions;
 }
 
-const Slideshow = ({ items, component: Component, options }: SlideshowProps): JSX.Element => {
+const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Component, options }) => {
     const {
         isHero = false,
         overlayLogo = false,
@@ -99,7 +100,7 @@ interface IndicatorProps {
     setSelected: Function;
 }
 
-const Indicator = ({ index, selected, setSelected }: IndicatorProps): JSX.Element => {
+const Indicator: FunctionComponent<IndicatorProps> = ({ index, selected, setSelected }) => {
     const setIndicator = (): void => setSelected(index);
 
     return (
@@ -119,7 +120,7 @@ interface ImageSlideProps {
     image: ImageSrc;
 }
 
-export const ImageSlide = ({ index, image, selected }: ImageSlideProps): JSX.Element => {
+export const ImageSlide: FunctionComponent<ImageSlideProps> = ({ index, image, selected }) => {
     return (
         <div className={ `${ styles.slide } ${ selected === index ? styles.selected : "" }` }>
             <Image image={ image } alt="Spencer" imageStyle={ styles.image } />

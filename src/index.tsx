@@ -1,5 +1,5 @@
 import "react-app-polyfill/ie11";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { render } from "react-snapshot";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Footer from "./modules/Footer";
@@ -15,7 +15,7 @@ import Error from "./pages/error";
 import { unregister as unregisterServiceWorker } from "./registerServiceWorker";
 import "./index.scss";
 
-const Sitemap = (): JSX.Element => (
+const Sitemap: FunctionComponent = () => (
     <Router>
         <main className="page">
             <Switch>
@@ -31,7 +31,7 @@ const Sitemap = (): JSX.Element => (
                 <Redirect from="/mtg" exact to="/magic" />
                 <Route path="/magic" exact component={ Magic } />
                 <Route path="/magic/deck/:deckName" exact component={ MagicDeck } />
-                <Route path="*" render={ (): JSX.Element => <Error errorCode={ 404 } /> } />
+                <Route path="*" render={ (() => <Error errorCode={ 404 } />) as FunctionComponent } />
             </Switch>
             <Footer />
         </main>

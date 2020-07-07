@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, FunctionComponent } from "react";
 
 interface LinkProps {
     linkStyle: string;
@@ -6,7 +6,7 @@ interface LinkProps {
     children: Array<ReactElement> | ReactElement | string;
 }
 
-const Link = ({ linkStyle, to, children }: LinkProps): JSX.Element => {
+const Link: FunctionComponent<LinkProps> = ({ linkStyle, to, children }) => {
     return (
         <a className={ linkStyle }
             href={ to }
