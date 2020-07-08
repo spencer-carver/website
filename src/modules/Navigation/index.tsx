@@ -17,6 +17,25 @@ function ensureArray(value: Array<ReactElement> | ReactElement): Array<ReactElem
         : [ value ];
 }
 
+function getIdFromDOM(): string | undefined {
+    let inViewArr;
+
+    if (document.elementsFromPoint) {
+        inViewArr = document.elementsFromPoint(100, 200);
+        // This is a bit of a hack, but the 'elementsFromPoint' dom util always returns the hierarchy top down.
+        // I know bottom-up is: 'html', 'body', 'div#root', 'main.page', 'div.spacer', 'div#sectionId'
+        // So I can reverse index into the array and find the sectionId (if it exists)
+        return (inViewArr[inViewArr.length - 6] || {}).id;
+    }
+
+    // IE11 does not support the 'elementsFromPoint' method, but does have it's own which isn't
+    // categorized by typescript. Additionally, IE11 does not recognize the '<main>' element, so
+    // it will return an array that is 1 less element than modern browsers
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    inViewArr = (document as any).msElementsFromPoint(100, 200);
+    return (inViewArr[inViewArr.length - 5] || {}).id;
+}
+
 interface NavigationProps {
     isLoading?: boolean;
     children: Array<ReactElement> | ReactElement;
@@ -44,11 +63,11 @@ const Navigation: FunctionComponent<NavigationProps> = ({ isLoading = false, chi
                 return;
             }
 
-            const inViewArr = document.elementsFromPoint(100, 200);
-            // This is a bit of a hack, but the 'elementsFromPoint' dom util always returns the hierarchy top down.
-            // I know bottom-up is: 'html', 'body', 'div#root', 'main.page', 'div.spacer', 'div#sectionId'
-            // So I can reverse index into the array and find the sectionId (if it exists)
-            const { id } = inViewArr[inViewArr.length - 6] || {};
+            const id = getIdFromDOM();
+
+            if (!id) {
+                return;
+            }
 
             setFocus(Math.max(0, sectionNames.indexOf(id)));
         }
