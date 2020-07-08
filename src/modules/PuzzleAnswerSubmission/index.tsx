@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import { API_URL } from "../../constants/ExternalUrls";
 import styles from "./styles.module.scss";
 
@@ -14,7 +14,7 @@ interface PuzzleAnswer {
     value: string;
 }
 
-const PuzzleAnswerSubmission = ({ puzzleName, onSuccess }: PuzzleAnswerSubmissionProps): JSX.Element => {
+const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = ({ puzzleName, onSuccess }) => {
     const [ answer, setAnswer ] = useState("");
     const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
     const [ hintCount, setHintCount ] = useState(0);
@@ -62,7 +62,7 @@ const PuzzleAnswerSubmission = ({ puzzleName, onSuccess }: PuzzleAnswerSubmissio
     );
 };
 
-const PastAnswers = ({ pastAnswers }: { pastAnswers: PuzzleAnswer[] }): JSX.Element => {
+const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastAnswers }) => {
     return (
         <ul id="pastAnswers" className={ styles.pastAnswers }>
             { pastAnswers.map((pastResult, index) => {

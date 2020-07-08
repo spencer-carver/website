@@ -1,10 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import styles from "./styles.module.scss";
 
-const Error = ({ errorCode }: { errorCode: number }): JSX.Element => {
+const Error: FunctionComponent<{ errorCode: number }> = ({ errorCode }) => {
     return (
         <Navigation>
             <div className={ styles.content }>
@@ -14,10 +13,6 @@ const Error = ({ errorCode }: { errorCode: number }): JSX.Element => {
             </div>
         </Navigation>
     );
-};
-
-Error.propTypes = {
-    errorCode: PropTypes.number.isRequired
 };
 
 export default Error;

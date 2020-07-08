@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 interface AudioTrackProps {
     audioStyles: string;
@@ -6,7 +6,7 @@ interface AudioTrackProps {
     subtitleSrc: string;
 }
 
-const AudioTrack = ({ audioStyles, src, subtitleSrc }: AudioTrackProps): JSX.Element => {
+const AudioTrack: FunctionComponent<AudioTrackProps> = ({ audioStyles, src, subtitleSrc }) => {
     return (
         <audio className={ audioStyles } controls>
             <track label="English" kind="captions" srcLang="en" src={ subtitleSrc } default />

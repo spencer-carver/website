@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import styles from "./styles.module.scss";
 
 const WORD_SEARCH = [
@@ -124,7 +124,7 @@ const WORDS = [
     "ANY 'J' OR 'Q'"
 ];
 
-const Wordsearch = (): JSX.Element => {
+const Wordsearch: FunctionComponent = () => {
     const [ showLetters, setShowLetters ] = useState(true);
     const [ showGrid, setShowGrid ] = useState(true);
 
@@ -179,7 +179,7 @@ const Wordsearch = (): JSX.Element => {
     );
 };
 
-const Word = ({ word }: { word: string }): JSX.Element => {
+const Word: FunctionComponent<{ word: string }> = ({ word }) => {
     const [ found, setFound ] = useState(false);
 
     const toggleFound = (): void => setFound(!found);
@@ -197,7 +197,7 @@ const Word = ({ word }: { word: string }): JSX.Element => {
     /* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-element-to-interactive-role */
 };
 
-const Cell = ({ value, showLetters, showGrid }: { value: string; showLetters: boolean; showGrid: boolean }): JSX.Element => {
+const Cell: FunctionComponent<{ value: string; showLetters: boolean; showGrid: boolean }> = ({ value, showLetters, showGrid }) => {
     const [ redacted, setRedacted ] = useState(false);
     const [ selected, setSelected ] = useState(false);
 

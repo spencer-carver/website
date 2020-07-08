@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../../modules/Navigation";
 import { Recipe, RecipeDetails, Direction, RecipeListDetails } from "../../../@types/recipes";
@@ -16,7 +16,7 @@ interface RecipeRouterProps {
     };
 }
 
-const RecipeComponent = (props: RecipeRouterProps): JSX.Element => {
+const RecipeComponent: FunctionComponent<RecipeRouterProps> = (props) => {
     const {
         recipeName
     } = props.match.params;
@@ -162,7 +162,7 @@ interface HeaderProps extends RecipeDetails {
     scaleFactor: number;
 }
 
-const Header = (props: HeaderProps): JSX.Element => {
+const Header: FunctionComponent<HeaderProps> = (props) => {
     const { name, scaleFactor, author, link, tools, timing: { prepTime, cookTime, totalTime }, output, image, video } = props;
     const makes = output ? Math.max(Math.floor(scaleFactor * output.amount), 1) : 1;
     const units = output ? output.unit : "serving";
@@ -199,7 +199,7 @@ interface IngredientProps {
     setScaleFactor: Function;
 }
 
-const Ingredient = ({ amount, measurement, quantity, style, item, setScaleFactor }: IngredientProps): JSX.Element => {
+const Ingredient: FunctionComponent<IngredientProps> = ({ amount, measurement, quantity, style, item, setScaleFactor }) => {
     const [ editable, setEditable ] = useState(false);
 
     const onClick = (): void => setEditable(!editable);
@@ -230,7 +230,7 @@ interface ScaleByIngredientProps {
     setScaleFactor: Function;
 }
 
-const ScaleByIngredent = ({ originalAmount, currentAmount, editable, setScaleFactor }: ScaleByIngredientProps): JSX.Element => {
+const ScaleByIngredent: FunctionComponent<ScaleByIngredientProps> = ({ originalAmount, currentAmount, editable, setScaleFactor }) => {
     const [ currentValue, setCurrentValue ] = useState(currentAmount.toString());
 
     function filterValue(value: string): number {
@@ -271,7 +271,7 @@ interface StepProps {
     direction: Direction;
 }
 
-const Step = ({ index, direction }: StepProps): JSX.Element => {
+const Step: FunctionComponent<StepProps> = ({ index, direction }) => {
     const [ complete, setComplete ] = useState(false);
 
     const toggleComplete = (): void => setComplete(!complete);
@@ -285,7 +285,7 @@ const Step = ({ index, direction }: StepProps): JSX.Element => {
     );
 };
 
-const RelatedRecipe = ({ id, name }: RecipeListDetails): JSX.Element => {
+const RelatedRecipe: FunctionComponent<RecipeListDetails> = ({ id, name }) => {
     return <Link to={ `/recipe/${ id }` }>{ name }</Link>;
 };
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 import Navigation from "../../../modules/Navigation";
 import styles from "./styles.module.scss";
 import { API_URL } from "../../../constants/ExternalUrls";
@@ -7,7 +7,7 @@ import fetchFromCache from "../../../utils/cache";
 
 const CARD_TTL = 604800000; // 1 week
 
-interface RecipeRouterProps {
+interface DeckRouterProps {
     match: {
         params: {
             deckName: string;
@@ -97,7 +97,7 @@ function massageDeck(data: MTGDeck): FormattedDeck {
     };
 }
 
-const Deck = (props: RecipeRouterProps): JSX.Element => {
+const Deck: FunctionComponent<DeckRouterProps> = (props) => {
     const {
         deckName
     } = props.match.params;

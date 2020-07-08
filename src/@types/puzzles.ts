@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "./generic";
+import { FunctionComponent } from "react";
 
 export enum PuzzleType {
     video = "video",
@@ -12,5 +12,5 @@ export interface Puzzle {
     type: PuzzleType;
     srcUrl?: string;
     assetSrc?: string;
-    content?: FunctionalComponent;
+    content?: FunctionComponent;
 }

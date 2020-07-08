@@ -1,6 +1,5 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import useScript from "../../utils/useScript";
-import PropTypes from "prop-types";
 import InstagramEmbed from "./component";
 
 export const InstagramPosts = {
@@ -31,14 +30,10 @@ export function reloadInstagramEmbeds(): void {
         && window.instgrm.Embeds.process();
 }
 
-const InstagramEmbedContainer = ({ postId = InstagramPosts.pacificCrestTrail }): JSX.Element => {
+const InstagramEmbedContainer: FunctionComponent<{ postId?: string }> = ({ postId = InstagramPosts.pacificCrestTrail }) => {
     useScript("https://www.instagram.com/embed.js");
 
     return <InstagramEmbed postId={ postId } />;
-};
-
-InstagramEmbedContainer.propTypes = {
-    postId: PropTypes.string
 };
 
 export default InstagramEmbedContainer;

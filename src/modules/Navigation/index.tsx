@@ -1,6 +1,5 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import React, { ReactElement, useState, useEffect, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import ExternalLink from "../../components/link";
 import {
     FACEBOOK_URL,
@@ -18,12 +17,31 @@ function ensureArray(value: Array<ReactElement> | ReactElement): Array<ReactElem
         : [ value ];
 }
 
+function getIdFromDOM(): string | undefined {
+    let inViewArr;
+
+    if (document.elementsFromPoint) {
+        inViewArr = document.elementsFromPoint(100, 200);
+        // This is a bit of a hack, but the 'elementsFromPoint' dom util always returns the hierarchy top down.
+        // I know bottom-up is: 'html', 'body', 'div#root', 'main.page', 'div.spacer', 'div#sectionId'
+        // So I can reverse index into the array and find the sectionId (if it exists)
+        return (inViewArr[inViewArr.length - 6] || {}).id;
+    }
+
+    // IE11 does not support the 'elementsFromPoint' method, but does have it's own which isn't
+    // categorized by typescript. Additionally, IE11 does not recognize the '<main>' element, so
+    // it will return an array that is 1 less element than modern browsers
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    inViewArr = (document as any).msElementsFromPoint(100, 200);
+    return (inViewArr[inViewArr.length - 5] || {}).id;
+}
+
 interface NavigationProps {
     isLoading?: boolean;
     children: Array<ReactElement> | ReactElement;
 }
 
-const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Element => {
+const Navigation: FunctionComponent<NavigationProps> = ({ isLoading = false, children }) => {
     const [ focus, setFocus ] = useState(0);
     const [ expanded, setExpanded ] = useState(false);
     const [ loading, setLoading ] = useState(false);
@@ -34,9 +52,7 @@ const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Eleme
     }
 
     const sectionNames = ensureArray(children).reduce((accumulatedNames: string[], { props: { id } }: { props: { id: string } }) => {
-        if (id) {
-            accumulatedNames.push(id);
-        }
+        accumulatedNames.push(id || "");
 
         return accumulatedNames;
     }, []);
@@ -47,17 +63,13 @@ const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Eleme
                 return;
             }
 
-            const focusedSection = document.getElementById(sectionNames[focus]);
+            const id = getIdFromDOM();
 
-            if (!focusedSection) {
+            if (!id) {
                 return;
             }
 
-            if (focusedSection.getBoundingClientRect().bottom < 70) {
-                setFocus(focus + 1);
-            } else if (focusedSection.getBoundingClientRect().top > 70) {
-                setFocus(Math.max(focus - 1, 0));
-            }
+            setFocus(Math.max(0, sectionNames.indexOf(id)));
         }
 
         window.addEventListener("scroll", reportScrollY);
@@ -100,12 +112,7 @@ const Navigation = ({ isLoading = false, children }: NavigationProps): JSX.Eleme
     );
 };
 
-Navigation.propTypes = {
-    isLoading: PropTypes.bool,
-    children: PropTypes.any
-};
-
-const SocialButtons = (): JSX.Element => {
+const SocialButtons: FunctionComponent = () => {
     return (
         <div className={ `${ styles.socialLinks } ${ styles.sticky }` }>
             <InstagramIcon />
@@ -128,7 +135,7 @@ const SocialButtons = (): JSX.Element => {
     );
 };
 
-export const InstagramIcon = ({ theme = "white" }): JSX.Element => {
+export const InstagramIcon: FunctionComponent<{ theme?: string }> = ({ theme = "white" }) => {
     return (
         <ExternalLink
             linkStyle={ `${ styles.socialIcon } ${ styles.instagram } ${ styles[theme] }` }
@@ -138,15 +145,11 @@ export const InstagramIcon = ({ theme = "white" }): JSX.Element => {
     );
 };
 
-InstagramIcon.propTypes = {
-    theme: PropTypes.string
-};
-
 interface SiteNavProps {
     expanded: boolean;
 }
 
-const SiteNav = ({ expanded }: SiteNavProps): JSX.Element => {
+const SiteNav: FunctionComponent<SiteNavProps> = ({ expanded }) => {
     return (
         <div className={ `${ styles.siteNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
             <div className={ styles.siteNavContents }>
@@ -161,10 +164,6 @@ const SiteNav = ({ expanded }: SiteNavProps): JSX.Element => {
     );
 };
 
-SiteNav.propTypes = {
-    expanded: PropTypes.bool.isRequired
-};
-
 interface PageNavProps {
     sections?: Array<string>;
     selected: number;
@@ -172,21 +171,27 @@ interface PageNavProps {
     expanded: boolean;
 }
 
-const PageNav = ({ sections = [], selected, setSelected, expanded }: PageNavProps): JSX.Element => {
+const PageNav: FunctionComponent<PageNavProps> = ({ sections = [], selected, setSelected, expanded }) => {
     return (
         <div id="navBar" className={ `${ styles.navBar } ${ expanded ? styles.expanded : styles.collapsed }` }>
             <div className={ styles.navContainer }>
                 <div className={ `${ styles.pageNav } ${ expanded ? styles.expanded : styles.collapsed }` }>
                     {  
-                        sections.map((name, index) => (
-                            <NavItem
-                                key={ name }
-                                name={ name }
-                                index={ index }
-                                selected={ selected === index }
-                                setSelected={ setSelected }
-                            />
-                        ))
+                        sections.map((name, index) => {
+                            if (!name) {
+                                return null;
+                            }
+
+                            return (
+                                <NavItem
+                                    key={ name }
+                                    name={ name }
+                                    index={ index }
+                                    selected={ selected === index }
+                                    setSelected={ setSelected }
+                                />
+                            );
+                        })
                     }
                 </div>
                 <div className={ styles.siteNavBackground }></div>
@@ -195,19 +200,12 @@ const PageNav = ({ sections = [], selected, setSelected, expanded }: PageNavProp
     );
 };
 
-PageNav.propTypes = {
-    sections: PropTypes.arrayOf(PropTypes.string),
-    selected: PropTypes.number.isRequired,
-    setSelected: PropTypes.func.isRequired,
-    expanded: PropTypes.bool.isRequired
-};
-
 interface SiteLogoProps {
     expanded: boolean;
     onClick: ((event: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent) => void);
 }
 
-const SiteLogo = ({ expanded, onClick }: SiteLogoProps): JSX.Element => {
+const SiteLogo: FunctionComponent<SiteLogoProps> = ({ expanded, onClick }) => {
     return (
         <div className={ `${ styles.logo } ${ styles.sticky } ${ expanded ? styles.expanded : styles.collapsed }` }
             role="button"
@@ -235,7 +233,7 @@ declare module "react" {
     }
 }
 
-const NavItem = ({ name, index, selected = false, setSelected }: NavItemProps): JSX.Element => {
+const NavItem: FunctionComponent<NavItemProps> = ({ name, index, selected = false, setSelected }) => {
     function onItemClick(event: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent): void {
         setSelected(index);
 
@@ -272,13 +270,6 @@ const NavItem = ({ name, index, selected = false, setSelected }: NavItemProps): 
             { readableName }
         </div>
     );
-};
-
-NavItem.propTypes = {
-    name: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
-    selected: PropTypes.bool,
-    setSelected: PropTypes.func.isRequired
 };
 
 export default Navigation;

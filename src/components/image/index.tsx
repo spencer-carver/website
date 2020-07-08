@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 export interface ImageSrc {
     src: string;
@@ -12,7 +12,7 @@ interface ImageProps {
     imageStyle: string;
 }
 
-const Image = ({ image: { src, srcWebp }, alt, title, imageStyle }: ImageProps): JSX.Element => {
+const Image: FunctionComponent<ImageProps> = ({ image: { src, srcWebp }, alt, title, imageStyle }) => {
 
     return (
         <picture className={ imageStyle }>

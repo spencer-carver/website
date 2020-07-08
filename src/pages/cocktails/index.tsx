@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import Link from "../../components/link";
 import Navigation from "../../modules/Navigation";
 import cocktails, { Cocktail } from "./cocktails";
 import styles from "./styles.module.scss";
 
-const Cocktails = (): JSX.Element => {
+const Cocktails: FunctionComponent = () => {
     return (
         <Navigation>
             <div className={ styles.content }>
@@ -22,7 +22,7 @@ const Cocktails = (): JSX.Element => {
     );
 };
 
-const MenuItem = ({ name, ingredients, description, link }: Cocktail): JSX.Element => {
+const MenuItem: FunctionComponent<Cocktail> = ({ name, ingredients, description, link }) => {
     return (
         <div>
             <h2 className={ styles.name }>

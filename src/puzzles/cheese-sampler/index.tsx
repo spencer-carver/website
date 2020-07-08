@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import ImageComponent from "../../components/image";
 import AudioTrack from "../../components/audio";
 import styles from "./styles.module.scss";
@@ -24,7 +24,7 @@ const CHEESES: { [key: string]: string } = {
     "primo-sale": "3 🎵"
 };
 
-const CheeseSampler = (): JSX.Element => {
+const CheeseSampler: FunctionComponent = () => {
 
 
     /*
@@ -41,7 +41,11 @@ const CheeseSampler = (): JSX.Element => {
     );
 };
 
-const Image = ({ cheese }: { cheese: string }): JSX.Element => {
+interface CheeseProp {
+    cheese: string;
+}
+
+const Image: FunctionComponent<CheeseProp> = ({ cheese }) => {
     return (
         <div className={ styles.imageContainer }>
             <span className={ styles.label }>{ CHEESES[cheese] }</span>
@@ -57,7 +61,7 @@ const Image = ({ cheese }: { cheese: string }): JSX.Element => {
     );
 };
 
-const Song = ({ cheese }: { cheese: string }): JSX.Element => {
+const Song: FunctionComponent<CheeseProp> = ({ cheese }) => {
     return <AudioTrack audioStyles={ styles.song } src={ `${ ASSET_BASE_URL }/${ cheese }.mp3` } subtitleSrc={ `${ ASSET_BASE_URL }/${ cheese }.vtt` } />;
 };
 

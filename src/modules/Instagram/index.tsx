@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import Link from "../../components/link";
 import { InstagramIcon } from "../Navigation";
 import { INSTAGRAM_URL } from "../../constants/ExternalUrls";
 import styles from "./styles.module.scss";
 import "../styles.scss";
 
-const Instagram = (): JSX.Element => {
+const Instagram: FunctionComponent = () => {
     return (
         <div className="section">
             <div className={ `sectionContent ${ styles.instagram }` }>

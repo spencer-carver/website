@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import styles from "./styles.module.scss";
 
 const DANCE_FLOOR = [
@@ -9,7 +9,7 @@ const DANCE_FLOOR = [
     [ "", "N B I O G", "W", "X T U R", "" ]
 ];
 
-const YakuzaZero = (): JSX.Element => {
+const YakuzaZero: FunctionComponent = () => {
     return (
         <div className={ styles.content }>
             <div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import ExternalLink from "../../components/link";
 import Stream from "../Stream";
@@ -15,9 +15,9 @@ import "../styles.scss";
 
 const MY_BIRTHDAY = new Date(1991, 2, 23);
 
-const AboutMe = (): JSX.Element => {
+const AboutMe: FunctionComponent = () => {
     return (
-        <div id="about-me" className="section">
+        <React.Fragment>
             <div className="sectionContent">
                 <div className={ styles.personalBlurb }>
                     <div className={ styles.photoContainer }>
@@ -39,7 +39,7 @@ const AboutMe = (): JSX.Element => {
                 </div>
             </div>
             <Stream />
-        </div>
+        </React.Fragment>
     );
 };
 

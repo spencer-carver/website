@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import Link from "../../components/link";
 import styles from "./styles.module.scss";
 
@@ -10,7 +10,7 @@ const RESISTOR_BANDS_LINK = "https://static4.arrow.com/-/media/arrow/images/misc
 const ASCII_LINK = "https://www.asciitable.com/";
 const ANAGRAM_LINK = "https://www.wordplays.com/anagrammer";
 
-const Tutorial = (): JSX.Element => {
+const Tutorial: FunctionComponent = () => {
     const [ showRowNumbers, setShowRowNumbers ] = useState(false);
 
     const rowNumberStyle = `${ styles.rowNumber } ${ showRowNumbers ? styles.visible : "" }`;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../modules/Navigation";
 import { RecipeList, RecipeListDetails, RecipeListKey } from "../../@types/recipes";
@@ -6,7 +6,7 @@ import { API_URL } from "../../constants/ExternalUrls";
 import fetchFromCache from "../../utils/cache";
 import styles from "./recipe/styles.module.scss";
 
-const RecipesPage = (): JSX.Element => {
+const RecipesPage: FunctionComponent = () => {
     const [ loaded, setLoaded ] = useState(false);
     const [ recipeList, setRecipeList ] = useState({} as unknown as RecipeList);
 
@@ -34,7 +34,7 @@ const RecipesPage = (): JSX.Element => {
                     <span>Some of my favorite recipes. List and format is currently being revised</span>
                 </div>
                 {
-                    Object.keys(recipeList).map((section: string): JSX.Element | null => {
+                    Object.keys(recipeList).map((section: string) => {
                         const recipes = recipeList[section as RecipeListKey];
 
                         if (recipes.length === 0) {
@@ -54,7 +54,7 @@ const RecipesPage = (): JSX.Element => {
     );
 };
 
-const MenuItem = ({ name, id }: RecipeListDetails): JSX.Element => {
+const MenuItem: FunctionComponent<RecipeListDetails> = ({ name, id }) => {
     return (
         <div>
             <h2 className={ styles.name }>

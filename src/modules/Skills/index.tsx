@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState, FunctionComponent } from "react";
 import calculateYearsBetween from "../../utils/calculateYearsBetween";
 import Flipcard from "../Flipcard";
 import SKILLS, { SkillType } from "./skills";
 import styles from "./styles.module.scss";
 
 
-const Skills = (): JSX.Element => {
+const Skills: FunctionComponent = () => {
     const [ selectedCategory, setSelectedCategory ] = useState(SkillType.skill);
 
     const setSkillsSelected = (): void => setSelectedCategory(SkillType.skill);
@@ -14,51 +13,49 @@ const Skills = (): JSX.Element => {
     const setCertificationsSelected = (): void => setSelectedCategory(SkillType.certification);
 
     return (
-        <div>
-            <div className={ styles.section }>
-                <div className={ styles.controls }>
-                    <span className={ `${ styles.selector } ${ styles.skills } ${ selectedCategory === SkillType.skill ? styles.enabled : styles.disabled }` }
-                        role="button"
-                        aria-label="Skills"
-                        tabIndex={ 0 }
-                        onClick={ setSkillsSelected }
-                        onKeyPress={ setSkillsSelected }>
-                        Skills
-                    </span> &amp; 
-                    <span className={ `${ styles.selector } ${ styles.interests } ${ selectedCategory === SkillType.interest ? styles.enabled : styles.disabled }` }
-                        role="button"
-                        aria-label="Interests"
-                        tabIndex={ 0 }
-                        onClick={ setInterestsSelected }
-                        onKeyPress={ setInterestsSelected }>
-                        Interests
-                    </span> &amp;
-                    <span className={ `${ styles.selector } ${ styles.certifications } ${ selectedCategory === SkillType.certification ? styles.enabled : styles.disabled }` }
-                        role="button"
-                        aria-label="Certifications"
-                        tabIndex={ 0 }
-                        onClick={ setCertificationsSelected }
-                        onKeyPress={ setCertificationsSelected }>
-                        Certifications
-                    </span>
-                </div>
-                {
-                    SKILLS.map((entry, index) => {
-                        return (
-                            <Flipcard key={ index }
-                                selected={ selectedCategory === entry.type }
-                                onClick={ (): void => setSelectedCategory(entry.type) }
-                                theme={ styles[entry.type] }
-                                id={ entry.id }
-                                imageSrc={ entry.imageSrc }
-                                imageAlt={ entry.imageAlt }
-                            >
-                                <SkillTab { ...entry }/>
-                            </Flipcard>
-                        );
-                    })
-                }
+        <div className={ styles.section }>
+            <div className={ styles.controls }>
+                <span className={ `${ styles.selector } ${ styles.skills } ${ selectedCategory === SkillType.skill ? styles.enabled : styles.disabled }` }
+                    role="button"
+                    aria-label="Skills"
+                    tabIndex={ 0 }
+                    onClick={ setSkillsSelected }
+                    onKeyPress={ setSkillsSelected }>
+                    Skills
+                </span> &amp; 
+                <span className={ `${ styles.selector } ${ styles.interests } ${ selectedCategory === SkillType.interest ? styles.enabled : styles.disabled }` }
+                    role="button"
+                    aria-label="Interests"
+                    tabIndex={ 0 }
+                    onClick={ setInterestsSelected }
+                    onKeyPress={ setInterestsSelected }>
+                    Interests
+                </span> &amp;
+                <span className={ `${ styles.selector } ${ styles.certifications } ${ selectedCategory === SkillType.certification ? styles.enabled : styles.disabled }` }
+                    role="button"
+                    aria-label="Certifications"
+                    tabIndex={ 0 }
+                    onClick={ setCertificationsSelected }
+                    onKeyPress={ setCertificationsSelected }>
+                    Certifications
+                </span>
             </div>
+            {
+                SKILLS.map((entry, index) => {
+                    return (
+                        <Flipcard key={ index }
+                            selected={ selectedCategory === entry.type }
+                            onClick={ (): void => setSelectedCategory(entry.type) }
+                            theme={ styles[entry.type] }
+                            id={ entry.id }
+                            imageSrc={ entry.imageSrc }
+                            imageAlt={ entry.imageAlt }
+                        >
+                            <SkillTab { ...entry }/>
+                        </Flipcard>
+                    );
+                })
+            }
         </div>
     );
 };
@@ -74,7 +71,7 @@ interface SkillTabParams {
     showTenure?: boolean;
 }
 
-const SkillTab = (props: SkillTabParams): JSX.Element => {
+const SkillTab: FunctionComponent<SkillTabParams> = (props) => {
     const {
         id,
         title,
@@ -105,14 +102,4 @@ const SkillTab = (props: SkillTabParams): JSX.Element => {
         </div>
     );
 };
-
-SkillTab.propTypes = {
-    title: PropTypes.string.isRequired,
-    startDate: PropTypes.instanceOf(Date),
-    endDate: PropTypes.instanceOf(Date),
-    experienceLevel: PropTypes.string,
-    showTenure: PropTypes.bool,
-    children: PropTypes.element
-};
-
 export default Skills;

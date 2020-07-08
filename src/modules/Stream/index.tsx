@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import STREAM from "../../images/stream.png";
 import { TWITCH_URL, YOUTUBE_URL } from "../../constants/ExternalUrls";
 import Link from "../../components/link";
 import styles from "./styles.module.scss";
 
-const Stream = (): JSX.Element => {
+const Stream: FunctionComponent = () => {
     return (
         <div className={ styles.module }>
             <div className={ styles.image }>

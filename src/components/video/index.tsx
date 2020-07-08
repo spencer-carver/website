@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import styles from "./styles.module.scss";
 
 interface ContentProps {
@@ -7,7 +7,7 @@ interface ContentProps {
     poster?: string;
 }
 
-const Video = ({ src, subtitleSrc, poster }: ContentProps): JSX.Element => {
+const Video: FunctionComponent<ContentProps> = ({ src, subtitleSrc, poster }) => {
     return (
         <video className={ styles.video } controls poster={ poster }>
             <source src={ src } type="video/mp4" />

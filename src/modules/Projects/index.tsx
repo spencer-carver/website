@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import Link from "../../components/link";
 import Image from "../../components/image";
 import websiteImage from "../../images/website-image.png";
@@ -16,9 +16,7 @@ import {
     GITHUB_LOGO,
     ALEXA_LOGO
 } from "../../constants/Logos";
-import { FunctionalComponent } from "../../@types/generic";
 import styles from "./styles.module.scss";
-import "../styles.scss";
 
 interface Resource {
     image: string;
@@ -98,7 +96,7 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
     }
 };
 
-const Resources = ({ title, resources = [] }: { title: string; resources?: Array<Resource> }): JSX.Element | null => {
+const Resources: FunctionComponent<{ title: string; resources?: Array<Resource> }> = ({ title, resources = [] }) => {
     if (resources.length === 0) {
         return null;
     }
@@ -123,7 +121,7 @@ const Resources = ({ title, resources = [] }: { title: string; resources?: Array
     );
 };
 
-const ProjectCard = (props: Project): JSX.Element => {
+const ProjectCard: FunctionComponent<Project> = (props) => {
     const {
         title,
         description,
@@ -157,7 +155,7 @@ interface ProjectCardProps extends Project {
     selected: number;
 }
 
-const ProjectCardContainer = (props: ProjectCardProps): JSX.Element => {
+const ProjectCardContainer: FunctionComponent<ProjectCardProps> = (props) => {
     const {
         index,
         selected
@@ -170,13 +168,13 @@ const ProjectCardContainer = (props: ProjectCardProps): JSX.Element => {
     );
 };
 
-const Projects = (): JSX.Element => {
+const Projects: FunctionComponent = () => {
     const projects = Object.keys(PROJECT_DETAILS).map((key) => PROJECT_DETAILS[key]);
 
     return (
-        <div id="projects" className={ `section fullwidth ${ styles.projects }` }>
+        <div className={ styles.projects }>
             <Image image={ { src: backgroundImage, srcWebp: backgroundImageWebp } } alt="background" imageStyle={ styles.background } />
-            <Slideshow items={ projects } component={ ProjectCardContainer as FunctionalComponent } options={ {} } />
+            <Slideshow items={ projects } component={ ProjectCardContainer } options={ {} } />
         </div>
     );
 };
