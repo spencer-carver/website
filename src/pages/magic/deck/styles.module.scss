@@ -205,6 +205,10 @@
         height: 500px;
     }
 
+    .deck.yorion {
+        height: 680px;
+    }
+
     .deck.commander,
     .deck.oathbreaker {
         height: 625px;
@@ -220,7 +224,7 @@
         width: 170px;
 
         & .cardContainer:nth-of-type(2n) {
-            margin-left: 100px;
+            margin-left: 50px;
         }
 
         & .cardContainer:nth-of-type(2n+1) {
@@ -234,6 +238,7 @@
 
     .cardContainer {
         height: 25px;
+        text-align: left;
     }
 
     .card,
@@ -264,6 +269,10 @@
                 flex-direction: row-reverse;
             }
         }
+    }
+
+    .tooltip {
+        width: 240px;
     }
 
     .backFace {
@@ -308,6 +317,10 @@
         height: 450px;
     }
 
+    .deck.yorion {
+        height: 600px;
+    }
+
     .deck.commander,
     .deck.oathbreaker {
         height: 625px;
@@ -320,10 +333,15 @@
 
     .sideboard {
         width: 320px;
+
+        & .cardContainer:nth-of-type(2n) {
+            margin-left: 100px;
+        }
     }
 
     .cardContainer {
         height: 30px;
+        text-align: center;
     }
 
     .card,
@@ -372,6 +390,10 @@
         height: 880px;
     }
 
+    .deck.yorion {
+        height: 1200px;
+    }
+
     .deck.commander,
     .deck.oathbreaker {
         height: 1100px;
@@ -389,6 +411,10 @@
 
     .cardContainer {
         height: 44px;
+    }
+
+    .tooltip {
+        width: 300px;
     }
 
     .card,
@@ -426,6 +452,10 @@
     .deck {
         width: 1020px;
         height: 660px;
+    }
+
+    .deck.yorion {
+        height: 880px;
     }
 
     .deck.commander,
