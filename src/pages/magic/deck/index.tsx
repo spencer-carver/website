@@ -131,6 +131,8 @@ const Deck: FunctionComponent<DeckRouterProps> = (props) => {
         );
     }
 
+    const isYorion = deck.entries.mainboard.length === 80;
+
     return (
         <Navigation>
             <div className={ styles.content }>
@@ -143,7 +145,7 @@ const Deck: FunctionComponent<DeckRouterProps> = (props) => {
                         }
                     </div>
                     <div className={ styles.description }>{ deck.description }</div>
-                    <div className={ `${ styles.deck } ${ styles[deck.type] }` }>
+                    <div className={ `${ styles.deck } ${ styles[deck.type] } ${ isYorion ? styles.yorion : "" }` }>
                         {
                             deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
                                 return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type={ deck.type } />;
