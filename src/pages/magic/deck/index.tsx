@@ -244,8 +244,20 @@ function fillInMissingData(data: CardInfo): CardInfo {
                 id: "40b79918-22a7-4fff-82a6-8ebfe6e87185",
                 name: "The Monarch",
                 component: "token",
-                
                 type_line: "Card"
+            }]
+        };
+    }
+
+    // Forbidden Orchard (CHK) doesn't link to the MPR spirit token
+    if (data.id === "88d78261-c8c9-4e0e-b157-f70ed46c3a25") {
+        return {
+            ...data,
+            all_parts: [{
+                id: "46b60d95-b9bc-40f8-b986-bfa8e3eb74f3",
+                name: "Spirit",
+                component: "token",
+                type_line: "Token Creature - Spirit"
             }]
         };
     }
@@ -326,7 +338,7 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
             });
     };
 
-    const side = type === "sideboard" || (type === "commander" && index >= 50) || (type === "oathbreaker" && index >= 30)
+    const side = type === "sideboard" || (type === "constructed" && index >= 45) || (type === "commander" && index >= 50) || (type === "oathbreaker" && index >= 30)
         ? "left"
         : "right";
 
