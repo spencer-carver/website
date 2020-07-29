@@ -64,6 +64,7 @@ const Magic: FunctionComponent = () => {
                         <ul>
                             <DeckLink name="Oathbreaker: Wrenn &amp; Six" id="wrenn-and-six" />
                             <DeckLink name="Pioneer: UW Control" id="uw-control" />
+                            <DeckLink name="Proxy Vintage: Oath of Druids" id="oath-of-druids" />
                         </ul>
                     </div>
                 </div>
