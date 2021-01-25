@@ -25,7 +25,12 @@
     text-align: center;
 }
 
-.corner {
+main[data-theme="dark"] .tile {
+    border: 1px solid $white;
+}
+
+main[data-theme="light"] .corner,
+main[data-theme="dark"] .corner {
     border: none;
 }
 
