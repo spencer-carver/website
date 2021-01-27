@@ -12,10 +12,12 @@ body {
   min-height: calc(100vh - 100px);
 }
 
+body[data-theme="light"],
 main[data-theme="light"] {
   background-color: white;
 }
 
+body[data-theme="dark"],
 main[data-theme="dark"] {
   background-color: $cod-gray;
   color: $mercury;

@@ -24,7 +24,11 @@ const getDefaultTheme = (): string => {
         // do nothing
     }
 
-    return theme || "light";
+    theme = theme || "light";
+
+    document.querySelector("body")?.setAttribute("data-theme", theme);
+
+    return theme;
 };
 
 const Sitemap: FunctionComponent = () => {
@@ -33,11 +37,13 @@ const Sitemap: FunctionComponent = () => {
     const saveTheme = (theme: string): void => {
         localStorage.setItem("theme", theme);
         setTheme(theme);
+
+        document.querySelector("body")?.setAttribute("data-theme", theme);
     };
     
     return (
         <Router>
-            <main className="page" data-theme={ theme }>
+            <main role="main" className="page" data-theme={ theme }>
                 <Switch>
                     <Route path="/" exact component={ Homepage } />
                     <Redirect from="/puzzle" exact to="/puzzles" />
