@@ -15,8 +15,20 @@ import Error from "./pages/error";
 import { unregister as unregisterServiceWorker } from "./registerServiceWorker";
 import "./index.scss";
 
+const getDefaultTheme = (): string => {
+    let theme;
+
+    try {
+        theme = localStorage.getItem("theme");
+    } catch (e) {
+        // do nothing
+    }
+
+    return theme || "light";
+};
+
 const Sitemap: FunctionComponent = () => {
-    const [ theme, setTheme ] = useState(localStorage.getItem("theme") || "light");
+    const [ theme, setTheme ] = useState(getDefaultTheme());
 
     const saveTheme = (theme: string): void => {
         localStorage.setItem("theme", theme);
