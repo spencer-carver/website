@@ -204,6 +204,10 @@
     border-radius: 5px;
 }
 
+main[data-theme="dark"] .instagram.black {
+    @include instagram($mercury);
+}
+
 .instagram.white:hover {
     @include instagram(
         $icon-color: $white,

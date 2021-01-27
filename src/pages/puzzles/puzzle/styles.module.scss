@@ -21,6 +21,9 @@
 
 .list {
     text-align: left;
+    list-style: none;
+    font-size: 18px;
+    line-height: 32px;
 
     a {
         color: $black;
@@ -38,7 +41,7 @@
 
 main[data-theme="dark"] .list {
     a {
-        color: $white;
+        color: $mercury;
     
         &:visited {
           color: $gray;

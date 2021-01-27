@@ -10,6 +10,11 @@
     border: 1px solid $black;
 }
 
+main[data-theme="dark"] .answerbox {
+    background-color: $cod-gray;
+    border: 1px solid $mercury;
+}
+
 .input {
     margin: 0 5px 10px 5px;
 }

@@ -136,30 +136,32 @@ const Deck: FunctionComponent<DeckRouterProps> = (props) => {
     return (
         <Navigation>
             <div className={ styles.content }>
-                <div className={ styles.playmat }>
-                    <div className={ `${ styles.featured } ${ styles[deck.type] }` }>
-                        {
-                            deck.entries.featured.map(({ card_digest: cardDigest }, i) => {
-                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="featured" />;
-                            })
-                        }
-                    </div>
-                    <div className={ styles.description }>{ deck.description }</div>
-                    <div className={ `${ styles.deck } ${ styles[deck.type] } ${ isYorion ? styles.yorion : "" }` }>
-                        {
-                            deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
-                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type={ deck.type } />;
-                            })
-                        }
-                        <div className={ styles.overlay }></div>
-                    </div>
-                    <div className={ `${ styles.sideboard } ${ styles[deck.type] }` }>
-                        {
-                            deck.entries.sideboard.map(({ card_digest: cardDigest }, i) => {
-                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="sideboard" />;
-                            })
-                        }
-                        <div className={ styles.overlay }></div>
+                <div className={ styles.table }>
+                    <div className={ styles.playmat }>
+                        <div className={ `${ styles.featured } ${ styles[deck.type] }` }>
+                            {
+                                deck.entries.featured.map(({ card_digest: cardDigest }, i) => {
+                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="featured" />;
+                                })
+                            }
+                        </div>
+                        <div className={ styles.description }>{ deck.description }</div>
+                        <div className={ `${ styles.deck } ${ styles[deck.type] } ${ isYorion ? styles.yorion : "" }` }>
+                            {
+                                deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
+                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type={ deck.type } />;
+                                })
+                            }
+                            <div className={ styles.overlay }></div>
+                        </div>
+                        <div className={ `${ styles.sideboard } ${ styles[deck.type] }` }>
+                            {
+                                deck.entries.sideboard.map(({ card_digest: cardDigest }, i) => {
+                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="sideboard" />;
+                                })
+                            }
+                            <div className={ styles.overlay }></div>
+                        </div>
                     </div>
                 </div>
                 <div className={ styles.howToPlay }>
