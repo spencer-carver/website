@@ -38,6 +38,10 @@
     cursor: pointer;
 }
 
+main[data-theme="dark"] .cell {
+    background-color: $mercury;
+}
+
 .hideLetters {
     color: transparent;
 }
@@ -46,7 +50,8 @@
     border: 1px solid transparent;
 }
 
-.redacted {
+.redacted,
+main[data-theme="dark"] .redacted {
     background-color: $black;
     color: $white;
 }
@@ -55,7 +60,8 @@
     color: $black;
 }
 
-.selected {
+.selected,
+main[data-theme="dark"] .selected {
     background-color: $atlantis;
     color: $black;
 }
@@ -79,6 +85,11 @@
     background-color: $black;
     color: $white;
     text-decoration: line-through;
+}
+
+main[data-theme="dark"] .found {
+    background-color: $mercury;
+    color: $black;
 }
 
 /* tablet and desktop */

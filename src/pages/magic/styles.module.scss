@@ -1,5 +1,6 @@
+@import "../../styles/colors.scss";
+
 .content {
-    background-color: gray;
     padding: 20px 0;
 }
 
@@ -17,6 +18,14 @@
     h2:first-of-type {
         margin-top: 0;
     }
+}
+
+main[data-theme="light"] .content {
+    background-color: $alto;
+}
+
+main[data-theme="dark"] .decks {
+    background-color: $mine-shaft;
 }
 
 .flair {

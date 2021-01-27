@@ -1,4 +1,5 @@
 @import "./styles/fonts";
+@import "./styles/colors";
 
 body {
   margin: 0;
@@ -9,4 +10,13 @@ body {
 .page {
   position: relative;
   min-height: calc(100vh - 100px);
+}
+
+main[data-theme="light"] {
+  background-color: white;
+}
+
+main[data-theme="dark"] {
+  background-color: $cod-gray;
+  color: $mercury;
 }

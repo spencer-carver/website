@@ -62,6 +62,10 @@
     background-color: $alto;
 }
 
+main[data-theme="dark"] .ingredients {
+    background-color: $mine-shaft;
+}
+
 .ingredients,
 .directions {
     padding: 5px;
@@ -76,6 +80,14 @@
     border-bottom: 1px dotted $black;
     list-style-type: none;
     cursor: pointer;
+
+    &:hover {
+        border-bottom: 1px solid $deep-cerulean;
+    }
+}
+
+main[data-theme="dark"] .ingredient {
+    border-bottom: 1px dotted $mercury;
 
     &:hover {
         border-bottom: 1px solid $deep-cerulean;
@@ -107,7 +119,6 @@ input.ingredientQuantity {
     font-weight: bold;
     color: $malibu;
     text-align: right;
-    z-index: -1;
 }
 
 .stepNumber.complete {
@@ -127,6 +138,10 @@ input.ingredientQuantity {
         margin-top: 20px;
         border-top: none;
     }
+}
+
+main[data-theme="dark"] .step {
+    border-top: 1px dotted $mercury;
 }
 
 .step.complete {

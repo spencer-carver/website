@@ -21,6 +21,32 @@
 
 .list {
     text-align: left;
+    list-style: none;
+    font-size: 18px;
+    line-height: 32px;
+
+    a {
+        color: $black;
+        text-decoration: none;
+    
+        &:visited {
+          color: $gray;
+        }
+
+        &:hover {
+            border-bottom: 1px dotted $atlantis;
+        }
+      }
+}
+
+main[data-theme="dark"] .list {
+    a {
+        color: $mercury;
+    
+        &:visited {
+          color: $gray;
+        }
+      }
 }
 
 .video {

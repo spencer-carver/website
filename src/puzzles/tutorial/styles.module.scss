@@ -34,6 +34,10 @@
     border-bottom: 2px dotted $atlantis;
 }
 
+main[data-theme="dark"] .link {
+    color: $mercury;
+}
+
 .link:hover {
     background-color: $atlantis;
     cursor: pointer;

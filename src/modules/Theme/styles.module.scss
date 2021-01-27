@@ -1,0 +1,41 @@
+@import "../../styles/colors";
+@import "../../styles/icons";
+
+.selector {
+    float: left;
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+main[data-theme="light"] .selector {
+    @include settings($white);
+}
+
+main[data-theme="dark"] .selector {
+    @include settings($cod-gray);
+}
+
+.menu {
+    bottom: 45px;
+    left: -40px;
+    width: 180px;
+    position: absolute;
+    margin: 5px 30px;
+    padding: 10px 0;
+    z-index: 1000003;
+    background-color: $mine-shaft;
+    border-top-right-radius: 20px;
+}
+
+button.dark {
+    background-color: $cod-gray;
+    color: $white;
+}

@@ -28,6 +28,10 @@
     }
 }
 
+main[data-theme="dark"] .site {
+    color: $mercury;
+}
+
 .image {
     text-align: center;
     margin-bottom: 7px;
@@ -39,6 +43,10 @@
         width: 300px;
         margin: 10px -1px -10px 0;
     }
+}
+
+main[data-theme="dark"] .image {
+    background-image: linear-gradient(to right, $cod-gray 0%, $alizarin-crimson 50%, $electric-violet 50%, $cod-gray 100%);
 }
 
 /* tablet and desktop */
