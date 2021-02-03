@@ -19,6 +19,7 @@ function wrapLayout(metadata) {
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
         <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
         <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
         <!--
             Notice the use of %PUBLIC_URL% in the tags above.
             It will be replaced with the URL of the 'public' folder during the build.
