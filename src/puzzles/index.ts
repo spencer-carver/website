@@ -2,6 +2,7 @@ import Tutorial from "./tutorial";
 import CheeseSampler from "./cheese-sampler";
 import ExplosiveDiscovery from "./an-explosive-discovery";
 import YakuzaZero from "./yakuza-zero";
+import TravelDiary from "./travel-diary";
 import { PuzzleType, Puzzle } from "../@types/puzzles";
 
 const PUZZLES: { [key: string]: Puzzle } = {
@@ -17,6 +18,11 @@ const PUZZLES: { [key: string]: Puzzle } = {
         description: "You don't see the appeal?",
         srcUrl: "https://spencer.carvers.info/static/puzzle/tetris.mp4",
         assetSrc: "https://spencer.carvers.info/static/puzzle/tetris.vtt"
+    },
+    "travel-diary": {
+        title: "Travel Diary",
+        type: PuzzleType.html,
+        content: TravelDiary
     },
     "an-explosive-discovery": {
         title: "An Explosive Discovery",
