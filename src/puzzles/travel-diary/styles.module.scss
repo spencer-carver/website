@@ -1,0 +1,209 @@
+.row {
+    height: 50px;
+}
+
+.symbol {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.\31 {
+    background-color: red;
+
+    &::before {
+        position: relative;
+        content: "1";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.\32 {
+    background-color: red;
+
+    &::before {
+        position: relative;
+        content: "2";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.\37 {
+    background-color: purple;
+
+    &::before {
+        position: relative;
+        content: "7";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.C {
+    background-color: blue;
+
+    &::before {
+        position: relative;
+        content: "C";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.D {
+    background-color: orange;
+
+    &::before {
+        position: relative;
+        content: "D";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.E {
+    background-color: blue;
+
+    &::before {
+        position: relative;
+        content: "E";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.F {
+    background-color: orange;
+
+    &::before {
+        position: relative;
+        content: "F";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.L {
+    background-color: gray;
+
+    &::before {
+        position: relative;
+        content: "L";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.M {
+    background-color: orange;
+
+    &::before {
+        position: relative;
+        content: "M";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.N {
+    background-color: yellow;
+
+    &::before {
+        position: relative;
+        content: "N";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+    }
+}
+
+.R {
+    background-color: yellow;
+
+    &::before {
+        position: relative;
+        content: "R";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+    }
+}
+
+.S {
+    background-color: gray;
+
+    &::before {
+        position: relative;
+        content: "S";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.W {
+    background-color: yellow;
+
+    &::before {
+        position: relative;
+        content: "W";
+        top: 6px;
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+    }
+}
+
+.\36 {
+    background-color: green;
+
+    &::before {
+        position: relative;
+        content: "6";
+        top: 4px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.⮍::before {
+    position: relative;
+    content: "⮍";
+    top: 4px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.🚶::before {
+    position: relative;
+    content: "🚶";
+    top: 4px;
+    font-size: 24px;
+    font-weight: bold;
+}
