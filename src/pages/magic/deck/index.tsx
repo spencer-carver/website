@@ -19,8 +19,10 @@ interface Card {
     count: number;
     card_digest: {
         name: string;
-        image: string;
         id: string;
+        image_uris: {
+            front: string;
+        };
     };
 }
 
@@ -97,6 +99,10 @@ function massageDeck(data: MTGDeck): FormattedDeck {
     };
 }
 
+function formatDeckName(name: string): string {
+    return name.replace(/-/g, " ");
+}
+
 const Deck: FunctionComponent<DeckRouterProps> = (props) => {
     const {
         deckName
@@ -138,10 +144,11 @@ const Deck: FunctionComponent<DeckRouterProps> = (props) => {
             <div className={ styles.content }>
                 <div className={ styles.table }>
                     <div className={ styles.playmat }>
+                        <h1 className={ styles.title }>{ formatDeckName(deckName) }</h1>
                         <div className={ `${ styles.featured } ${ styles[deck.type] }` }>
                             {
                                 deck.entries.featured.map(({ card_digest: cardDigest }, i) => {
-                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="featured" />;
+                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type="featured" />;
                                 })
                             }
                         </div>
@@ -149,7 +156,7 @@ const Deck: FunctionComponent<DeckRouterProps> = (props) => {
                         <div className={ `${ styles.deck } ${ styles[deck.type] } ${ isYorion ? styles.yorion : "" }` }>
                             {
                                 deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
-                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type={ deck.type } />;
+                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type={ deck.type } />;
                                 })
                             }
                             <div className={ styles.overlay }></div>
@@ -157,7 +164,7 @@ const Deck: FunctionComponent<DeckRouterProps> = (props) => {
                         <div className={ `${ styles.sideboard } ${ styles[deck.type] }` }>
                             {
                                 deck.entries.sideboard.map(({ card_digest: cardDigest }, i) => {
-                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } index={ i } type="sideboard" />;
+                                    return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type="sideboard" />;
                                 })
                             }
                             <div className={ styles.overlay }></div>
@@ -183,9 +190,6 @@ interface CardComponentProps {
     id: string;
     type?: "constructed" | "commander" | "oathbreaker" | "sideboard" | "featured";
     index: number;
-    image_uris?: {
-        front: string;
-    };
 }
 
 interface RelatedCard {
@@ -202,7 +206,7 @@ interface Faces {
     oracle_text: string;
     flavor_text?: string;
     image_uris?: {
-        border_crop: string;
+        normal: string;
     };
 }
 
@@ -214,7 +218,7 @@ interface CardInfo {
     oracle_text: string;
     flavor_text?: string;
     image_uris?: {
-        border_crop: string;
+        normal: string;
     };
     card_faces?: Faces[];
     all_parts?: RelatedCard[];
@@ -228,7 +232,7 @@ const FetchAndRenderCard: React.FunctionComponent<CardComponentProps> = ({ name,
         fetchFromCache(`https://api.scryfall.com/cards/${ id }`, CARD_TTL)
             .then((data: JSON) => {
                 const cardInfo = data as unknown as CardInfo;
-                setImageUrl(cardInfo.image_uris ? cardInfo.image_uris.border_crop : null as unknown as string);
+                setImageUrl(cardInfo.image_uris ? cardInfo.image_uris.normal : null as unknown as string);
             });
     });
 
@@ -240,16 +244,15 @@ const FetchAndRenderCard: React.FunctionComponent<CardComponentProps> = ({ name,
 };
 
 function fillInMissingData(data: CardInfo): CardInfo {
-    // Palace Jailer doesn't link to the monarch card
-    if (data.id === "78cef262-c753-4658-b3ec-fec8db47f944") {
+    // Dark Depths doesn't link to the Marit Lage token
+    if (data.id === "92409c3a-fb1a-4205-9fe1-0f5affc7b21d") {
         return {
             ...data,
-            
             all_parts: [{
-                id: "40b79918-22a7-4fff-82a6-8ebfe6e87185",
-                name: "The Monarch",
+                id: "7b993828-e139-4cb6-a329-487accc1c515",
+                name: "Marit Lage",
                 component: "token",
-                type_line: "Card"
+                type_line: "Token Legendary Creature — Avatar"
             }]
         };
     }
@@ -304,7 +307,7 @@ function filterAllParts({ id: cardId, all_parts: allParts }: CardInfo): RelatedC
     }
 
     
-    return allParts.filter(({ id, component, type_line }: RelatedCard) => {
+    return allParts.filter(({ name, id, component, type_line }: RelatedCard) => {
         if (cardId === id) {
             return false;
         }
@@ -319,7 +322,7 @@ function filterAllParts({ id: cardId, all_parts: allParts }: CardInfo): RelatedC
             return true;
         }
 
-        return component === "token";
+        return component === "token" || name === "The Monarch";
     });
 }
 
@@ -337,9 +340,8 @@ const Tooltip: React.FunctionComponent<CardInfo> = ({ name, mana_cost, type_line
     );
 };
 
-const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, image: imageAttribute, image_uris, id, type, index }) => {
+const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, image, id, type, index }) => {
     const [ tooltip, setTooltip ] = useState(null as unknown as CardInfo);
-    const image = imageAttribute || image_uris?.front;
 
     const fetchTooltip = (): void => {
         fetchFromCache(`https://api.scryfall.com/cards/${ id }`, CARD_TTL)
@@ -358,7 +360,7 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
 
         return (
             <div className={ styles.featuredCard }>
-                <img className={ styles.card } src={ image?.replace("large", "border_crop") } alt={ name } />
+                <img className={ styles.card } src={ image?.replace("large", "normal") } alt={ name } />
                 { tooltip && (
                     <div className={ `${ styles.tooltipContainer } ${ styles[side] }` }>
                         <div className={ styles.frontFace }>
@@ -368,7 +370,7 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
                             <div key={ tooltip.backFace.name } className={ styles.backFace }>
                                 <div>
                                     <img className={ styles.tooltipCard }
-                                        src={ tooltip.backFace.image_uris.border_crop }
+                                        src={ tooltip.backFace.image_uris.normal }
                                         alt={ tooltip.backFace.name } />
                                 </div>
                                 <Tooltip id={ tooltip.backFace.name } { ...tooltip.backFace } />
@@ -382,7 +384,7 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
     
     return (
         <div className={ styles.cardContainer } onMouseOver={ fetchTooltip } onFocus={ fetchTooltip }>
-            <img className={ styles.card } src={ image?.replace("large", "border_crop") } alt={ name } />
+            <img className={ styles.card } src={ image?.replace("large", "normal") } alt={ name } />
             { tooltip && (
                 <div className={ `${ styles.tooltipContainer } ${ styles[side] }` }>
                     <div className={ styles.frontFace }>
@@ -393,7 +395,7 @@ const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, imag
                     { tooltip.backFace && tooltip.backFace.image_uris && (
                         <div key={ tooltip.backFace.name } className={ styles.backFace }>
                             <div>
-                                <img className={ styles.tooltipCard } src={ tooltip.backFace.image_uris.border_crop } alt={ tooltip.backFace.name } />
+                                <img className={ styles.tooltipCard } src={ tooltip.backFace.image_uris.normal } alt={ tooltip.backFace.name } />
                             </div>
                             <Tooltip id={ tooltip.backFace.name } { ...tooltip.backFace } />
                             { tooltip.all_parts && filterAllParts(tooltip).map((_, i) => <div key={ i } className={ styles.cardSpacer } />) }
