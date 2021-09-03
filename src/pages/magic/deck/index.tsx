@@ -183,6 +183,9 @@ interface CardComponentProps {
     id: string;
     type?: "constructed" | "commander" | "oathbreaker" | "sideboard" | "featured";
     index: number;
+    image_uris?: {
+        front: string;
+    };
 }
 
 interface RelatedCard {
@@ -311,6 +314,11 @@ function filterAllParts({ id: cardId, all_parts: allParts }: CardInfo): RelatedC
             return true;
         }
 
+        // Acererak has multiple dungeons, but we only want to show the main combo one
+        if (cardId === "dd52d0bd-3abd-401c-9f56-ee911613da3b" && id === "59b11ff8-f118-4978-87dd-509dc0c8c932") {
+            return true;
+        }
+
         return component === "token";
     });
 }
@@ -329,8 +337,9 @@ const Tooltip: React.FunctionComponent<CardInfo> = ({ name, mana_cost, type_line
     );
 };
 
-const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, image, id, type, index }) => {
+const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, image: imageAttribute, image_uris, id, type, index }) => {
     const [ tooltip, setTooltip ] = useState(null as unknown as CardInfo);
+    const image = imageAttribute || image_uris?.front;
 
     const fetchTooltip = (): void => {
         fetchFromCache(`https://api.scryfall.com/cards/${ id }`, CARD_TTL)
