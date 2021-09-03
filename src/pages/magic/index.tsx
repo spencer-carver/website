@@ -12,12 +12,18 @@ const Magic: FunctionComponent = () => {
                 </h1>
                 <div className={ styles.decks }>
                     <div>
+                        <h2>Pioneer</h2>
+                        <ul>
+                            <DeckLink name="Lotus Field Combo" id="lotus-field-combo" />
+                        </ul>
+                    </div>
+                    <div>
                         <h2>Modern</h2>
                         <ul>
                             <DeckLink name="Amulet Titan" id="amulet-titan" />
                             <DeckLink name="Bogles" id="bogles" />
                             <DeckLink name="Eldrazi Tron" id="eldrazi-tron" />
-                            <DeckLink name="🐠" id="merfolk" />
+                            { /* <DeckLink name="🐠" id="merfolk" /> */ }
                         </ul>
                     </div>
                     <div>
@@ -62,8 +68,9 @@ const Magic: FunctionComponent = () => {
                     <div>
                         <h2>Other</h2>
                         <ul>
+                            <DeckLink name="Pre-Modern: Astral Slide" id="astral-slide" />
                             <DeckLink name="Oathbreaker: Wrenn &amp; Six" id="wrenn-and-six" />
-                            <DeckLink name="Pioneer: UW Control" id="uw-control" />
+                            { /* <DeckLink name="Pioneer: UW Control" id="uw-control" /> */ }
                             <DeckLink name="Proxy Vintage: Oath of Druids" id="oath-of-druids" />
                         </ul>
                     </div>

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { useState, useEffect, FunctionComponent } from "react";
 import Navigation from "../../../modules/Navigation";
 import styles from "./styles.module.scss";

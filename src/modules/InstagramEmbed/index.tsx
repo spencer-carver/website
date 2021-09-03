@@ -16,6 +16,7 @@ export const InstagramPosts = {
 declare global {
     interface Window {
         instgrm: {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             Embeds: {
                 process: Function;
             };
