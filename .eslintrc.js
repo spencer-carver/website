@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
     "env": {
         "browser": true,
@@ -32,26 +33,26 @@ module.exports = {
             "error",
             {
                 "selector": "default",
-                "format": ["camelCase"]
+                "format": [ "camelCase" ]
             },
             {
                 "selector": "variable",
-                "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+                "format": [ "camelCase", "PascalCase", "UPPER_CASE" ]
             },
             {
                 "selector": "parameter",
-                "format": ["camelCase"],
+                "format": [ "camelCase" ],
                 "leadingUnderscore": "allow"
             },
             {
                 "selector": "memberLike",
-                "modifiers": ["private"],
-                "format": ["camelCase"],
+                "modifiers": [ "private" ],
+                "format": [ "camelCase" ],
                 "leadingUnderscore": "require"
             },
             {
                 "selector": "typeLike",
-                "format": ["PascalCase"]
+                "format": [ "PascalCase" ]
             }
         ],
         "array-bracket-spacing": [ "error", "always", {
