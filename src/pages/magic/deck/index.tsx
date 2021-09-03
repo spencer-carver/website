@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { useState, useEffect, FunctionComponent } from "react";
 import Navigation from "../../../modules/Navigation";
 import styles from "./styles.module.scss";
@@ -314,6 +314,11 @@ function filterAllParts({ id: cardId, all_parts: allParts }: CardInfo): RelatedC
 
         
         if (type_line.indexOf("Emblem") !== -1) {
+            return true;
+        }
+
+        // Acererak has multiple dungeons, but we only want to show the main combo one
+        if (cardId === "dd52d0bd-3abd-401c-9f56-ee911613da3b" && id === "59b11ff8-f118-4978-87dd-509dc0c8c932") {
             return true;
         }
 
