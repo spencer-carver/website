@@ -5,7 +5,6 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
         "plugin:jsx-a11y/recommended"
@@ -28,6 +27,33 @@ module.exports = {
         }
     },
     "rules": {
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "default",
+                "format": ["camelCase"]
+            },
+            {
+                "selector": "variable",
+                "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+            },
+            {
+                "selector": "parameter",
+                "format": ["camelCase"],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": "memberLike",
+                "modifiers": ["private"],
+                "format": ["camelCase"],
+                "leadingUnderscore": "require"
+            },
+            {
+                "selector": "typeLike",
+                "format": ["PascalCase"]
+            }
+        ],
         "array-bracket-spacing": [ "error", "always", {
             "objectsInArrays": false,
             "arraysInArrays": false
@@ -41,12 +67,12 @@ module.exports = {
             "ignoreStrings": true,
             "ignoreTemplateLiterals": true
         }],
-        "object-curly-spacing": ["error", "always"],
+        "object-curly-spacing": [ "error", "always" ],
         "quotes": [ "error", "double" ],
-        "react/jsx-curly-spacing": [2, { "when": "always", "children": true }],
+        "react/jsx-curly-spacing": [ 2, { "when": "always", "children": true }],
         "react/prop-types": "off",
         "semi": [ "error", "always" ],
         "space-infix-ops": [ "error" ],
-        "template-curly-spacing": ["error", "always"]
+        "template-curly-spacing": [ "error", "always" ]
     }
 };

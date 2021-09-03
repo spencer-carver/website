@@ -6,7 +6,7 @@ type Segment = [string, number];
 const Route: FunctionComponent<{ route: Segment[] }> = ({ route }) => {
     return (
         <div className={ styles.row }>
-            { route.map(([symbol, stops]) => (
+            { route.map(([ symbol, stops ]) => (
                 <>
                     <div key={ symbol } className={ `${ styles.symbol } ${ styles[symbol] }` }></div>
                     { stops !== 0 && <span>{ stops }</span> }

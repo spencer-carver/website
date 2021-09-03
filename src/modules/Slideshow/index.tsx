@@ -27,6 +27,7 @@ interface SlideshowProps {
     options: SlideshowOptions;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Component, options }) => {
     const {
         isHero = false,
