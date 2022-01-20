@@ -53,6 +53,7 @@ const Magic: FunctionComponent = () => {
                         <ul>
                             <DeckLink name="Mono-Green Land Destruction" id="mono-g-ponza" colors="🟢" />
                             <DeckLink name="Tortured Existance" id="tortured-existance" colors="⚪⚫🟢" />
+                            <DeckLink name="Teachings Control" id="teachings-control" colors="🔵⚫🔴🟢" />
                         </ul>
                     </div>
                     <div>
@@ -68,10 +69,16 @@ const Magic: FunctionComponent = () => {
                         </ul>
                     </div>
                     <div>
+                        <h2>Oathbreaker</h2>
+                        <ul>
+                            <DeckLink name="Wrenn &amp; Six" id="wrenn-and-six" colors="🔴🟢" />
+                            <DeckLink name="Calix, Destiny&apos;s Hand" id="calix-enchantress" colors="⚪🟢" />
+                        </ul>
+                    </div>
+                    <div>
                         <h2>Other</h2>
                         <ul>
                             <DeckLink name="Pre-Modern: Astral Slide" id="astral-slide" colors="⚪🔴" />
-                            <DeckLink name="Oathbreaker: Wrenn &amp; Six" id="wrenn-and-six" colors="🔴🟢" />
                             <DeckLink name="Proxy Vintage: Oath of Druids" id="oath-of-druids" colors="⚪🔵⚫🔴🟢" />
                         </ul>
                     </div>
@@ -88,10 +95,22 @@ interface DeckLinkProps {
 }
 
 const DeckLink: React.FunctionComponent<DeckLinkProps> = ({ name, id, colors }) => {
+    const colorEl = colors && (
+        <>
+            { colors.includes("⚪") && <span className={ styles.white } /> }
+            { colors.includes("🔵") && <span className={ styles.blue } /> }
+            { colors.includes("⚫") && <span className={ styles.black } /> }
+            { colors.includes("🔴") && <span className={ styles.red } /> }
+            { colors.includes("🟢") && <span className={ styles.green } /> }
+        </>
+    );
 
     return (
         <Link to={ `/magic/deck/${ id }` }>
-            <li className={ styles.deck }><h2>{ name }</h2>{ colors && <span className={ styles.deckColors }>{ colors }</span> }</li>
+            <li className={ styles.deck }>
+                <h2 className={ styles.deckName }>{ name }</h2>
+                { colorEl && <span className={ styles.deckColors }>{ colorEl }</span> }
+            </li>
         </Link>
     );
 };

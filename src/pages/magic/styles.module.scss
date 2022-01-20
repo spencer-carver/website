@@ -49,16 +49,53 @@ main[data-theme="dark"] .decks {
 }
 
 .deckColors {
-    display: inline;
+    display: none;
     float: right;
     position: absolute;
     top: 0;
     right: 0;
 }
 
+.white,
+.blue,
+.black,
+.red,
+.green {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 2px;
+    border: 1px solid black;
+}
+
+.white {
+    background-color: white;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.black {
+    background-color: black;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
 /* tablet & up */
 @media screen and (min-width: 760px) {
     .decks {
         width: 740px;
+    }
+
+    .deckColors {
+        display: inline;
     }
 }
