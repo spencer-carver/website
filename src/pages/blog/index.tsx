@@ -1,20 +1,25 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
-import post from "./posts/TEST.md";
-import ReactMarkdown from "react-markdown";
+import { Link } from "react-router-dom";
+import { API_URL } from "../../constants/ExternalUrls";
+import Navigation from "../../modules/Navigation";
+import fetchFromCache from "../../utils/cache";
 
 const Blog: FunctionComponent = () => {
-    const [ contents, setContents ] = useState("");
+    const [ posts, setPosts ] = useState([] as string[]);
 
     useEffect(() => {
-        fetch(post).then(res => res.text()).then(setContents);
+        fetchFromCache(`${ API_URL }/api/blog`).then((data) => setPosts(data as unknown as string[]));
     }, []);
 
-    if (!contents) {
+    if (!posts) {
         return null;
     }
 
-    // eslint-disable-next-line react/no-children-prop
-    return <ReactMarkdown children={ contents } />;
+    return (
+        <Navigation>
+            <ul>{ posts.map((post, index) => <Link key={ index } to={ `/blog/${ post }` }><li>{ post }</li></Link>) }</ul>
+        </Navigation>
+    );
 };
 
 export default Blog;

@@ -12,6 +12,7 @@ import Recipe from "./pages/recipes/recipe";
 import Magic from "./pages/magic";
 import MagicDeck from "./pages/magic/deck";
 import Blog from "./pages/blog";
+import BlogPost from "./pages/blog/post";
 import Error from "./pages/error";
 import { unregister as unregisterServiceWorker } from "./registerServiceWorker";
 import "./index.scss";
@@ -58,7 +59,8 @@ const Sitemap: FunctionComponent = () => {
                     <Redirect from="/mtg" exact to="/magic" />
                     <Route path="/magic" exact component={ Magic } />
                     <Route path="/magic/deck/:deckName" exact component={ MagicDeck } />
-                    <Route path="/blog" exact component = { Blog } />
+                    <Route path="/blog" exact component={ Blog } />
+                    <Route path="/blog/:post" exact component={ BlogPost } />
                     <Route path="*" render={ (() => <Error errorCode={ 404 } />) as FunctionComponent } />
                 </Switch>
                 <Footer setTheme={ saveTheme }/>
