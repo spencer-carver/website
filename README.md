@@ -1,3 +1,9 @@
+## Notice
+
+As of March 27, 2022, this repository has been superceeded by a [new version](https://github.com/spencer-carver/next-website). This repository is archived and left up for posterity, but all future updates will be on the new location. Details on why the switch was made are available on the following [blog post](https://spencer.carvers.info/blog/a-tale-of-two-websites).
+
+---
+
 This repository houses the code running my personal website at https://spencer.carvers.info. I plan to use it to showcase my prefered coding styles, and also to keep learning about the latest JS and Front-End development trends.
 
 ## About
